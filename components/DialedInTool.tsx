@@ -193,8 +193,7 @@ export function DialedInTool() {
               </option>
               {machines.map((m) => (
                 <option key={m.id} value={m.id}>
-                  {m.brand} {m.model} · up to{" "}
-                  {Math.max(...m.strokeOptionsMm).toFixed(1)} mm
+                  {m.brand} - {m.model}
                 </option>
               ))}
             </select>

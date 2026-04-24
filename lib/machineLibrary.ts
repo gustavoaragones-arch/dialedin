@@ -1,14 +1,15 @@
 import type { Machine, VoltRange } from "./dialedInData";
 import { getBrowserSupabase } from "./supabase/client";
 
+/** Row shape: only columns we read from `public.machine_library` (+ id for keys). */
 type MachineRow = {
   id: string;
   brand: string;
   model: string;
-  tier: number;
-  is_adjustable_stroke: boolean;
   stroke_options: number[] | null;
   default_volt_range: VoltRange | null;
+  tier?: number | null;
+  is_adjustable_stroke?: boolean | null;
 };
 
 function parseVoltRange(raw: unknown): VoltRange | null {
@@ -28,13 +29,19 @@ export function mapMachineRow(row: MachineRow): Machine | null {
   if (opts.length === 0) return null;
   const vr = parseVoltRange(row.default_volt_range);
   if (!vr) return null;
-  const tier = row.tier === 2 ? 2 : 1;
+
+  const tier: 1 | 2 = row.tier === 2 ? 2 : 1;
+  const isAdjustableStroke =
+    typeof row.is_adjustable_stroke === "boolean"
+      ? row.is_adjustable_stroke
+      : opts.length > 1;
+
   return {
     id: row.id,
     brand: String(row.brand ?? "").trim() || "Unknown",
     model: String(row.model ?? "").trim() || "Unknown",
     tier,
-    isAdjustableStroke: Boolean(row.is_adjustable_stroke),
+    isAdjustableStroke,
     strokeOptionsMm: opts,
     defaultVoltRange: vr,
   };
@@ -44,6 +51,12 @@ export type FetchMachinesResult =
   | { ok: true; machines: Machine[] }
   | { ok: false; error: string };
 
+const MACHINE_LIBRARY = "machine_library";
+
+/**
+ * Loads machines from `public.machine_library` (not `machines`).
+ * Select list matches schema: brand, model, stroke_options, default_volt_range, plus id.
+ */
 export async function fetchMachineLibrary(): Promise<FetchMachinesResult> {
   const supabase = getBrowserSupabase();
   if (!supabase) {
@@ -55,10 +68,8 @@ export async function fetchMachineLibrary(): Promise<FetchMachinesResult> {
   }
 
   const { data, error } = await supabase
-    .from("machine_library")
-    .select(
-      "id, brand, model, tier, is_adjustable_stroke, stroke_options, default_volt_range",
-    )
+    .from(MACHINE_LIBRARY)
+    .select("id, brand, model, stroke_options, default_volt_range")
     .order("brand", { ascending: true })
     .order("model", { ascending: true });
 
