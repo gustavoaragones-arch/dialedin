@@ -1,0 +1,466 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c0d10;
+  --panel: #14161c;
+  --border: #262a34;
+  --text: #e8eaef;
+  --muted: #9aa3b2;
+  --accent: #6ee7ff;
+  --accent-dim: #2bb3d6;
+  --rec: #fbbf24;
+  --gauge-track: #2a2f3a;
+  --gauge-low: #334155;
+  --gauge-mid: #22d3ee;
+  --gauge-high: #a7f3d0;
+  --gauge-needle: #f8fafc;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    "Noto Sans", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 20% -10%, #1a2332, var(--bg));
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.dialed {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.dialed__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin: 0 0 0.5rem;
+}
+
+.dialed__title {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0 0 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.dialed__lede {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.dialed__grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 880px) {
+  .dialed__grid {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: start;
+  }
+}
+
+.dialed__panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.35rem;
+}
+
+.dialed__panel--out {
+  box-shadow: 0 0 0 1px rgba(110, 231, 255, 0.06);
+}
+
+.dialed__link {
+  color: var(--accent);
+  text-decoration: none;
+  text-transform: none;
+  letter-spacing: 0.03em;
+}
+
+.dialed__link:hover {
+  text-decoration: underline;
+}
+
+.science-banners {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.science-banner {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  border-radius: 10px;
+  border: 2px solid #f59e0b;
+  background: #000000;
+  color: #fef3c7;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 6px 24px rgba(245, 158, 11, 0.12);
+}
+
+.science-banner--critical {
+  border-color: #fbbf24;
+  background: #030301;
+  color: #fffbeb;
+}
+
+.science-banner--advisory {
+  border-color: #b45309;
+  background: #050505;
+  color: #fde68a;
+}
+
+.science-banner__icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+  color: #fbbf24;
+}
+
+.science-banner__body {
+  min-width: 0;
+}
+
+.science-banner__title {
+  display: block;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fbbf24;
+  margin-bottom: 0.35rem;
+}
+
+.science-banner__msg {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: inherit;
+}
+
+.dialed__json {
+  margin: 0.35rem 0 0;
+  padding: 0.65rem 0.75rem;
+  max-height: 220px;
+  overflow: auto;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  background: #0a0b0f;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--muted);
+}
+
+.dialed__h2 {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+.dialed__h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.dialed__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.dialed__field select {
+  background: #0f1117;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.55rem 0.65rem;
+  font-size: 1rem;
+}
+
+.dialed__hint {
+  margin: 0.25rem 0 0;
+  font-size: 0.8rem;
+  color: var(--accent-dim);
+}
+
+.dialed__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.dialed__chip {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #0f1117;
+  color: var(--text);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dialed__chip--on {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(110, 231, 255, 0.25);
+}
+
+.dialed__chip--rec {
+  border-color: rgba(251, 191, 36, 0.55);
+}
+
+.dialed__rec-badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--rec);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  border-radius: 999px;
+  padding: 0.05rem 0.35rem;
+}
+
+.dialed__gauges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.dialed__placeholder {
+  color: var(--muted);
+  margin: 0;
+}
+
+.gauge {
+  min-width: 150px;
+}
+
+.gauge__label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.15rem;
+}
+
+.gauge__readout {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  margin-top: -0.25rem;
+}
+
+.gauge__value {
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.gauge__unit {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.gauge__range {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.hang-slider {
+  margin: 1rem 0 1.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #0f1117;
+}
+
+.hang-slider__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.hang-slider__value {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.hang-slider__track {
+  position: relative;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--gauge-track);
+  overflow: hidden;
+}
+
+.hang-slider__fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gauge-mid), var(--gauge-high));
+  pointer-events: none;
+}
+
+.hang-slider__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.hang-slider__ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.dialed__kv {
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.dialed__kv dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.dialed__kv dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.95rem;
+}
+
+.dialed__muted {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.dialed__protips {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border);
+}
+
+.dialed__protips ul {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.technical-term {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.technical-term__btn {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #0f1117;
+  color: var(--accent);
+  padding: 0;
+  cursor: help;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.technical-term__icon {
+  display: block;
+}
+
+.technical-term__tip {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%);
+  width: min(280px, 70vw);
+  background: #11131a;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.78rem;
+  color: var(--text);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+.technical-result {
+  display: inline;
+}
+
+.science-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+.science-page__eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+}
+
+.science-page__eyebrow a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.science-page__eyebrow a:hover {
+  text-decoration: underline;
+}
+
+.science-page__title {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  letter-spacing: 0.02em;
+}
+
+.science-page__lede {
+  margin: 0 0 2rem;
+  color: var(--muted);
+  max-width: 62ch;
+}
+
+.science-article {
+  color: var(--text);
+}
+
+.science-section {
+  margin-bottom: 2.25rem;
+}
+
+.science-section h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.science-section p {
+  margin: 0 0 1rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
