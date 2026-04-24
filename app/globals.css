@@ -193,6 +193,12 @@ body {
   color: var(--accent-dim);
 }
 
+.dialed__error {
+  margin: 0.35rem 0 0;
+  font-size: 0.82rem;
+  color: #fca5a5;
+}
+
 .dialed__chips {
   display: flex;
   flex-wrap: wrap;

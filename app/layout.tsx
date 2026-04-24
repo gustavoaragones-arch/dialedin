@@ -1,3 +1,4 @@
+import { DialedInProvider } from "@/components/DialedInProvider";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <DialedInProvider>{children}</DialedInProvider>
+      </body>
     </html>
   );
 }

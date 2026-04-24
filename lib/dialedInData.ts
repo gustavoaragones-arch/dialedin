@@ -56,30 +56,34 @@ export const STYLE_PRESETS: StylePreset[] = [
   },
 ];
 
-export const MACHINES: Machine[] = [
-  {
-    id: "m-1",
-    brand: "Example Rotary",
-    model: "Short Stroke Pack",
-    tier: 1,
-    isAdjustableStroke: false,
-    strokeOptionsMm: [3.2],
-    defaultVoltRange: { min: 5.5, max: 8.0, baseline: 6.8 },
-  },
-  {
-    id: "m-2",
-    brand: "Example Rotary",
-    model: "Long Stroke Adjustable",
-    tier: 2,
-    isAdjustableStroke: true,
-    strokeOptionsMm: [3.5, 4.0, 4.2],
-    defaultVoltRange: { min: 5.0, max: 10.5, baseline: 7.5 },
-  },
-];
+const EPS = 0.0001;
 
-export function effectiveStrokeMm(machine: Machine | null): number {
+/** Max configured stroke (upper bound of machine capability). */
+export function maxStrokeMm(machine: Machine | null): number {
   if (!machine || machine.strokeOptionsMm.length === 0) return 0;
   return Math.max(...machine.strokeOptionsMm);
+}
+
+/**
+ * Active stroke for physics/engine: uses global `selectedStrokeMm` when it
+ * matches an available option; otherwise falls back to the longest option.
+ */
+export function resolveActiveStrokeMm(
+  machine: Machine | null,
+  selectedStrokeMm: number | null,
+): number {
+  if (!machine || machine.strokeOptionsMm.length === 0) return 0;
+  const opts = machine.strokeOptionsMm;
+  if (selectedStrokeMm == null || !Number.isFinite(selectedStrokeMm)) {
+    return Math.max(...opts);
+  }
+  const exact = opts.find((s) => Math.abs(s - selectedStrokeMm) < EPS);
+  if (exact !== undefined) return exact;
+  return opts.reduce((best, s) =>
+    Math.abs(s - selectedStrokeMm) < Math.abs(best - selectedStrokeMm)
+      ? s
+      : best,
+  );
 }
 
 const LONG_STROKE_MM = 4.0;
@@ -88,6 +92,7 @@ const SOFT_SHADING_REDUCTION = 1.5;
 export function computeVoltageOutput(
   machine: Machine | null,
   techniqueName: string | null,
+  activeStrokeMm: number,
 ): {
   baselineVolts: number;
   adjustedVolts: number;
@@ -96,11 +101,10 @@ export function computeVoltageOutput(
   effectiveStrokeMm: number;
 } | null {
   if (!machine || !techniqueName) return null;
-  const stroke = effectiveStrokeMm(machine);
+  const stroke = activeStrokeMm;
   const baseline = machine.defaultVoltRange.baseline;
   const { min, max } = machine.defaultVoltRange;
-  const isSoft =
-    techniqueName.trim().toLowerCase() === "soft shading";
+  const isSoft = techniqueName.trim().toLowerCase() === "soft shading";
   const guard = stroke >= LONG_STROKE_MM && isSoft;
   const raw = guard ? baseline - SOFT_SHADING_REDUCTION : baseline;
   const adjusted = Math.min(Math.max(raw, min), max);

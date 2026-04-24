@@ -1,5 +1,6 @@
+import type { MutableRefObject } from "react";
 import type { Machine, StylePreset } from "./dialedInData";
-import { STYLE_PRESETS } from "./dialedInData";
+import { STYLE_PRESETS, maxStrokeMm } from "./dialedInData";
 
 import type { HandSpeed } from "./dialedInEngine";
 
@@ -7,6 +8,8 @@ export type DialedInState = {
   styleId: string | null;
   techniqueId: string | null;
   machineId: string | null;
+  /** Active stroke length (mm) for the selected machine; drives engine + guards. */
+  selectedStrokeMm: number | null;
   needleHangMm: number;
   handSpeed: HandSpeed;
   /** When style + machine are set, UI highlights this as recommended */
@@ -17,6 +20,7 @@ export type DialedInAction =
   | { type: "SET_STYLE"; styleId: string | null }
   | { type: "SET_TECHNIQUE"; techniqueId: string | null }
   | { type: "SET_MACHINE"; machineId: string | null }
+  | { type: "SET_SELECTED_STROKE_MM"; strokeMm: number }
   | { type: "SET_NEEDLE_HANG"; mm: number }
   | { type: "SET_HAND_SPEED"; handSpeed: HandSpeed }
   | { type: "SYNC_RECOMMENDED_TECHNIQUE" };
@@ -25,6 +29,7 @@ const initial: DialedInState = {
   styleId: null,
   techniqueId: null,
   machineId: null,
+  selectedStrokeMm: null,
   needleHangMm: 1.5,
   handSpeed: "Moderate",
   highlightedTechniqueId: null,
@@ -42,12 +47,21 @@ function recommendedTechniqueForStyleAndMachine(
   return style.recommendedTechniqueId;
 }
 
+function defaultStrokeForMachine(
+  machine: Machine | undefined,
+): number | null {
+  if (!machine || machine.strokeOptionsMm.length === 0) return null;
+  return maxStrokeMm(machine);
+}
+
 export function dialedInReducer(
   state: DialedInState,
   action: DialedInAction,
-  machinesById: Map<string, Machine>,
+  machinesByIdRef: MutableRefObject<Map<string, Machine>>,
   stylesById: Map<string, StylePreset>,
 ): DialedInState {
+  const machinesById = machinesByIdRef.current;
+
   switch (action.type) {
     case "SET_STYLE": {
       const next = { ...state, styleId: action.styleId };
@@ -65,11 +79,16 @@ export function dialedInReducer(
       };
     }
     case "SET_MACHINE": {
-      const next = { ...state, machineId: action.machineId };
-      const style = state.styleId ? stylesById.get(state.styleId) : undefined;
       const machine = action.machineId
         ? machinesById.get(action.machineId)
         : undefined;
+      const nextStroke = defaultStrokeForMachine(machine);
+      const next = {
+        ...state,
+        machineId: action.machineId,
+        selectedStrokeMm: action.machineId ? nextStroke : null,
+      };
+      const style = state.styleId ? stylesById.get(state.styleId) : undefined;
       const rec =
         style && machine
           ? recommendedTechniqueForStyleAndMachine(style, machine)
@@ -78,6 +97,17 @@ export function dialedInReducer(
         ...next,
         highlightedTechniqueId: rec,
       };
+    }
+    case "SET_SELECTED_STROKE_MM": {
+      const machine = state.machineId
+        ? machinesById.get(state.machineId)
+        : undefined;
+      if (!machine) return state;
+      const allowed = machine.strokeOptionsMm.some(
+        (s) => Math.abs(s - action.strokeMm) < 0.0001,
+      );
+      if (!allowed) return state;
+      return { ...state, selectedStrokeMm: action.strokeMm };
     }
     case "SET_TECHNIQUE":
       return {

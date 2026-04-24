@@ -4,10 +4,10 @@ import { useMemo } from "react";
 import {
   computeVoltageOutput,
   hzSweetSpotFromVoltage,
-  effectiveStrokeMm,
+  resolveActiveStrokeMm,
 } from "@/lib/dialedInData";
 import { evaluateDialedInEngine } from "@/lib/dialedInEngine";
-import { useDialedIn } from "@/lib/useDialedIn";
+import { useDialedIn } from "@/components/DialedInProvider";
 import Link from "next/link";
 import { NeedleHangSlider } from "./NeedleHangSlider";
 import { ScienceWarningBanners } from "./ScienceWarningBanners";
@@ -19,6 +19,8 @@ export function DialedInTool() {
     state,
     dispatch,
     machines,
+    machinesLoading,
+    machinesError,
     styles,
     techniques,
     machine,
@@ -26,22 +28,32 @@ export function DialedInTool() {
     technique,
   } = useDialedIn();
 
+  const activeStrokeMm = useMemo(
+    () => resolveActiveStrokeMm(machine, state.selectedStrokeMm),
+    [machine, state.selectedStrokeMm],
+  );
+
   const engine = useMemo(() => {
     if (!machine || !style || !technique) return null;
     return evaluateDialedInEngine(
       {
-        strokeMm: effectiveStrokeMm(machine),
+        strokeMm: activeStrokeMm,
         technique: technique.name,
         style: style.styleName,
         handSpeed: state.handSpeed,
       },
       { voltEnvelope: machine.defaultVoltRange },
     );
-  }, [machine, style, technique, state.handSpeed]);
+  }, [machine, style, technique, state.handSpeed, activeStrokeMm]);
 
   const voltage = useMemo(
-    () => computeVoltageOutput(machine, technique?.name ?? null),
-    [machine, technique],
+    () =>
+      computeVoltageOutput(
+        machine,
+        technique?.name ?? null,
+        activeStrokeMm,
+      ),
+    [machine, technique, activeStrokeMm],
   );
 
   const hz = useMemo(() => {
@@ -52,7 +64,7 @@ export function DialedInTool() {
 
   const proTips = useMemo(() => {
     const tips: string[] = [];
-    const stroke = machine ? effectiveStrokeMm(machine) : 0;
+    const stroke = activeStrokeMm;
     if (stroke >= 4.2 && technique?.name === "Black & Grey Realism") {
       tips.push(
         "Using a 4.2mm stroke for realism requires a very light hand — let needle work do the heavy lifting.",
@@ -73,7 +85,12 @@ export function DialedInTool() {
       );
     }
     return tips;
-  }, [machine, technique, voltage, state.needleHangMm]);
+  }, [activeStrokeMm, technique, voltage, state.needleHangMm]);
+
+  const strokeOptionsSorted = useMemo(() => {
+    if (!machine) return [];
+    return [...machine.strokeOptionsMm].sort((a, b) => a - b);
+  }, [machine]);
 
   return (
     <div className="dialed">
@@ -160,9 +177,10 @@ export function DialedInTool() {
           </label>
 
           <label className="dialed__field">
-            <span>3 · Machine</span>
+            <span>3 · Machine (Supabase)</span>
             <select
               value={state.machineId ?? ""}
+              disabled={machinesLoading}
               onChange={(e) =>
                 dispatch({
                   type: "SET_MACHINE",
@@ -170,14 +188,46 @@ export function DialedInTool() {
                 })
               }
             >
-              <option value="">Select machine…</option>
+              <option value="">
+                {machinesLoading ? "Loading machines…" : "Select machine…"}
+              </option>
               {machines.map((m) => (
                 <option key={m.id} value={m.id}>
-                  {m.brand} {m.model} · max {Math.max(...m.strokeOptionsMm)} mm
+                  {m.brand} {m.model} · up to{" "}
+                  {Math.max(...m.strokeOptionsMm).toFixed(1)} mm
                 </option>
               ))}
             </select>
+            {machinesError ? (
+              <p className="dialed__error" role="alert">
+                {machinesError}
+              </p>
+            ) : null}
           </label>
+
+          {machine && strokeOptionsSorted.length > 1 ? (
+            <label className="dialed__field">
+              <span>Stroke length (global)</span>
+              <select
+                value={String(
+                  state.selectedStrokeMm ??
+                    resolveActiveStrokeMm(machine, null),
+                )}
+                onChange={(e) =>
+                  dispatch({
+                    type: "SET_SELECTED_STROKE_MM",
+                    strokeMm: Number(e.target.value),
+                  })
+                }
+              >
+                {strokeOptionsSorted.map((mm) => (
+                  <option key={mm} value={mm}>
+                    {mm.toFixed(1)} mm
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
 
           <div className="dialed__chips" aria-label="Technique quick pick">
             {techniques.map((t) => {
@@ -262,9 +312,11 @@ export function DialedInTool() {
 
           <dl className="dialed__kv">
             <div>
-              <dt>Effective stroke</dt>
+              <dt>Selected stroke (global)</dt>
               <dd>
-                {machine ? `${effectiveStrokeMm(machine).toFixed(1)} mm` : "—"}
+                {machine
+                  ? `${activeStrokeMm.toFixed(1)} mm`
+                  : "—"}
               </dd>
             </div>
             <div>
