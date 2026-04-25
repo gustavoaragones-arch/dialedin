@@ -1,18 +1,60 @@
 import type { VoltRange } from "./dialedInData";
+import { frequencySweetSpotFromVoltage } from "./dialedInData";
 
 /** High stroke threshold (mm) for Hammer Effect guard. */
 export const HIGH_STROKE_MM = 4.0;
 
 const HAMMER_REDUCTION_V = 1.5;
 
-export type HandSpeed = "Slow" | "Moderate" | "Fast";
+/** Five discrete hand-speed steps (slider indices 0–4). */
+export const HAND_SPEED_STEPS = [
+  "Slow",
+  "SlowModerate",
+  "Moderate",
+  "FastModerate",
+  "Fast",
+] as const;
+
+export type HandSpeed = (typeof HAND_SPEED_STEPS)[number];
+
+export function handSpeedLabel(s: HandSpeed): string {
+  const map: Record<HandSpeed, string> = {
+    Slow: "Slow",
+    SlowModerate: "Slow-Moderate",
+    Moderate: "Moderate",
+    FastModerate: "Fast-Moderate",
+    Fast: "Fast",
+  };
+  return map[s];
+}
+
+export function handSpeedFromSliderIndex(i: number): HandSpeed {
+  const idx = Math.min(4, Math.max(0, Math.round(i)));
+  return HAND_SPEED_STEPS[idx]!;
+}
+
+export function sliderIndexFromHandSpeed(s: HandSpeed): number {
+  return HAND_SPEED_STEPS.indexOf(s);
+}
+
+/**
+ * Slider steps 1–5 (indices 0–4: Slow → Fast) map to voltage offsets (V)
+ * applied after relational baseline, before envelope clamp.
+ */
+export const HAND_SPEED_VOLTAGE_OFFSETS = [
+  -0.6, -0.3, 0.0, 0.4, 0.8,
+] as const;
+
+export function handSpeedOffsetVolts(speed: HandSpeed): number {
+  const i = sliderIndexFromHandSpeed(speed);
+  return HAND_SPEED_VOLTAGE_OFFSETS[i] ?? 0;
+}
 
 export type DialedInEngineInput = {
   /** Effective machine stroke in mm (e.g. max of stroke_options). */
   strokeMm: number;
   technique: string;
   style: string;
-  /** Optional: drives Velocity Sync advisory when set to Fast. */
   handSpeed?: HandSpeed | null;
 };
 
@@ -39,6 +81,14 @@ export type DialedInEngineResult = {
   taper_recommendation: string;
   voltage_baseline: number;
   needle_hang_mm: number;
+  /** Heuristic Hz band from voltage (supply / readout framing). */
+  hz_derived: number;
+  hz_band_min: number;
+  hz_band_max: number;
+  /** Physical needle cycles/sec (1:1 direct-drive model ≈ drive frequency here). */
+  cps_derived: number;
+  cps_band_min: number;
+  cps_band_max: number;
   /** Integrated scientific authority checks + legacy aggregate. */
   safety_trigger: SafetyTriggerState;
 };
@@ -169,6 +219,10 @@ const GEOMETRY_MESSAGE =
 const VELOCITY_MESSAGE =
   "Frequency/Velocity Desync: Your hand speed exceeds the machine's cycle rate. This may cause 'dashed' lines or skin snagging. Increase voltage or decelerate hand movement.";
 
+function defaultEnvelope(): VoltRange {
+  return { min: 5, max: 10.5, baseline: 7.5 };
+}
+
 /**
  * Relational mapping + scientific checks (Hammer Effect, Geometry Desync, Velocity Sync).
  */
@@ -192,12 +246,19 @@ export function evaluateDialedInEngine(
     sp.needle_count_high + tp.needle_count_delta,
   );
 
-  let voltage =
+  const speed: HandSpeed = handSpeed ?? "Moderate";
+  const envelope = options?.voltEnvelope ?? defaultEnvelope();
+
+  /** Relational + hammer baseline (no hand-speed offset yet). */
+  let voltageBaseline =
     sp.voltage_base + tp.volt_delta + strokeVoltageDelta(strokeMm);
 
   if (hammer) {
-    voltage -= HAMMER_REDUCTION_V;
+    voltageBaseline -= HAMMER_REDUCTION_V;
   }
+
+  const handOffset = handSpeedOffsetVolts(speed);
+  let voltage = voltageBaseline + handOffset;
 
   if (options?.voltEnvelope) {
     const { min, max } = options.voltEnvelope;
@@ -207,6 +268,8 @@ export function evaluateDialedInEngine(
   }
 
   const voltageRounded = Math.round(voltage * 10) / 10;
+
+  const freq = frequencySweetSpotFromVoltage(voltageRounded, envelope);
 
   const hang = Math.min(
     3.0,
@@ -235,8 +298,10 @@ export function evaluateDialedInEngine(
     });
   }
 
-  const speed = handSpeed ?? "Moderate";
-  if (speed === "Fast" && voltageRounded < 7.5) {
+  if (
+    (speed === "Fast" || speed === "FastModerate") &&
+    voltageRounded < 7.5
+  ) {
     checks.push({
       code: "VELOCITY_SYNC",
       severity: "advisory",
@@ -250,6 +315,12 @@ export function evaluateDialedInEngine(
     taper_recommendation: taper,
     voltage_baseline: voltageRounded,
     needle_hang_mm: Math.round(hang * 10) / 10,
+    hz_derived: Math.round(freq.hz * 10) / 10,
+    hz_band_min: freq.hzMin,
+    hz_band_max: freq.hzMax,
+    cps_derived: freq.cps_derived,
+    cps_band_min: freq.cpsMin,
+    cps_band_max: freq.cpsMax,
     safety_trigger: {
       active: checks.length > 0,
       checks,

@@ -1,20 +1,22 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import {
   computeVoltageOutput,
-  hzSweetSpotFromVoltage,
+  frequencySweetSpotFromVoltage,
   resolveActiveStrokeMm,
 } from "@/lib/dialedInData";
 import { evaluateDialedInEngine } from "@/lib/dialedInEngine";
 import { useDialedIn } from "@/components/DialedInProvider";
 import Link from "next/link";
+import { HandSpeedSlider } from "./HandSpeedSlider";
 import { NeedleHangSlider } from "./NeedleHangSlider";
 import { ScienceWarningBanners } from "./ScienceWarningBanners";
 import { SweetSpotGauge } from "./SweetSpotGauge";
 import { TechnicalResultWithHints, TechnicalTerm } from "./TechnicalTerm";
 
 export function DialedInTool() {
+  const [devJsonOpen, setDevJsonOpen] = useState(false);
   const {
     state,
     dispatch,
@@ -56,11 +58,32 @@ export function DialedInTool() {
     [machine, technique, activeStrokeMm],
   );
 
-  const hz = useMemo(() => {
-    const volts = engine?.voltage_baseline ?? voltage?.adjustedVolts;
-    if (volts == null || !machine) return null;
-    return hzSweetSpotFromVoltage(volts, machine);
-  }, [engine, voltage, machine]);
+  const gaugePack = useMemo(() => {
+    if (!machine) return null;
+    const v = engine?.voltage_baseline ?? voltage?.adjustedVolts;
+    if (v == null) return null;
+    if (engine) {
+      return {
+        volts: engine.voltage_baseline,
+        hz: engine.hz_derived,
+        hzMin: engine.hz_band_min,
+        hzMax: engine.hz_band_max,
+        cps: engine.cps_derived,
+        cpsMin: engine.cps_band_min,
+        cpsMax: engine.cps_band_max,
+      };
+    }
+    const f = frequencySweetSpotFromVoltage(v, machine.defaultVoltRange);
+    return {
+      volts: v,
+      hz: Math.round(f.hz * 10) / 10,
+      hzMin: f.hzMin,
+      hzMax: f.hzMax,
+      cps: Math.round(f.cps_derived * 10) / 10,
+      cpsMin: f.cpsMin,
+      cpsMax: f.cpsMax,
+    };
+  }, [machine, engine, voltage]);
 
   const proTips = useMemo(() => {
     const tips: string[] = [];
@@ -160,24 +183,7 @@ export function DialedInTool() {
           </label>
 
           <label className="dialed__field">
-            <span>Hand speed (velocity model)</span>
-            <select
-              value={state.handSpeed}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_HAND_SPEED",
-                  handSpeed: e.target.value as "Slow" | "Moderate" | "Fast",
-                })
-              }
-            >
-              <option value="Slow">Slow</option>
-              <option value="Moderate">Moderate</option>
-              <option value="Fast">Fast</option>
-            </select>
-          </label>
-
-          <label className="dialed__field">
-            <span>3 · Machine (Supabase)</span>
+            <span>3 · Select Machine Library</span>
             <select
               value={state.machineId ?? ""}
               disabled={machinesLoading}
@@ -228,6 +234,13 @@ export function DialedInTool() {
             </label>
           ) : null}
 
+          <HandSpeedSlider
+            value={state.handSpeed}
+            onChange={(handSpeed) =>
+              dispatch({ type: "SET_HAND_SPEED", handSpeed })
+            }
+          />
+
           <div className="dialed__chips" aria-label="Technique quick pick">
             {techniques.map((t) => {
               const rec = state.highlightedTechniqueId === t.id;
@@ -256,45 +269,33 @@ export function DialedInTool() {
           ) : null}
 
           <div className="dialed__gauges">
-            {engine && machine ? (
+            {gaugePack && machine ? (
               <>
                 <SweetSpotGauge
                   label="Voltage (logic engine)"
-                  value={engine.voltage_baseline}
+                  value={gaugePack.volts}
                   min={machine.defaultVoltRange.min}
                   max={machine.defaultVoltRange.max}
                   unit="V"
                 />
-                {hz ? (
-                  <SweetSpotGauge
-                    label="Hertz sweet spot (derived)"
-                    value={hz.hz}
-                    min={hz.hzMin}
-                    max={hz.hzMax}
-                    unit="Hz"
-                    decimals={0}
-                  />
-                ) : null}
-              </>
-            ) : voltage && machine ? (
-              <>
                 <SweetSpotGauge
-                  label="Voltage sweet spot"
-                  value={voltage.adjustedVolts}
-                  min={machine.defaultVoltRange.min}
-                  max={machine.defaultVoltRange.max}
-                  unit="V"
+                  label="Hertz (Hz) — supply / readout band"
+                  value={gaugePack.hz}
+                  min={gaugePack.hzMin}
+                  max={gaugePack.hzMax}
+                  unit="Hz"
+                  decimals={0}
+                  caption="Heuristic band tied to voltage—similar to how many bench supplies frame the drive readout."
                 />
-                {hz ? (
-                  <SweetSpotGauge
-                    label="Hertz sweet spot (derived)"
-                    value={hz.hz}
-                    min={hz.hzMin}
-                    max={hz.hzMax}
-                    unit="Hz"
-                    decimals={0}
-                  />
-                ) : null}
+                <SweetSpotGauge
+                  label="Cycles Per Second (CPS)"
+                  value={gaugePack.cps}
+                  min={gaugePack.cpsMin}
+                  max={gaugePack.cpsMax}
+                  unit="CPS"
+                  decimals={0}
+                  caption="CPS = round((final volts × 1000) ÷ 60)—a scalar teaching view of how hard the pack is being driven after hand-speed offset and clamp."
+                />
               </>
             ) : (
               <p className="dialed__placeholder">
@@ -312,7 +313,7 @@ export function DialedInTool() {
           <dl className="dialed__kv">
             <div>
               <dt>Selected stroke (global)</dt>
-              <dd>
+              <dd className="dialed__kv-value">
                 {machine
                   ? `${activeStrokeMm.toFixed(1)} mm`
                   : "—"}
@@ -320,9 +321,11 @@ export function DialedInTool() {
             </div>
             <div>
               <dt>Cartridge (technical range)</dt>
-              <dd>
+              <dd className="dialed__kv-value dialed__kv-value--cartridge">
                 {style ? (
-                  <TechnicalResultWithHints text={style.idealNeedleRange} />
+                  <span className="dialed__kv-value__inner">
+                    <TechnicalResultWithHints text={style.idealNeedleRange} />
+                  </span>
                 ) : (
                   "—"
                 )}
@@ -332,7 +335,7 @@ export function DialedInTool() {
               <dt>
                 <TechnicalTerm termKey="SLT">SLT</TechnicalTerm> context
               </dt>
-              <dd className="dialed__muted">
+              <dd className="dialed__kv-value dialed__muted">
                 Brand equivalents live in glossary hovers only — main UI stays
                 standard-first.
               </dd>
@@ -341,7 +344,7 @@ export function DialedInTool() {
               <>
                 <div>
                   <dt>Needle diameter (engine)</dt>
-                  <dd>
+                  <dd className="dialed__kv-value">
                     <TechnicalResultWithHints
                       text={engine.needle_diameter_range}
                     />
@@ -349,7 +352,7 @@ export function DialedInTool() {
                 </div>
                 <div>
                   <dt>Needle count (engine)</dt>
-                  <dd>
+                  <dd className="dialed__kv-value">
                     <TechnicalResultWithHints
                       text={engine.needle_count_range}
                     />
@@ -357,7 +360,7 @@ export function DialedInTool() {
                 </div>
                 <div>
                   <dt>Taper (engine)</dt>
-                  <dd>
+                  <dd className="dialed__kv-value">
                     <TechnicalResultWithHints
                       text={engine.taper_recommendation}
                     />
@@ -365,14 +368,26 @@ export function DialedInTool() {
                 </div>
                 <div>
                   <dt>Recommended hang (engine)</dt>
-                  <dd>{engine.needle_hang_mm.toFixed(1)} mm</dd>
+                  <dd className="dialed__kv-value">
+                    {engine.needle_hang_mm.toFixed(1)} mm
+                  </dd>
                 </div>
                 <div>
-                  <dt>Logic engine JSON</dt>
-                  <dd>
-                    <pre className="dialed__json" tabIndex={0}>
-                      {JSON.stringify(engine, null, 2)}
-                    </pre>
+                  <dt>Engine output</dt>
+                  <dd className="dialed__kv-value">
+                    <button
+                      type="button"
+                      className="dialed__dev-toggle"
+                      onClick={() => setDevJsonOpen((o) => !o)}
+                      aria-expanded={devJsonOpen}
+                    >
+                      Developer toggle (raw JSON)
+                    </button>
+                    {devJsonOpen ? (
+                      <pre className="dialed__json" tabIndex={0}>
+                        {JSON.stringify(engine, null, 2)}
+                      </pre>
+                    ) : null}
                   </dd>
                 </div>
               </>
@@ -380,7 +395,7 @@ export function DialedInTool() {
             {voltage ? (
               <div>
                 <dt>Machine envelope guard (legacy)</dt>
-                <dd>
+                <dd className="dialed__kv-value">
                   Baseline {voltage.baselineVolts.toFixed(1)} V → adjusted{" "}
                   {voltage.adjustedVolts.toFixed(1)} V
                   {voltage.longStrokeSoftShadingGuard

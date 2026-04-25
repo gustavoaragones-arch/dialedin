@@ -18,8 +18,9 @@ export function ScienceMethodologyContent() {
           which those cycles deposit pigment, the skin sees under-filled
           segments—often misread as a &quot;machine problem&quot; when it is a{" "}
           <strong>velocity mismatch</strong>. The DialedIn.ink engine models this
-          by pairing hand speed (slow / moderate / fast) with recommended
-          voltage bands: faster hands generally require higher effective cycle
+          by pairing a five-step hand-speed scale (slow through fast-moderate)
+          with recommended voltage bands: faster hands generally require higher
+          effective cycle
           energy, bounded by tissue safety envelopes.
         </p>
         <p>

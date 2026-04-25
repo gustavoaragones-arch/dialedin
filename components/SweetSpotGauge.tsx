@@ -9,6 +9,8 @@ type Props = {
   max: number;
   unit: string;
   decimals?: number;
+  /** Optional teaching line (e.g. CPS vs Hz). */
+  caption?: string;
 };
 
 /** CSS + SVG hybrid semicircle “speedometer” for sweet-spot readouts. */
@@ -19,6 +21,7 @@ export function SweetSpotGauge({
   max,
   unit,
   decimals = 1,
+  caption,
 }: Props) {
   const gid = useId().replace(/:/g, "");
   const t = max > min ? (value - min) / (max - min) : 0;
@@ -85,6 +88,7 @@ export function SweetSpotGauge({
       <div className="gauge__range">
         {min.toFixed(decimals)} – {max.toFixed(decimals)} {unit}
       </div>
+      {caption ? <p className="gauge__caption">{caption}</p> : null}
     </div>
   );
 }

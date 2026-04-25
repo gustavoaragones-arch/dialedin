@@ -117,21 +117,59 @@ export function computeVoltageOutput(
   };
 }
 
+export type FrequencySweetSpot = {
+  /** Heuristic “supply / display” Hz band mapped from voltage. */
+  hz: number;
+  hzMin: number;
+  hzMax: number;
+  /** CPS from voltage: round((V × 1000) / 60). */
+  cps_derived: number;
+  cpsMin: number;
+  cpsMax: number;
+};
+
+/** CPS gauge mapping from final operating voltage (after clamp). */
+export function cyclesPerSecondFromVoltage(volts: number): number {
+  return Math.round((volts * 1000) / 60);
+}
+
+export function cpsGaugeBandFromEnvelope(env: VoltRange): {
+  cpsMin: number;
+  cpsMax: number;
+} {
+  return {
+    cpsMin: Math.round((env.min * 1000) / 60),
+    cpsMax: Math.round((env.max * 1000) / 60),
+  };
+}
+
+/** Maps operating voltage into Hz band + CPS derived from the same final volts. */
+export function frequencySweetSpotFromVoltage(
+  volts: number,
+  envelope: VoltRange,
+): FrequencySweetSpot {
+  const span = envelope.max - envelope.min || 1;
+  const t = Math.min(1, Math.max(0, (volts - envelope.min) / span));
+  const hzMin = 85;
+  const hzMax = 150;
+  const hz = hzMin + t * (hzMax - hzMin);
+  const { cpsMin, cpsMax } = cpsGaugeBandFromEnvelope(envelope);
+  return {
+    hz,
+    hzMin,
+    hzMax,
+    cps_derived: cyclesPerSecondFromVoltage(volts),
+    cpsMin,
+    cpsMax,
+  };
+}
+
 /** Hz sweet spot derived from envelope (display-only heuristic for UI gauges). */
 export function hzSweetSpotFromVoltage(
   volts: number,
   machine: Machine | null,
 ): { hz: number; hzMin: number; hzMax: number } {
   if (!machine) return { hz: 100, hzMin: 80, hzMax: 140 };
-  const span = machine.defaultVoltRange.max - machine.defaultVoltRange.min || 1;
-  const t =
-    (volts - machine.defaultVoltRange.min) /
-    span;
-  const hzMin = 85;
-  const hzMax = 150;
-  return {
-    hz: hzMin + t * (hzMax - hzMin),
-    hzMin,
-    hzMax,
-  };
+  const f = frequencySweetSpotFromVoltage(volts, machine.defaultVoltRange);
+  return { hz: f.hz, hzMin: f.hzMin, hzMax: f.hzMax };
 }
