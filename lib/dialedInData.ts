@@ -86,6 +86,27 @@ export function resolveActiveStrokeMm(
   );
 }
 
+/** Slider minimum (mm). */
+export const NEEDLE_HANG_ABS_MIN_MM = 0.5;
+
+/** When no machine is selected, cap hang at this value (mm). */
+export const NEEDLE_HANG_FALLBACK_MAX_MM = 3.0;
+
+/**
+ * Max needle hang (mm) follows active stroke length: cannot exceed stroke.
+ * No machine → conservative default cap.
+ */
+export function needleHangMaxMm(
+  machine: Machine | null,
+  selectedStrokeMm: number | null,
+): number {
+  if (!machine || machine.strokeOptionsMm.length === 0) {
+    return NEEDLE_HANG_FALLBACK_MAX_MM;
+  }
+  const stroke = resolveActiveStrokeMm(machine, selectedStrokeMm);
+  return stroke > 0 ? stroke : NEEDLE_HANG_FALLBACK_MAX_MM;
+}
+
 const LONG_STROKE_MM = 4.0;
 const SOFT_SHADING_REDUCTION = 1.5;
 

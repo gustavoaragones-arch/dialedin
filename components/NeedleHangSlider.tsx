@@ -1,16 +1,19 @@
 "use client";
 
+import { NEEDLE_HANG_ABS_MIN_MM } from "@/lib/dialedInData";
 import { TechnicalTerm } from "./TechnicalTerm";
 
 type Props = {
   valueMm: number;
+  maxMm: number;
   onChange: (mm: number) => void;
 };
 
-export function NeedleHangSlider({ valueMm, onChange }: Props) {
-  const min = 0.5;
-  const max = 3.0;
-  const pct = ((valueMm - min) / (max - min)) * 100;
+export function NeedleHangSlider({ valueMm, maxMm, onChange }: Props) {
+  const min = NEEDLE_HANG_ABS_MIN_MM;
+  const max = Math.max(min, maxMm);
+  const span = max - min;
+  const pct = span <= 0 ? 0 : ((valueMm - min) / span) * 100;
 
   return (
     <div className="hang-slider">
@@ -40,8 +43,8 @@ export function NeedleHangSlider({ valueMm, onChange }: Props) {
         />
       </div>
       <div className="hang-slider__ticks">
-        <span>0.5 mm</span>
-        <span>3.0 mm</span>
+        <span>{min.toFixed(1)} mm</span>
+        <span>{max.toFixed(1)} mm</span>
       </div>
     </div>
   );

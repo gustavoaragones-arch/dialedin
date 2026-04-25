@@ -1,6 +1,11 @@
 import type { MutableRefObject } from "react";
 import type { Machine, StylePreset } from "./dialedInData";
-import { STYLE_PRESETS, maxStrokeMm } from "./dialedInData";
+import {
+  NEEDLE_HANG_ABS_MIN_MM,
+  STYLE_PRESETS,
+  maxStrokeMm,
+  needleHangMaxMm,
+} from "./dialedInData";
 
 import type { HandSpeed } from "./dialedInEngine";
 
@@ -54,6 +59,15 @@ function defaultStrokeForMachine(
   return maxStrokeMm(machine);
 }
 
+function clampNeedleHangMm(
+  mm: number,
+  machine: Machine | undefined,
+  selectedStrokeMm: number | null,
+): number {
+  const max = needleHangMaxMm(machine ?? null, selectedStrokeMm);
+  return Math.min(max, Math.max(NEEDLE_HANG_ABS_MIN_MM, mm));
+}
+
 export function dialedInReducer(
   state: DialedInState,
   action: DialedInAction,
@@ -93,8 +107,14 @@ export function dialedInReducer(
         style && machine
           ? recommendedTechniqueForStyleAndMachine(style, machine)
           : null;
+      const needleHangMm = clampNeedleHangMm(
+        state.needleHangMm,
+        machine,
+        next.selectedStrokeMm,
+      );
       return {
         ...next,
+        needleHangMm,
         highlightedTechniqueId: rec,
       };
     }
@@ -107,18 +127,31 @@ export function dialedInReducer(
         (s) => Math.abs(s - action.strokeMm) < 0.0001,
       );
       if (!allowed) return state;
-      return { ...state, selectedStrokeMm: action.strokeMm };
+      const needleHangMm = clampNeedleHangMm(
+        state.needleHangMm,
+        machine,
+        action.strokeMm,
+      );
+      return { ...state, selectedStrokeMm: action.strokeMm, needleHangMm };
     }
     case "SET_TECHNIQUE":
       return {
         ...state,
         techniqueId: action.techniqueId,
       };
-    case "SET_NEEDLE_HANG":
+    case "SET_NEEDLE_HANG": {
+      const machine = state.machineId
+        ? machinesById.get(state.machineId)
+        : undefined;
       return {
         ...state,
-        needleHangMm: Math.min(3, Math.max(0.5, action.mm)),
+        needleHangMm: clampNeedleHangMm(
+          action.mm,
+          machine,
+          state.selectedStrokeMm,
+        ),
       };
+    }
     case "SET_HAND_SPEED":
       return { ...state, handSpeed: action.handSpeed };
     case "SYNC_RECOMMENDED_TECHNIQUE": {

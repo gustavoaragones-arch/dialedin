@@ -4,11 +4,14 @@ import { useMemo, useState } from "react";
 import {
   computeVoltageOutput,
   frequencySweetSpotFromVoltage,
+  needleHangMaxMm,
   resolveActiveStrokeMm,
 } from "@/lib/dialedInData";
-import { evaluateDialedInEngine } from "@/lib/dialedInEngine";
+import { isAcusFrequencyFirstBrand } from "@/lib/machineBrand";
+import { dialedInEngineToJson, evaluateDialedInEngine } from "@/lib/dialedInEngine";
 import { useDialedIn } from "@/components/DialedInProvider";
 import Link from "next/link";
+import { HowItWorks } from "./HowItWorks";
 import { HandSpeedSlider } from "./HandSpeedSlider";
 import { NeedleHangSlider } from "./NeedleHangSlider";
 import { ScienceWarningBanners } from "./ScienceWarningBanners";
@@ -32,6 +35,11 @@ export function DialedInTool() {
 
   const activeStrokeMm = useMemo(
     () => resolveActiveStrokeMm(machine, state.selectedStrokeMm),
+    [machine, state.selectedStrokeMm],
+  );
+
+  const needleHangMaxMmValue = useMemo(
+    () => needleHangMaxMm(machine ?? null, state.selectedStrokeMm),
     [machine, state.selectedStrokeMm],
   );
 
@@ -115,21 +123,29 @@ export function DialedInTool() {
     return [...machine.strokeOptionsMm].sort((a, b) => a - b);
   }, [machine]);
 
+  const acusHzFirst = useMemo(
+    () => isAcusFrequencyFirstBrand(machine?.brand),
+    [machine?.brand],
+  );
+
   return (
     <div className="dialed">
       <header className="dialed__header">
         <p className="dialed__eyebrow">
-          Tattoo setup engine ·{" "}
+          Tattoo setup ·{" "}
           <Link className="dialed__link" href="/science">
             Scientific methodology
           </Link>
         </p>
         <h1 className="dialed__title">DIALED-IN</h1>
         <p className="dialed__lede">
-          Interdependent style, technique, and machine inputs. Complete style +
-          machine to surface the recommended technique and live voltage logic.
+          Stop guessing your tattoo machine settings. Pick your style and
+          machine to instantly find the perfect voltage, needle grouping, and
+          technique for every session.
         </p>
       </header>
+
+      <HowItWorks />
 
       <div className="dialed__grid">
         <section className="dialed__panel" aria-label="Inputs">
@@ -138,6 +154,7 @@ export function DialedInTool() {
           <label className="dialed__field">
             <span>1 · Style</span>
             <select
+              className="dialed__select"
               value={state.styleId ?? ""}
               onChange={(e) =>
                 dispatch({
@@ -185,6 +202,7 @@ export function DialedInTool() {
           <label className="dialed__field">
             <span>3 · Select Machine Library</span>
             <select
+              className="dialed__select"
               value={state.machineId ?? ""}
               disabled={machinesLoading}
               onChange={(e) =>
@@ -214,6 +232,7 @@ export function DialedInTool() {
             <label className="dialed__field">
               <span>Stroke length (global)</span>
               <select
+                className="dialed__select"
                 value={String(
                   state.selectedStrokeMm ??
                     resolveActiveStrokeMm(machine, null),
@@ -262,51 +281,70 @@ export function DialedInTool() {
         </section>
 
         <section className="dialed__panel dialed__panel--out" aria-label="Output dashboard">
-          <h2 className="dialed__h2">Output dashboard</h2>
-
           {engine ? (
             <ScienceWarningBanners checks={engine.safety_trigger.checks} />
           ) : null}
 
-          <div className="dialed__gauges">
-            {gaugePack && machine ? (
-              <>
-                <SweetSpotGauge
-                  label="Voltage (logic engine)"
-                  value={gaugePack.volts}
-                  min={machine.defaultVoltRange.min}
-                  max={machine.defaultVoltRange.max}
-                  unit="V"
-                />
-                <SweetSpotGauge
-                  label="Hertz (Hz) — supply / readout band"
-                  value={gaugePack.hz}
-                  min={gaugePack.hzMin}
-                  max={gaugePack.hzMax}
-                  unit="Hz"
-                  decimals={0}
-                  caption="Heuristic band tied to voltage—similar to how many bench supplies frame the drive readout."
-                />
-                <SweetSpotGauge
-                  label="Cycles Per Second (CPS)"
-                  value={gaugePack.cps}
-                  min={gaugePack.cpsMin}
-                  max={gaugePack.cpsMax}
-                  unit="CPS"
-                  decimals={0}
-                  caption="CPS = round((final volts × 1000) ÷ 60)—a scalar teaching view of how hard the pack is being driven after hand-speed offset and clamp."
-                />
-              </>
-            ) : (
-              <p className="dialed__placeholder">
-                Select style, technique, and machine to run the DialedIn.ink
-                logic engine and render gauges.
-              </p>
-            )}
+          <h2 className="dialed__h2 dialed__h2--gauges">
+            Output Dashboard (Recommended)
+          </h2>
+
+          <div className="dialed__gauges-shell">
+            <div className="dialed__gauges dialed__gauges--stable-row">
+              {gaugePack && machine ? (
+                <>
+                  <SweetSpotGauge
+                    label="Voltage"
+                    value={gaugePack.volts}
+                    min={machine.defaultVoltRange.min}
+                    max={machine.defaultVoltRange.max}
+                    unit="V"
+                    badge={
+                      acusHzFirst ? "Power supply reference" : undefined
+                    }
+                    emphasis={acusHzFirst ? "muted" : "default"}
+                  />
+                  <SweetSpotGauge
+                    label={
+                      acusHzFirst
+                        ? "Hertz (Hz) — primary control"
+                        : "Hertz (Hz) — supply / readout band"
+                    }
+                    value={gaugePack.hz}
+                    min={gaugePack.hzMin}
+                    max={gaugePack.hzMax}
+                    unit="Hz"
+                    decimals={0}
+                    badge={acusHzFirst ? "Primary readout" : undefined}
+                    emphasis={acusHzFirst ? "primary" : "default"}
+                    caption={
+                      acusHzFirst
+                        ? "For ACUS, treat Hz as the main operating readout; voltage is a bench supply reference into that band."
+                        : "Heuristic band tied to voltage—similar to how many bench supplies frame the drive readout."
+                    }
+                  />
+                  <SweetSpotGauge
+                    label="Cycles Per Second (CPS)"
+                    value={gaugePack.cps}
+                    min={gaugePack.cpsMin}
+                    max={gaugePack.cpsMax}
+                    unit="CPS"
+                    decimals={0}
+                    caption="CPS = round((final volts × 1000) ÷ 60)—a scalar teaching view of how hard the pack is being driven after hand-speed offset and clamp."
+                  />
+                </>
+              ) : (
+                <p className="dialed__placeholder dialed__placeholder--gauges">
+                  Select style, technique, and machine to load recommended
+                  readouts and gauges.
+                </p>
+              )}
+            </div>
           </div>
 
           <NeedleHangSlider
             valueMm={state.needleHangMm}
+            maxMm={needleHangMaxMmValue}
             onChange={(mm) => dispatch({ type: "SET_NEEDLE_HANG", mm })}
           />
 
@@ -319,82 +357,71 @@ export function DialedInTool() {
                   : "—"}
               </dd>
             </div>
-            <div>
-              <dt>Cartridge (technical range)</dt>
-              <dd className="dialed__kv-value dialed__kv-value--cartridge">
-                {style ? (
-                  <span className="dialed__kv-value__inner">
-                    <TechnicalResultWithHints text={style.idealNeedleRange} />
-                  </span>
-                ) : (
-                  "—"
-                )}
-              </dd>
-            </div>
-            <div>
-              <dt>
-                <TechnicalTerm termKey="SLT">SLT</TechnicalTerm> context
-              </dt>
-              <dd className="dialed__kv-value dialed__muted">
-                Brand equivalents live in glossary hovers only — main UI stays
-                standard-first.
-              </dd>
-            </div>
-            {engine ? (
-              <>
-                <div>
-                  <dt>Needle diameter (engine)</dt>
-                  <dd className="dialed__kv-value">
-                    <TechnicalResultWithHints
-                      text={engine.needle_diameter_range}
-                    />
-                  </dd>
-                </div>
-                <div>
-                  <dt>Needle count (engine)</dt>
-                  <dd className="dialed__kv-value">
-                    <TechnicalResultWithHints
-                      text={engine.needle_count_range}
-                    />
-                  </dd>
-                </div>
-                <div>
-                  <dt>Taper (engine)</dt>
-                  <dd className="dialed__kv-value">
-                    <TechnicalResultWithHints
-                      text={engine.taper_recommendation}
-                    />
-                  </dd>
-                </div>
-                <div>
-                  <dt>Recommended hang (engine)</dt>
-                  <dd className="dialed__kv-value">
-                    {engine.needle_hang_mm.toFixed(1)} mm
-                  </dd>
-                </div>
-                <div>
-                  <dt>Engine output</dt>
-                  <dd className="dialed__kv-value">
-                    <button
-                      type="button"
-                      className="dialed__dev-toggle"
-                      onClick={() => setDevJsonOpen((o) => !o)}
-                      aria-expanded={devJsonOpen}
-                    >
-                      Developer toggle (raw JSON)
-                    </button>
-                    {devJsonOpen ? (
-                      <pre className="dialed__json" tabIndex={0}>
-                        {JSON.stringify(engine, null, 2)}
-                      </pre>
-                    ) : null}
-                  </dd>
-                </div>
-              </>
-            ) : null}
-            {voltage ? (
+          </dl>
+
+          <div className="dialed__cartridge-section">
+            <h3 className="dialed__h3">Cartridge Configuration</h3>
+            <dl className="dialed__kv dialed__kv--cartridge">
               <div>
-                <dt>Machine envelope guard (legacy)</dt>
+                <dt>Cartridge (technical range)</dt>
+                <dd className="dialed__kv-value dialed__kv-value--cartridge">
+                  {style ? (
+                    <span className="dialed__kv-value__inner">
+                      <TechnicalResultWithHints text={style.idealNeedleRange} />
+                    </span>
+                  ) : (
+                    "—"
+                  )}
+                </dd>
+              </div>
+              <div>
+                <dt>
+                  <TechnicalTerm termKey="SLT">SLT</TechnicalTerm> context
+                </dt>
+                <dd className="dialed__kv-value dialed__muted">
+                  Brand bridge equivalents (
+                  <TechnicalTerm termKey="SLT">SLT</TechnicalTerm>,{" "}
+                  <TechnicalTerm termKey="#10">#10</TechnicalTerm>,{" "}
+                  <TechnicalTerm termKey="TX">TX</TechnicalTerm>) appear in
+                  glossary hovers on matching cartridge copy — main UI stays
+                  standard-first.
+                </dd>
+              </div>
+              {engine ? (
+                <>
+                  <div>
+                    <dt>Needle diameter</dt>
+                    <dd className="dialed__kv-value">
+                      <TechnicalResultWithHints
+                        text={engine.needle_diameter_range}
+                      />
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Needle count</dt>
+                    <dd className="dialed__kv-value">
+                      <TechnicalResultWithHints
+                        text={engine.needle_count_range}
+                      />
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Taper</dt>
+                    <dd className="dialed__kv-value">
+                      <TechnicalResultWithHints
+                        text={engine.taper_recommendation}
+                      />
+                    </dd>
+                  </div>
+                </>
+              ) : null}
+            </dl>
+          </div>
+
+          {voltage ? (
+            <dl className="dialed__kv dialed__kv--footer">
+              <div>
+                <dt>Machine voltage envelope</dt>
                 <dd className="dialed__kv-value">
                   Baseline {voltage.baselineVolts.toFixed(1)} V → adjusted{" "}
                   {voltage.adjustedVolts.toFixed(1)} V
@@ -403,8 +430,35 @@ export function DialedInTool() {
                     : ""}
                 </dd>
               </div>
-            ) : null}
-          </dl>
+            </dl>
+          ) : null}
+
+          {engine ? (
+            <>
+              <div className="dialed__detail-actions">
+                <button
+                  type="button"
+                  className="dialed__dev-toggle"
+                  onClick={() => setDevJsonOpen((o) => !o)}
+                  aria-expanded={devJsonOpen}
+                  aria-label={
+                    devJsonOpen
+                      ? "Hide raw setup data"
+                      : "Show raw setup data (JSON)"
+                  }
+                >
+                  {devJsonOpen
+                    ? "Hide technical detail"
+                    : "Show technical detail"}
+                </button>
+              </div>
+              {devJsonOpen ? (
+                <pre className="dialed__json" tabIndex={0}>
+                  {dialedInEngineToJson(engine)}
+                </pre>
+              ) : null}
+            </>
+          ) : null}
 
           {proTips.length > 0 ? (
             <aside className="dialed__protips" aria-label="Pro tips">

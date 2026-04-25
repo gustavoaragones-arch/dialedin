@@ -2,6 +2,8 @@
 
 import { useId } from "react";
 
+type GaugeEmphasis = "default" | "primary" | "muted";
+
 type Props = {
   label: string;
   value: number;
@@ -11,6 +13,10 @@ type Props = {
   decimals?: number;
   /** Optional teaching line (e.g. CPS vs Hz). */
   caption?: string;
+  /** Small caption under the main label (e.g. supply reference). */
+  badge?: string;
+  /** Visual priority in the trio (e.g. Hz-first for ACUS). */
+  emphasis?: GaugeEmphasis;
 };
 
 /** CSS + SVG hybrid semicircle “speedometer” for sweet-spot readouts. */
@@ -22,6 +28,8 @@ export function SweetSpotGauge({
   unit,
   decimals = 1,
   caption,
+  badge,
+  emphasis = "default",
 }: Props) {
   const gid = useId().replace(/:/g, "");
   const t = max > min ? (value - min) / (max - min) : 0;
@@ -31,9 +39,22 @@ export function SweetSpotGauge({
   const cx = 60;
   const cy = 58;
 
+  const wrapClass =
+    emphasis === "primary"
+      ? "gauge gauge--primary"
+      : emphasis === "muted"
+        ? "gauge gauge--muted"
+        : "gauge";
+
   return (
-    <div className="gauge" aria-label={`${label}: ${value.toFixed(decimals)} ${unit}`}>
-      <div className="gauge__label">{label}</div>
+    <div
+      className={wrapClass}
+      aria-label={`${label}: ${value.toFixed(decimals)} ${unit}`}
+    >
+      <div className="gauge__label">
+        <span className="gauge__label-text">{label}</span>
+        {badge ? <span className="gauge__badge">{badge}</span> : null}
+      </div>
       <svg
         className="gauge__svg"
         viewBox="0 0 120 70"

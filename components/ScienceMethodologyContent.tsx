@@ -9,6 +9,20 @@ import { TechnicalResultWithHints } from "./TechnicalTerm";
 export function ScienceMethodologyContent() {
   return (
     <article className="science-article">
+      <section className="science-section" id="relational-physics">
+        <h2>Relational physics &amp; the ACUS standard</h2>
+        <p>
+          The DialedIn setup model operates on a relational physics model.
+          Unlike linear calculators, it accounts for the{" "}
+          <strong>Hammer Effect</strong>—the exponential increase in kinetic
+          impact when long-stroke machines are used at high voltages. By
+          integrating the ACUS standard, we allow artists to transition from
+          traditional voltage to modern frequency-based (Hz) tattooing,
+          ensuring physical reciprocation (CPS) remains consistent across all
+          hardware tiers.
+        </p>
+      </section>
+
       <section className="science-section" id="stroke-cycle">
         <h2>The stroke–cycle equilibrium</h2>
         <p>
@@ -30,6 +44,25 @@ export function ScienceMethodologyContent() {
           voltage is deliberately pulled down—our{" "}
           <strong>Hammer Effect Guard</strong> applies a −1.5 V offset when
           stroke ≥ 4.0 mm and the technique is delicate shading-class.
+        </p>
+      </section>
+
+      <section className="science-section" id="acus-paradigm">
+        <h2>The ACUS Paradigm: Frequency vs. Potential</h2>
+        <p>
+          With the arrival of the ACUS M1 and M2, the industry is moving from
+          &apos;Voltage-thinking&apos; to &apos;Frequency-thinking.&apos;
+          While traditional power supplies measure the electrical potential
+          (Volts), the ACUS system prioritizes the Cycles Per Second (Hertz).
+        </p>
+        <p>
+          DialedIn.ink is engineered to bridge this gap. Our engine translates
+          standard motor constants into physical reciprocation rates. This
+          ensures that whether you are using a standard rotary or a
+          German-engineered ACUS, your Hand Speed Sync remains mathematically
+          consistent. By calculating the physical CPS, we help artists
+          internalize the &apos;Speed of the Hit&apos; independent of the brand
+          of their power supply.
         </p>
       </section>
 

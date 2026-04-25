@@ -42,7 +42,6 @@ body {
   margin: 0 auto;
   padding: 2.5rem 1.25rem 4rem;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 .dialed__eyebrow {
@@ -60,9 +59,10 @@ body {
 }
 
 .dialed__lede {
-  margin: 0;
+  margin: 0 0 1.75rem;
   max-width: 62ch;
   color: var(--muted);
+  line-height: 1.55;
 }
 
 .dialed__grid {
@@ -225,9 +225,30 @@ body {
   font-size: 1.05rem;
 }
 
+.dialed__h2--gauges {
+  margin-top: 0.35rem;
+  margin-bottom: 0.85rem;
+}
+
 .dialed__h3 {
   margin: 0 0 0.5rem;
   font-size: 0.95rem;
+}
+
+.dialed__cartridge-section {
+  position: relative;
+  z-index: 1;
+  margin: 1rem 0 0;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border);
+  overflow: visible;
+}
+
+.dialed__cartridge-section .dialed__h3 {
+  margin-bottom: 0.65rem;
+  overflow: visible;
+  white-space: normal;
+  word-break: normal;
 }
 
 .dialed__field {
@@ -239,13 +260,50 @@ body {
   color: var(--muted);
 }
 
-.dialed__field select {
+/* Native selects (tool + anywhere else using .dialed__select) */
+.dialed__field select,
+select.dialed__select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   background: #0f1117;
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 0.55rem 0.65rem;
   font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.35;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+    linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 1.1rem) calc(50% + 0.15rem),
+    calc(100% - 0.75rem) calc(50% + 0.15rem);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.25rem;
+}
+
+.dialed__field select:hover,
+select.dialed__select:hover {
+  border-color: rgba(110, 231, 255, 0.35);
+}
+
+.dialed__field select:focus,
+select.dialed__select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(110, 231, 255, 0.25);
+}
+
+.dialed__field select:disabled,
+select.dialed__select:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
 }
 
 .dialed__hint {
@@ -299,25 +357,30 @@ body {
   padding: 0.05rem 0.35rem;
 }
 
-.dialed__gauges {
+/* Centered shell so gauges align independently of banners / headers above. */
+.dialed__gauges-shell {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 1.25rem;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-gutter: stable;
+}
+
+/* Always three columns in one row; narrow viewports scroll horizontally. */
+.dialed__gauges.dialed__gauges--stable-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1rem 0.75rem;
-  margin-bottom: 1rem;
-  min-width: 0;
-  max-width: 100%;
-}
-
-@media (max-width: 900px) {
-  .dialed__gauges {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 520px) {
-  .dialed__gauges {
-    grid-template-columns: 1fr;
-  }
+  justify-items: center;
+  align-items: start;
+  margin-bottom: 0;
+  min-width: min(100%, 420px);
+  max-width: 720px;
+  width: 100%;
 }
 
 .dialed__placeholder {
@@ -325,30 +388,116 @@ body {
   margin: 0;
 }
 
+.dialed__placeholder--gauges {
+  grid-column: 1 / -1;
+  justify-self: center;
+  text-align: center;
+  max-width: 28rem;
+}
+
+/* Dial + needle stack centered in the column; label sits in a fixed min band so all SVGs align. */
 .gauge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   min-width: 0;
   max-width: 100%;
 }
 
 .gauge__caption {
-  margin: 0.4rem 0 0;
+  margin: 0.4rem auto 0;
   font-size: 0.72rem;
   line-height: 1.35;
   color: var(--muted);
-  max-width: 100%;
+  max-width: 11.25rem;
+  width: 100%;
+  text-align: center;
 }
 
 .gauge__label {
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 11.5rem;
+  min-height: 4.35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   font-size: 0.8rem;
+  line-height: 1.3;
   color: var(--muted);
-  margin-bottom: 0.15rem;
+  margin: 0 0 0.2rem;
+  padding: 0 0.2rem;
+  box-sizing: border-box;
+  gap: 0.35rem;
+}
+
+.gauge__label-text {
+  display: block;
+  max-width: 100%;
+}
+
+.gauge__badge {
+  display: inline-block;
+  max-width: 100%;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.12rem 0.4rem;
+  line-height: 1.2;
+}
+
+.gauge--primary {
+  padding: 0.45rem 0.3rem 0.55rem;
+  border-radius: 14px;
+  border: 1px solid rgba(110, 231, 255, 0.42);
+  background: linear-gradient(
+    180deg,
+    rgba(34, 211, 238, 0.1),
+    rgba(15, 17, 23, 0.35)
+  );
+  box-shadow: 0 0 0 1px rgba(110, 231, 255, 0.12),
+    0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.gauge--primary .gauge__label {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gauge--primary .gauge__badge {
+  color: var(--accent);
+  border-color: rgba(110, 231, 255, 0.35);
+}
+
+.gauge--muted .gauge__label {
+  opacity: 0.82;
+}
+
+.gauge--muted .gauge__badge {
+  opacity: 0.95;
+}
+
+.gauge__svg {
+  display: block;
+  flex-shrink: 0;
+  width: min(140px, 100%);
+  height: auto;
 }
 
 .gauge__readout {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 0.25rem;
   margin-top: -0.25rem;
+  width: 100%;
 }
 
 .gauge__value {
@@ -364,6 +513,8 @@ body {
 .gauge__range {
   font-size: 0.75rem;
   color: var(--muted);
+  text-align: center;
+  width: 100%;
 }
 
 .hang-slider {
@@ -529,21 +680,21 @@ body {
   max-width: 100%;
   margin: 0;
   font-size: 0.95rem;
-  overflow: hidden;
+  overflow: visible;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: anywhere;
 }
 
 .dialed__kv-value--cartridge {
-  text-overflow: ellipsis;
+  overflow: visible;
 }
 
 .dialed__kv-value--cartridge .dialed__kv-value__inner {
   display: block;
   min-width: 0;
   max-width: 100%;
-  overflow: hidden;
+  overflow: visible;
   white-space: normal;
   word-break: break-word;
   overflow-wrap: break-word;
@@ -554,11 +705,66 @@ body {
   max-width: 100%;
 }
 
+/* Cartridge block: fixed label column, colon-aligned, result column wraps. */
+.dialed__kv.dialed__kv--cartridge > div {
+  display: grid;
+  grid-template-columns: minmax(10.5rem, 38%) minmax(0, 1fr);
+  gap: 0.35rem 0.85rem;
+  align-items: baseline;
+  flex-wrap: unset;
+}
+
+.dialed__kv.dialed__kv--cartridge dt {
+  flex: unset;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding-top: 0;
+  text-align: right;
+  justify-self: end;
+}
+
+.dialed__kv.dialed__kv--cartridge dt::after {
+  content: ":";
+  margin-left: 0.2ch;
+}
+
+.dialed__kv.dialed__kv--cartridge dd {
+  flex: unset;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.dialed__kv--footer {
+  margin-top: 0.75rem;
+}
+
+.dialed__detail-actions {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--border);
+}
+
 @media (max-width: 520px) {
-  .dialed__kv dt {
+  .dialed__kv:not(.dialed__kv--cartridge) dt {
     flex: 1 1 100%;
     width: auto;
   }
+
+  .dialed__kv.dialed__kv--cartridge > div {
+    grid-template-columns: 1fr;
+    gap: 0.2rem 0;
+  }
+
+  .dialed__kv.dialed__kv--cartridge dt {
+    text-align: left;
+    justify-self: start;
+  }
+}
+
+.dialed__detail-actions + .dialed__json {
+  margin-top: 0.65rem;
 }
 
 .dialed__muted {
@@ -607,7 +813,7 @@ body {
 
 .technical-term__tip {
   position: absolute;
-  z-index: 5;
+  z-index: 200;
   left: 50%;
   bottom: calc(100% + 6px);
   transform: translateX(-50%);
@@ -619,6 +825,38 @@ body {
   font-size: 0.78rem;
   color: var(--text);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Portaled to document.body — position top/left set in JS (no translateY %), full text wraps. */
+.technical-term__tip--portal {
+  display: block;
+  z-index: 100000;
+  box-sizing: border-box;
+  width: min(28rem, calc(100vw - 2 * 12px));
+  max-width: min(28rem, calc(100vw - 2 * 12px));
+  max-height: min(72vh, 30rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.75rem 0.95rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: manual;
+  text-align: left;
+  background: #0e1016;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+.technical-term__tip--portal strong {
+  display: inline;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .technical-result {
@@ -677,4 +915,203 @@ body {
   color: #cbd5e1;
   font-size: 0.95rem;
   line-height: 1.65;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Onboarding strip (home tool)                                              */
+/* -------------------------------------------------------------------------- */
+
+.how-it-works {
+  max-width: min(1080px, 100vw);
+  width: 100%;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.1rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--panel);
+  box-sizing: border-box;
+}
+
+.how-it-works__title {
+  margin: 0 0 0.85rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
+}
+
+.how-it-works__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem 1rem;
+}
+
+.how-it-works__step {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.how-it-works__num {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: rgba(110, 231, 255, 0.12);
+  border: 1px solid rgba(110, 231, 255, 0.35);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.how-it-works__body {
+  min-width: 0;
+}
+
+.how-it-works__step-title {
+  margin: 0 0 0.2rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.how-it-works__step-text {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .how-it-works__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .how-it-works__steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Site footer (E-E-A-T)                                                      */
+/* -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: 2rem;
+  padding: 2rem 1.25rem 2.5rem;
+  border-top: 1px solid var(--border);
+  background: rgba(10, 11, 15, 0.92);
+}
+
+.site-footer__inner {
+  max-width: min(1080px, 100vw);
+  margin: 0 auto;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.site-footer__label {
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.68rem;
+  margin-right: 0.35rem;
+}
+
+.site-footer__line {
+  margin: 0 0 0.5rem;
+}
+
+.site-footer__company {
+  margin: 0 0 0.65rem;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0.85rem 0 0.65rem;
+}
+
+.site-footer__sep {
+  color: var(--border);
+  user-select: none;
+}
+
+.site-footer__link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  text-decoration: underline;
+}
+
+.site-footer__trust {
+  margin: 0.75rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Legal policy pages */
+.legal-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+  color: var(--text);
+}
+
+.legal-page h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.legal-page h2 {
+  margin: 2rem 0 0.5rem;
+  font-size: 1.05rem;
+  color: #f1f5f9;
+}
+
+.legal-page p,
+.legal-page li {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.legal-page p {
+  margin: 0 0 1rem;
+}
+
+.legal-page ul {
+  margin: 0 0 1rem;
+  padding-left: 1.2rem;
+}
+
+.legal-page .legal-page__note {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px dashed var(--border);
+  background: #0f1117;
+  font-size: 0.85rem;
+  color: var(--muted);
 }
