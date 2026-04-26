@@ -35,7 +35,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <DialedInProvider>{children}</DialedInProvider>
+        <main className="site-main">
+          <DialedInProvider>{children}</DialedInProvider>
+        </main>
         <SiteFooter />
       </body>
     </html>
