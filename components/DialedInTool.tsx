@@ -51,6 +51,7 @@ export function DialedInTool() {
         technique: technique.name,
         style: style.styleName,
         handSpeed: state.handSpeed,
+        machineTier: machine.tier,
       },
       { voltEnvelope: machine.defaultVoltRange },
     );
@@ -139,9 +140,7 @@ export function DialedInTool() {
         </p>
         <h1 className="dialed__title">DIALED-IN</h1>
         <p className="dialed__lede">
-          Stop guessing your tattoo machine settings. Pick your style and
-          machine to instantly find the perfect voltage, needle grouping, and
-          technique for every session.
+          Master your machine, no matter the brand. Get pro-level voltage, needle, and setup guidance for your style—designed for artists who value precision over hype.
         </p>
       </header>
 
@@ -175,6 +174,7 @@ export function DialedInTool() {
           <label className="dialed__field">
             <span>2 · Technique</span>
             <select
+              className="dialed__select"
               value={state.techniqueId ?? ""}
               onChange={(e) =>
                 dispatch({

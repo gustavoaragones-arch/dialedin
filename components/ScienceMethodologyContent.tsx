@@ -10,16 +10,23 @@ export function ScienceMethodologyContent() {
   return (
     <article className="science-article">
       <section className="science-section" id="relational-physics">
-        <h2>Relational physics &amp; the ACUS standard</h2>
+        <h2>Universal Machine Physics</h2>
         <p>
-          The DialedIn setup model operates on a relational physics model.
+          The DialedIn setup model operates on relational physics.
           Unlike linear calculators, it accounts for the{" "}
           <strong>Hammer Effect</strong>—the exponential increase in kinetic
           impact when long-stroke machines are used at high voltages. By
-          integrating the ACUS standard, we allow artists to transition from
-          traditional voltage to modern frequency-based (Hz) tattooing,
-          ensuring physical reciprocation (CPS) remains consistent across all
-          hardware tiers.
+          integrating the ACUS standard, artists can transition from
+          traditional voltage to frequency-based (Hz) tattooing while physical
+          reciprocation (CPS) stays consistent across hardware tiers.
+        </p>
+        <p>
+          Cartridge build quality also changes required drive. Lower-cost
+          cartridges often use stiffer membranes, which increase mechanical
+          resistance at the same nominal settings. The model compensates by
+          keeping voltage, taper class, and hand-speed/CPS coupling in one
+          system, so artists can make controlled voltage adjustments instead of
+          over-driving the machine.
         </p>
       </section>
 
@@ -56,13 +63,12 @@ export function ScienceMethodologyContent() {
           (Volts), the ACUS system prioritizes the Cycles Per Second (Hertz).
         </p>
         <p>
-          DialedIn.ink is engineered to bridge this gap. Our engine translates
+          DialedIn.ink is engineered to bridge this gap. Our model translates
           standard motor constants into physical reciprocation rates. This
-          ensures that whether you are using a standard rotary or a
-          German-engineered ACUS, your Hand Speed Sync remains mathematically
-          consistent. By calculating the physical CPS, we help artists
-          internalize the &apos;Speed of the Hit&apos; independent of the brand
-          of their power supply.
+          ensures that whether you are using a standard rotary or an ACUS,
+          your Hand Speed Sync remains mathematically consistent. By calculating
+          physical CPS, artists can internalize the &apos;Speed of the Hit&apos;
+          independent of power-supply branding.
         </p>
       </section>
 

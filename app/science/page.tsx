@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Scientific methodology — DialedIn.ink",
   description:
-    "Relational physics for tattoo setup: Hammer Effect on long stroke, ACUS Hz standard, CPS consistency across hardware, stroke–cycle equilibrium, taper geometry, and gauge vs skin tension.",
+    "Universal machine physics for tattoo setup: Hammer Effect on long stroke, ACUS Hz standard, CPS consistency across hardware tiers, and membrane-aware voltage compensation for stiffer cartridges.",
 };
 
 export default function SciencePage() {

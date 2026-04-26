@@ -828,32 +828,38 @@ select.dialed__select:disabled {
 }
 
 /* Portaled to document.body — position top/left set in JS (no translateY %), full text wraps. */
-.technical-term__tip--portal {
-  display: block;
+.technical-term__tip--fixed {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
   z-index: 100000;
   box-sizing: border-box;
-  width: min(28rem, calc(100vw - 2 * 12px));
-  max-width: min(28rem, calc(100vw - 2 * 12px));
-  max-height: min(72vh, 30rem);
+  width: min(44rem, calc(100vw - 2rem));
+  max-width: min(44rem, calc(100vw - 2rem));
+  max-height: min(45vh, 20rem);
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 0.75rem 0.95rem;
-  font-size: 0.82rem;
-  line-height: 1.55;
+  padding: 0.95rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
   white-space: normal;
   overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: manual;
   text-align: left;
-  background: #0e1016;
-  border: 1px solid var(--border);
+  background: #0a0c11;
+  border: 1px solid rgba(110, 231, 255, 0.42);
   border-radius: 12px;
   color: var(--text);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.6);
 }
 
-.technical-term__tip--portal strong {
+.technical-term__tip--fixed p {
+  margin: 0.4rem 0 0;
+}
+
+
+.technical-term__tip--fixed strong {
   display: inline;
   font-weight: 700;
   color: var(--accent);

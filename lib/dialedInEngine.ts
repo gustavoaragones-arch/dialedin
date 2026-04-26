@@ -5,6 +5,7 @@ import { frequencySweetSpotFromVoltage } from "./dialedInData";
 export const HIGH_STROKE_MM = 4.0;
 
 const HAMMER_REDUCTION_V = 1.5;
+const TIER2_CARTRIDGE_TENSION_COMPENSATION_V = 0.2;
 
 /** Five discrete hand-speed steps (slider indices 0–4). */
 export const HAND_SPEED_STEPS = [
@@ -56,6 +57,8 @@ export type DialedInEngineInput = {
   technique: string;
   style: string;
   handSpeed?: HandSpeed | null;
+  /** Optional machine tier for cartridge-tension compensation logic. */
+  machineTier?: 1 | 2 | null;
 };
 
 export type ScienceCheckCode =
@@ -230,7 +233,7 @@ export function evaluateDialedInEngine(
   input: DialedInEngineInput,
   options?: { voltEnvelope?: VoltRange | null },
 ): DialedInEngineResult | null {
-  const { strokeMm, technique, style, handSpeed } = input;
+  const { strokeMm, technique, style, handSpeed, machineTier } = input;
   if (!Number.isFinite(strokeMm) || strokeMm <= 0) return null;
   if (!style.trim() || !technique.trim()) return null;
 
@@ -255,6 +258,12 @@ export function evaluateDialedInEngine(
 
   if (hammer) {
     voltageBaseline -= HAMMER_REDUCTION_V;
+  }
+
+  // Tier 2 setups commonly run stiffer cartridge membranes; add a small
+  // torque headroom bump so baseline does not under-drive the motor.
+  if (machineTier === 2) {
+    voltageBaseline += TIER2_CARTRIDGE_TENSION_COMPENSATION_V;
   }
 
   const handOffset = handSpeedOffsetVolts(speed);

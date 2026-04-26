@@ -2,20 +2,20 @@
 
 const STEPS = [
   {
-    title: "Style selection",
-    body: "Establish the artistic baseline (e.g., Realism).",
+    title: "Step 1: Set Your Artistic Goal.",
+    body: "Select your style. This establishes the physics required for the skin you are working on.",
   },
   {
-    title: "Technique calibration",
-    body: "Define the hit (e.g., Shading) to activate the Kinetic Impact Guard.",
+    title: "Step 2: Calibrate Your Technique.",
+    body: "Define the hit (Lining vs Shading) to activate our safety guard against skin trauma.",
   },
   {
-    title: "Machine sync",
-    body: "Connect your hardware (including ACUS Hz-priority models) to the engine.",
+    title: "Step 3: Master Your Gear.",
+    body: "Pick your machine—whether it's a Tier 2 workhorse or a Tier 1 benchmark. The engine adjusts to your specific hardware limits.",
   },
   {
-    title: "Velocity equilibrium",
-    body: "Adjust hand speed to find your optimal CPS (Cycles Per Second).",
+    title: "Step 4: Find Your Sync.",
+    body: "Use the Hand Speed slider to match your movement to the motor frequency. Watch the CPS gauge to ensure you aren't outrunning your needle.",
   },
 ] as const;
 
