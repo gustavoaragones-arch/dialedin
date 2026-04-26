@@ -734,6 +734,9 @@ select.dialed__select:disabled {
   flex: unset;
   flex-shrink: 1;
   min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .dialed__kv--footer {

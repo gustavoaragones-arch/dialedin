@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   computeVoltageOutput,
   frequencySweetSpotFromVoltage,
@@ -19,6 +19,7 @@ import { SweetSpotGauge } from "./SweetSpotGauge";
 import { TechnicalResultWithHints, TechnicalTerm } from "./TechnicalTerm";
 
 export function DialedInTool() {
+  const [developerModeEnabled, setDeveloperModeEnabled] = useState(false);
   const [devJsonOpen, setDevJsonOpen] = useState(false);
   const {
     state,
@@ -128,6 +129,18 @@ export function DialedInTool() {
     () => isAcusFrequencyFirstBrand(machine?.brand),
     [machine?.brand],
   );
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      // Hidden developer-mode gate: Cmd/Ctrl+Shift+D
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === "d") {
+        setDeveloperModeEnabled((v) => !v);
+        setDevJsonOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   return (
     <div className="dialed">
@@ -437,7 +450,7 @@ export function DialedInTool() {
             </dl>
           ) : null}
 
-          {engine ? (
+          {engine && developerModeEnabled ? (
             <>
               <div className="dialed__detail-actions">
                 <button

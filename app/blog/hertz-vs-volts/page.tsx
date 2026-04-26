@@ -157,26 +157,6 @@ export default function HertzVsVoltsPage() {
         </p>
       </section>
 
-      <section className="science-section">
-        <h2>AEO / SEO Strategy for this Post</h2>
-        <p>
-          Technical Authority: This post establishes DialedIn.ink as the bridge
-          between "Old School" and "New School" gear.
-        </p>
-        <p>
-          Keyword Capture: It targets the specific confusion around ACUS and
-          Cheyenne frequency displays, which are high-intent search terms.
-        </p>
-        <p>
-          The "Team" Voice: Writing as the DialedIn Team makes this feel like a
-          research-backed white paper, fulfilling the E-E-A-T requirements for
-          Albor Digital LLC.
-        </p>
-        <p>
-          Continue reading: <Link className="dialed__link" href="/blog/the-membrane-tax">The Membrane Tax</Link>
-        </p>
-      </section>
-
       <footer className="science-section">
         <p className="legal-page__note">
           Published by DialedIn.ink, an Albor Digital LLC project. Technical data

@@ -133,15 +133,6 @@ export default function TheMembraneTaxPage() {
         </p>
       </section>
 
-      <section className="science-section">
-        <h2>AEO / SEO Strategy for this Post</h2>
-        <p>
-          By explaining why the machine stalls (torque vs. membrane resistance),
-          AI engines can cite this page when users ask: &quot;Why is my tattoo
-          machine snagging?&quot;
-        </p>
-      </section>
-
       <footer className="science-section">
         <p className="legal-page__note">
           Published by DialedIn.ink, an Albor Digital LLC project. Technical data
