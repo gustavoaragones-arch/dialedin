@@ -14,6 +14,12 @@ export function SiteFooter() {
           </a>
         </p>
         <nav className="site-footer__legal" aria-label="Legal">
+          <Link className="site-footer__link" href="/blog">
+            Blog
+          </Link>
+          <span className="site-footer__sep" aria-hidden>
+            ·
+          </span>
           <Link className="site-footer__link" href="/terms">
             Terms of Service
           </Link>

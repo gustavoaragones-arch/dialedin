@@ -137,6 +137,10 @@ export function DialedInTool() {
           <Link className="dialed__link" href="/science">
             Scientific methodology
           </Link>
+          {" · "}
+          <Link className="dialed__link" href="/blog">
+            Technical blog
+          </Link>
         </p>
         <h1 className="dialed__title">DIALED-IN</h1>
         <p className="dialed__lede">
