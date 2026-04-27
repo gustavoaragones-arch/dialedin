@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 
 export const metadata: Metadata = {
   title: "Hertz vs. Volts: The Frequency Truth",
@@ -156,6 +157,8 @@ export default function HertzVsVoltsPage() {
           to bridge the gap between Volts and the Frequency Truth.
         </p>
       </section>
+
+      <BlogTechnicalContext />
 
       <footer className="science-section">
         <p className="legal-page__note">

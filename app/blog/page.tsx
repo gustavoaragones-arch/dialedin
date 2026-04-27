@@ -16,6 +16,20 @@ const POSTS = [
     category: "Motor Physics",
   },
   {
+    slug: "needle-geometry",
+    title: "The Geometry of Trauma: Taper and Gauge Explained",
+    summary:
+      "Gauge (#08–#12) and taper (long vs short) control footprint, resistance, and ink flow—why one 3RL is not like another, and how to choose a disciplined default.",
+    category: "Needle Geometry",
+  },
+  {
+    slug: "stroke-physics",
+    title: "The 3.5mm Pivot: Why Your Machine's Stroke Dictates Your Art",
+    summary:
+      "Force versus frequency: why 3.5mm is a versatile baseline, how 4.0–4.2mm behaves as a hammer, when 2.5–3.0mm fits soft work, and how DialedIn offsets voltage for long throw.",
+    category: "Motor Physics",
+  },
+  {
     slug: "the-membrane-tax",
     title: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
     summary:
@@ -28,9 +42,21 @@ export default function BlogIndexPage() {
   return (
     <main className="blog-page">
       <header className="blog-page__header">
-        <p className="science-page__eyebrow">
-          <Link href="/">← DIALED-IN tool</Link>
-        </p>
+        <nav className="science-page__eyebrow" aria-label="Site sections">
+          <Link className="dialed__link" href="/">
+            Setup engine
+          </Link>
+          <span className="blog-page__crumb-sep" aria-hidden>
+            {" · "}
+          </span>
+          <Link className="dialed__link" href="/how-it-works">
+            How it works
+          </Link>
+          <span className="blog-page__crumb-sep" aria-hidden>
+            {" · "}
+          </span>
+          <span aria-current="page">Technical blog</span>
+        </nav>
         <h1 className="blog-page__title">Technical Blog</h1>
         <p className="blog-page__subhead">
           Technical insights and machine physics from the DialedIn Team.

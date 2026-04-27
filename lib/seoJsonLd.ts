@@ -5,28 +5,31 @@ export const dialedinSchema = {
   "@graph": [
     {
       "@type": "SoftwareApplication",
-      name: "DialedIn Tattoo Setup Engine",
+      "@id": "https://dialedin.ink/#setup-engine",
+      name: "DialedIn Setup Engine",
       operatingSystem: "All",
-      applicationCategory: "HealthApplication",
+      applicationCategory: "TechnicalCalculator",
       description:
-        "Relational tattoo setup software: Hertz-to-volt readout framing for ACUS M1/M2, kinetic (hammer-effect) guards on long stroke, hand-speed to CPS sync, and brand-bridge needle glossaries. Models reciprocation so physical CPS stays consistent across hardware tiers.",
+        "Adaptive tattoo setup engine that syncs machine stroke, voltage, and needle configuration based on artistic style.",
+      url: "https://dialedin.ink/",
       offers: {
         "@type": "Offer",
         price: "0",
         priceCurrency: "USD",
       },
       featureList: [
-        "ACUS M1/M2 Hertz-to-Volt Conversion",
-        "Kinetic Impact Safety Guard",
-        "Hand Speed to CPS Synchronization",
-        "Brand Bridge Needle Translation",
+        "Adaptive Stroke Logic",
+        "Style-to-Voltage Mapping",
+        "Needle Configuration Guidance",
+        "Real-time CPS/Hertz Conversion",
       ],
     },
     {
       "@type": "HowTo",
+      "@id": "https://dialedin.ink/#howto-dial-in",
       name: "How to Dial In Your Tattoo Machine Settings",
       description:
-        "Hertz-to-volt readout framing for ACUS-class machines, CPS derived from hand-speed-adjusted voltage, and stroke-aware kinetic guards—indexed for technical Q&A.",
+        "Select style and machine, sync hand speed to CPS, and read stroke-aware voltage guidance from the DialedIn Setup Engine.",
       step: [
         {
           "@type": "HowToStep",
@@ -34,7 +37,7 @@ export const dialedinSchema = {
         },
         {
           "@type": "HowToStep",
-          text: "Select your machine from the library to establish stroke-cycle limits.",
+          text: "Select your machine from the library to establish stroke and voltage limits.",
         },
         {
           "@type": "HowToStep",
@@ -42,7 +45,7 @@ export const dialedinSchema = {
         },
         {
           "@type": "HowToStep",
-          text: "Calibrate your power supply to the recommended CPS and Voltage output.",
+          text: "Calibrate your power supply to the recommended CPS and voltage output.",
         },
       ],
     },

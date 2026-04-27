@@ -13,19 +13,24 @@ export function SiteFooter() {
             contact@dialedin.ink
           </a>
         </p>
-        <nav className="site-footer__legal" aria-label="Legal">
-          <Link className="site-footer__link" href="/blog">
-            Blog
+        <nav className="site-footer__site" aria-label="Product">
+          <Link className="site-footer__link site-footer__link--emphasis" href="/">
+            Setup engine
           </Link>
           <span className="site-footer__sep" aria-hidden>
             ·
           </span>
-          <Link className="site-footer__link" href="/how-it-works">
+          <Link className="site-footer__link site-footer__link--emphasis" href="/how-it-works">
             How it works
           </Link>
           <span className="site-footer__sep" aria-hidden>
             ·
           </span>
+          <Link className="site-footer__link site-footer__link--emphasis" href="/blog">
+            Technical blog
+          </Link>
+        </nav>
+        <nav className="site-footer__legal" aria-label="Legal">
           <Link className="site-footer__link" href="/terms">
             Terms of Service
           </Link>

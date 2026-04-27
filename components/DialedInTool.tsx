@@ -223,7 +223,14 @@ export function DialedInTool() {
     <div className="dialed">
       <header className="dialed__header">
         <p className="dialed__eyebrow">
-          Tattoo setup ·{" "}
+          <Link className="dialed__link" href="/">
+            Setup engine
+          </Link>
+          {" · "}
+          <Link className="dialed__link" href="/how-it-works">
+            How it works
+          </Link>
+          {" · "}
           <Link className="dialed__link" href="/science">
             Scientific methodology
           </Link>
@@ -379,6 +386,14 @@ export function DialedInTool() {
                           {selectedTaxonomy.styleName}, the industry standard is{" "}
                           {selectedTaxonomy.idealStrokeMm.toFixed(1)}mm to ensure
                           optimal saturation without skin trauma.
+                        </p>
+                        <p className="dialed__adaptive-mismatch__bridge">
+                          <Link
+                            className="dialed__link dialed__adaptive-mismatch__bridge-link"
+                            href="/blog/stroke-physics"
+                          >
+                            Learn more about the 3.5mm Pivot and Stroke Physics.
+                          </Link>
                         </p>
                       </div>
                     ) : null}

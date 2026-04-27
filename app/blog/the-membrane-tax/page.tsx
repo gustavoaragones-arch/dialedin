@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 
 export const metadata: Metadata = {
   title: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
@@ -132,6 +133,8 @@ export default function TheMembraneTaxPage() {
           for your hardware tier.
         </p>
       </section>
+
+      <BlogTechnicalContext />
 
       <footer className="science-section">
         <p className="legal-page__note">
