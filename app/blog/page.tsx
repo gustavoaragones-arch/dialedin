@@ -30,6 +30,34 @@ const POSTS = [
     category: "Motor Physics",
   },
   {
+    slug: "hardware-tiers",
+    title: "The Equipment Gap: Tier 1 vs. Tier 2 Hardware",
+    summary:
+      "A disciplined tiering guide for predictability, from training-grade workhorses to benchmark pro rigs and cartridge reliability.",
+    category: "Hardware Systems",
+  },
+  {
+    slug: "needle-hang-depth",
+    title: "The Depth Equation: Mastering Needle Hang and Protrusion",
+    summary:
+      "Learn when to ride the tube versus hang the needle, and how protrusion affects visibility, depth control, and ink flow.",
+    category: "Application Mechanics",
+  },
+  {
+    slug: "cartridge-drag",
+    title: "The Friction Factor: Understanding Cartridge Drag and Skin Tension",
+    summary:
+      "How cartridge membrane tension and skin stretch quality change torque delivery, saturation consistency, and skin trauma risk.",
+    category: "Application Mechanics",
+  },
+  {
+    slug: "hand-speed-sync",
+    title: "The Hand Speed Variable: Why Hertz Is Only Half the Story",
+    summary:
+      "Master CPS-to-hand velocity sync for cleaner stitch density in lining and controlled texture in whip shading.",
+    category: "Motor Physics",
+  },
+  {
     slug: "the-membrane-tax",
     title: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
     summary:

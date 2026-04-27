@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 
+const pageUrl = "https://dialedin.ink/blog/the-membrane-tax";
+
 export const metadata: Metadata = {
   title: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
   description:
@@ -14,13 +16,16 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
+  alternates: { canonical: "/blog/the-membrane-tax" },
 };
 
 export default function TheMembraneTaxPage() {
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${pageUrl}#article`,
     headline: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
+    url: pageUrl,
     description:
       "Tattoo machine stalling explained through membrane tension and torque drag, with voltage compensation guidance for tier-2 hardware.",
     author: {

@@ -1,24 +1,37 @@
 import Link from "next/link";
 
 /** Crawlable CTAs at the end of technical blog posts (topic cluster hub). */
-export function BlogTechnicalContext() {
+type BlogTechnicalContextProps = {
+  title?: string;
+  primaryLabel?: string;
+  secondaryLabel?: string;
+};
+
+export function BlogTechnicalContext({
+  title = "Tool call",
+  primaryLabel = "Configure Your Setup",
+  secondaryLabel = "View Technical Methodology",
+}: BlogTechnicalContextProps) {
   return (
     <section
       className="blog-tech-context"
       aria-labelledby="blog-tech-context-heading"
     >
       <h2 id="blog-tech-context-heading" className="blog-tech-context__title">
-        Technical context
+        {title}
       </h2>
+      <p className="blog-tech-context__description">
+        Logic is the foundation. Precision is the result. Setup your machine with DialedIn.
+      </p>
       <div className="blog-tech-context__actions">
         <Link
           href="/"
           className="blog-tech-context__btn blog-tech-context__btn--primary"
         >
-          Configure Your Setup
+          {primaryLabel}
         </Link>
         <Link href="/how-it-works" className="blog-tech-context__btn">
-          View Technical Methodology
+          {secondaryLabel}
         </Link>
       </div>
     </section>

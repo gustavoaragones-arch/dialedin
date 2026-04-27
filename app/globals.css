@@ -1094,6 +1094,14 @@ select.dialed__select:disabled {
   color: #f1f5f9;
 }
 
+.blog-tech-context__description {
+  margin: 0 0 0.95rem;
+  color: #cbd5e1;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 62ch;
+}
+
 .blog-tech-context__actions {
   display: flex;
   flex-wrap: wrap;
@@ -1135,6 +1143,40 @@ select.dialed__select:disabled {
   color: #0a0c10;
   background: linear-gradient(145deg, #d2f8ff, #7eedff);
   transform: translateY(-1px);
+}
+
+.blog-tech-summary {
+  margin: 0 0 1.4rem;
+  padding: 1rem 1.05rem 1.05rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(17, 20, 26, 0.88);
+  box-shadow: inset 0 0 0 1px rgba(110, 231, 255, 0.04);
+}
+
+.blog-tech-summary__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f8fafc;
+}
+
+.blog-tech-summary__list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: #d0d9e4;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.blog-tech-summary__list li {
+  margin-bottom: 0.38rem;
+}
+
+.blog-tech-summary__list li:last-child {
+  margin-bottom: 0;
 }
 
 /* -------------------------------------------------------------------------- */

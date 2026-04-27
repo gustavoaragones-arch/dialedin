@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 
+const pageUrl = "https://dialedin.ink/blog/hertz-vs-volts";
+
 export const metadata: Metadata = {
   title: "Hertz vs. Volts: The Frequency Truth",
   description:
@@ -14,13 +16,16 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
+  alternates: { canonical: "/blog/hertz-vs-volts" },
 };
 
 export default function HertzVsVoltsPage() {
   const blogJsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    "@id": `${pageUrl}#article`,
     headline: "Hertz vs. Volts: The Frequency Truth",
+    url: pageUrl,
     description:
       "A technical guide to electrical potential vs physical needle frequency, with derived CPS framing for rotary tattoo machine setups.",
     author: {
