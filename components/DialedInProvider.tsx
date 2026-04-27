@@ -1,10 +1,16 @@
 "use client";
 
 import { fetchMachineLibrary } from "@/lib/machineLibrary";
-import type { Machine, StylePreset } from "@/lib/dialedInData";
-import { STYLE_PRESETS, TECHNIQUES } from "@/lib/dialedInData";
+import { DIALEDIN_STYLE_STORAGE_KEYS } from "@/lib/dialedinStorage";
 import {
-  buildStyleMap,
+  fetchTattooTaxonomy,
+  getTaxonomyForStyleName,
+  normalizeTaxonomyStyleKey,
+  type TattooTaxonomyRow,
+  type TaxonomyStyleOption,
+} from "@/lib/tattooTaxonomyLibrary";
+import type { Machine } from "@/lib/dialedInData";
+import {
   dialedInInitialState,
   dialedInReducer,
   type DialedInAction,
@@ -22,19 +28,23 @@ import {
   type ReactNode,
 } from "react";
 
-type Technique = (typeof TECHNIQUES)[number];
-
 export type DialedInContextValue = {
   state: DialedInState;
   dispatch: (a: DialedInAction) => void;
   machines: Machine[];
   machinesLoading: boolean;
   machinesError: string | null;
-  styles: typeof STYLE_PRESETS;
-  techniques: typeof TECHNIQUES;
   machine: Machine | null;
-  style: StylePreset | null;
-  technique: Technique | null;
+  /** Row for `state.selectedStyleName`, or null. */
+  selectedTaxonomy: TattooTaxonomyRow | null;
+  /** Style dropdown options (normalized `style_key` + display `style_name`). */
+  taxonomyStyleOptions: TaxonomyStyleOption[];
+  /** Normalized style keys (map keys), sorted for storage checks. */
+  availableStyleNames: string[];
+  /** `tattoo_taxonomy` rows keyed by `normalizeTaxonomyStyleKey(style_name)`. */
+  tuTaxonomyByStyleName: ReadonlyMap<string, TattooTaxonomyRow>;
+  tuTaxonomyLoading: boolean;
+  tuTaxonomyError: string | null;
 };
 
 const DialedInContext = createContext<DialedInContextValue | null>(null);
@@ -43,6 +53,11 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
   const [machines, setMachines] = useState<Machine[]>([]);
   const [machinesLoading, setMachinesLoading] = useState(true);
   const [machinesError, setMachinesError] = useState<string | null>(null);
+  const [tuTaxonomyByStyleName, setTuTaxonomyByStyleName] = useState<
+    Map<string, TattooTaxonomyRow>
+  >(() => new Map());
+  const [tuTaxonomyLoading, setTuTaxonomyLoading] = useState(true);
+  const [tuTaxonomyError, setTuTaxonomyError] = useState<string | null>(null);
 
   const machinesById = useMemo(
     () => new Map(machines.map((m) => [m.id, m])),
@@ -54,12 +69,10 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
     machinesByIdRef.current = machinesById;
   }, [machinesById]);
 
-  const stylesById = useMemo(() => buildStyleMap(), []);
-
   const reducer = useCallback(
     (s: DialedInState, a: DialedInAction) =>
-      dialedInReducer(s, a, machinesByIdRef, stylesById),
-    [stylesById],
+      dialedInReducer(s, a, machinesByIdRef),
+    [],
   );
 
   const [state, rawDispatch] = useReducer(reducer, undefined, dialedInInitialState);
@@ -89,23 +102,90 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setTuTaxonomyLoading(true);
+      setTuTaxonomyError(null);
+      try {
+        const res = await fetchTattooTaxonomy();
+        if (cancelled) return;
+        if (res.ok) {
+          setTuTaxonomyByStyleName(res.byStyleName);
+        } else {
+          setTuTaxonomyByStyleName(new Map());
+          setTuTaxonomyError(res.error);
+        }
+      } finally {
+        if (!cancelled) {
+          setTuTaxonomyLoading(false);
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     if (!state.machineId) return;
     if (!machinesById.has(state.machineId)) {
       dispatch({ type: "SET_MACHINE", machineId: null });
     }
   }, [machinesById, state.machineId, dispatch]);
 
+  useEffect(() => {
+    if (tuTaxonomyLoading) return;
+    const names = Array.from(tuTaxonomyByStyleName.keys());
+    try {
+      for (const key of DIALEDIN_STYLE_STORAGE_KEYS) {
+        const v = localStorage.getItem(key);
+        const vn = normalizeTaxonomyStyleKey(v);
+        if (vn != null && !names.includes(vn)) {
+          localStorage.removeItem(key);
+        }
+      }
+    } catch {
+      /* ignore quota / private mode */
+    }
+  }, [tuTaxonomyLoading, tuTaxonomyByStyleName]);
+
+  useEffect(() => {
+    if (tuTaxonomyLoading) return;
+    if (!state.selectedStyleName) return;
+    if (!getTaxonomyForStyleName(tuTaxonomyByStyleName, state.selectedStyleName)) {
+      dispatch({ type: "SET_STYLE", styleName: null });
+    }
+  }, [
+    tuTaxonomyLoading,
+    tuTaxonomyByStyleName,
+    state.selectedStyleName,
+    dispatch,
+  ]);
+
   const machine = state.machineId
     ? machinesById.get(state.machineId) ?? null
     : null;
 
-  const style = state.styleId
-    ? stylesById.get(state.styleId) ?? null
-    : null;
+  const taxonomyStyleOptions = useMemo<TaxonomyStyleOption[]>(
+    () =>
+      Array.from(tuTaxonomyByStyleName.values())
+        .sort((a, b) => a.styleName.localeCompare(b.styleName))
+        .map((row) => ({
+          style_key: normalizeTaxonomyStyleKey(row.styleName)!,
+          style_name: row.styleName,
+        })),
+    [tuTaxonomyByStyleName],
+  );
 
-  const technique = state.techniqueId
-    ? TECHNIQUES.find((t) => t.id === state.techniqueId) ?? null
-    : null;
+  const availableStyleNames = useMemo(
+    () => taxonomyStyleOptions.map((o) => o.style_key),
+    [taxonomyStyleOptions],
+  );
+
+  const selectedTaxonomy = useMemo(
+    () => getTaxonomyForStyleName(tuTaxonomyByStyleName, state.selectedStyleName),
+    [tuTaxonomyByStyleName, state.selectedStyleName],
+  );
 
   const value = useMemo<DialedInContextValue>(
     () => ({
@@ -114,11 +194,13 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
       machines,
       machinesLoading,
       machinesError,
-      styles: STYLE_PRESETS,
-      techniques: TECHNIQUES,
       machine,
-      style,
-      technique,
+      selectedTaxonomy,
+      taxonomyStyleOptions,
+      availableStyleNames,
+      tuTaxonomyByStyleName,
+      tuTaxonomyLoading,
+      tuTaxonomyError,
     }),
     [
       state,
@@ -127,8 +209,12 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
       machinesLoading,
       machinesError,
       machine,
-      style,
-      technique,
+      selectedTaxonomy,
+      taxonomyStyleOptions,
+      availableStyleNames,
+      tuTaxonomyByStyleName,
+      tuTaxonomyLoading,
+      tuTaxonomyError,
     ],
   );
 

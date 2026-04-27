@@ -64,6 +64,19 @@ export function maxStrokeMm(machine: Machine | null): number {
   return Math.max(...machine.strokeOptionsMm);
 }
 
+/** Closest configured stroke (mm) to the style baseline `idealMm`. */
+export function closestStrokeOptionMm(
+  strokeOptionsMm: number[],
+  idealMm: number,
+): number | null {
+  if (strokeOptionsMm.length === 0) return null;
+  if (!Number.isFinite(idealMm)) return null;
+  return strokeOptionsMm.reduce((best, s) =>
+    Math.abs(s - idealMm) < Math.abs(best - idealMm) ? s : best,
+  strokeOptionsMm[0]!,
+  );
+}
+
 /**
  * Active stroke for physics/engine: uses global `selectedStrokeMm` when it
  * matches an available option; otherwise falls back to the longest option.

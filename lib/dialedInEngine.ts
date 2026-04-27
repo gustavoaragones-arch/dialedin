@@ -1,5 +1,6 @@
 import type { VoltRange } from "./dialedInData";
 import { frequencySweetSpotFromVoltage } from "./dialedInData";
+import { engineStyleLookupKey } from "./engineStyleKey";
 
 /** High stroke threshold (mm) for Hammer Effect guard. */
 export const HIGH_STROKE_MM = 4.0;
@@ -114,7 +115,7 @@ type TechniqueProfile = {
 };
 
 const STYLE_TABLE: Record<string, StyleProfile> = {
-  "fine line": {
+  "fine-line": {
     needle_diameter_range: "0.25–0.30 mm (#08–#10)",
     needle_count_low: 3,
     needle_count_high: 7,
@@ -122,7 +123,7 @@ const STYLE_TABLE: Record<string, StyleProfile> = {
     voltage_base: 6.2,
     needle_hang_mm: 1.5,
   },
-  "black & grey realism": {
+  "black-and-grey-realism": {
     needle_diameter_range: "0.30–0.35 mm (#10–#12)",
     needle_count_low: 9,
     needle_count_high: 15,
@@ -130,7 +131,7 @@ const STYLE_TABLE: Record<string, StyleProfile> = {
     voltage_base: 7.2,
     needle_hang_mm: 2.2,
   },
-  "soft portrait": {
+  "soft-portrait": {
     needle_diameter_range:
       "0.30–0.35 mm (#10–#12); TX optional for large wash fields",
     needle_count_low: 7,
@@ -139,7 +140,20 @@ const STYLE_TABLE: Record<string, StyleProfile> = {
     voltage_base: 6.8,
     needle_hang_mm: 2.0,
   },
+  "american-traditional": {
+    needle_diameter_range: "0.30–0.35 mm (#10–#12)",
+    needle_count_low: 3,
+    needle_count_high: 11,
+    taper_recommendation: "Standard to long taper (LT); bold line priority",
+    voltage_base: 5.6,
+    needle_hang_mm: 1.6,
+  },
 };
+
+const FALLBACK_STYLE_KEY = "black-and-grey-realism";
+
+const DEFAULT_STYLE_PROFILE: StyleProfile =
+  STYLE_TABLE[FALLBACK_STYLE_KEY]!;
 
 const TECHNIQUE_TABLE: Record<string, TechniqueProfile> = {
   "fine line passes": {
@@ -173,8 +187,9 @@ function norm(s: string): string {
   return s.trim().toLowerCase().replace(/\s+/g, " ");
 }
 
-function styleProfile(style: string): StyleProfile | null {
-  return STYLE_TABLE[norm(style)] ?? null;
+function styleProfile(style: string): StyleProfile {
+  const k = engineStyleLookupKey(style);
+  return STYLE_TABLE[k] ?? DEFAULT_STYLE_PROFILE;
 }
 
 function techniqueProfile(technique: string): TechniqueProfile | null {
@@ -239,7 +254,7 @@ export function evaluateDialedInEngine(
 
   const sp = styleProfile(style);
   const tp = techniqueProfile(technique);
-  if (!sp || !tp) return null;
+  if (!tp) return null;
 
   const highStroke = strokeMm >= HIGH_STROKE_MM;
   const hammer = highStroke && isHammerTechnique(technique);
@@ -299,7 +314,7 @@ export function evaluateDialedInEngine(
     });
   }
 
-  if (norm(style) === "fine line" && !taperRecommendationIsSlt(taper)) {
+  if (engineStyleLookupKey(style) === "fine-line" && !taperRecommendationIsSlt(taper)) {
     checks.push({
       code: "GEOMETRY_DESYNC",
       severity: "advisory",

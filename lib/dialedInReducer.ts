@@ -1,55 +1,66 @@
 import type { MutableRefObject } from "react";
-import type { Machine, StylePreset } from "./dialedInData";
+import type { Machine } from "./dialedInData";
 import {
   NEEDLE_HANG_ABS_MIN_MM,
-  STYLE_PRESETS,
+  closestStrokeOptionMm,
   maxStrokeMm,
   needleHangMaxMm,
 } from "./dialedInData";
+import { recommendedTechniqueSlot } from "./recommendedTechniqueSlot";
 
 import type { HandSpeed } from "./dialedInEngine";
 
+export type TechniqueSlot = "lining" | "shading";
+
 export type DialedInState = {
-  styleId: string | null;
-  techniqueId: string | null;
+  /** Canonical `style_name` from `tattoo_taxonomy` (drives ideal stroke in UI + engine). */
+  selectedStyleName: string | null;
+  /** Lining vs shading path from the active taxonomy row. */
+  techniqueSlot: TechniqueSlot | null;
   machineId: string | null;
   /** Active stroke length (mm) for the selected machine; drives engine + guards. */
   selectedStrokeMm: number | null;
   needleHangMm: number;
   handSpeed: HandSpeed;
-  /** When style + machine are set, UI highlights this as recommended */
-  highlightedTechniqueId: string | null;
+  /** When style + machine are set, UI highlights a recommended slot */
+  highlightedTechniqueSlot: TechniqueSlot | null;
 };
 
 export type DialedInAction =
-  | { type: "SET_STYLE"; styleId: string | null }
-  | { type: "SET_TECHNIQUE"; techniqueId: string | null }
-  | { type: "SET_MACHINE"; machineId: string | null }
+  | { type: "SET_STYLE"; styleName: string | null }
+  | { type: "SET_TECHNIQUE_SLOT"; slot: TechniqueSlot }
+  | {
+      type: "SET_MACHINE";
+      machineId: string | null;
+      /** When set, initial stroke snaps to the nearest machine option to this ideal (mm). */
+      idealStrokeMm?: number | null;
+    }
   | { type: "SET_SELECTED_STROKE_MM"; strokeMm: number }
   | { type: "SET_NEEDLE_HANG"; mm: number }
   | { type: "SET_HAND_SPEED"; handSpeed: HandSpeed }
   | { type: "SYNC_RECOMMENDED_TECHNIQUE" };
 
+/** Never seed a legacy style id (e.g. s-fine-line); style comes only from Supabase style_name. */
 const initial: DialedInState = {
-  styleId: null,
-  techniqueId: null,
+  selectedStyleName: null,
+  techniqueSlot: null,
   machineId: null,
   selectedStrokeMm: null,
   needleHangMm: 1.5,
   handSpeed: "Moderate",
-  highlightedTechniqueId: null,
+  highlightedTechniqueSlot: null,
 };
 
 export function dialedInInitialState(): DialedInState {
   return { ...initial };
 }
 
-function recommendedTechniqueForStyleAndMachine(
-  style: StylePreset | undefined,
-  _machine: Machine | null | undefined,
-): string | null {
-  if (!style) return null;
-  return style.recommendedTechniqueId;
+function recommendedSlot(
+  styleName: string | null,
+  machine: Machine | null | undefined,
+): TechniqueSlot | null {
+  if (!styleName || !machine) return null;
+  return recommendedTechniqueSlot(styleName);
 }
 
 function defaultStrokeForMachine(
@@ -72,41 +83,50 @@ export function dialedInReducer(
   state: DialedInState,
   action: DialedInAction,
   machinesByIdRef: MutableRefObject<Map<string, Machine>>,
-  stylesById: Map<string, StylePreset>,
 ): DialedInState {
   const machinesById = machinesByIdRef.current;
 
   switch (action.type) {
     case "SET_STYLE": {
-      const next = { ...state, styleId: action.styleId };
-      const style = action.styleId ? stylesById.get(action.styleId) : undefined;
+      const raw = action.styleName?.trim() ?? "";
+      if (!raw) {
+        return {
+          ...state,
+          selectedStyleName: null,
+          techniqueSlot: null,
+          highlightedTechniqueSlot: null,
+        };
+      }
+      const normalized = raw.toLowerCase();
       const machine = state.machineId
         ? machinesById.get(state.machineId)
         : undefined;
-      const rec =
-        style && machine
-          ? recommendedTechniqueForStyleAndMachine(style, machine)
-          : null;
+      const rec = recommendedSlot(normalized, machine);
       return {
-        ...next,
-        highlightedTechniqueId: rec,
+        ...state,
+        selectedStyleName: normalized,
+        techniqueSlot: "lining",
+        highlightedTechniqueSlot: rec,
       };
     }
     case "SET_MACHINE": {
       const machine = action.machineId
         ? machinesById.get(action.machineId)
         : undefined;
-      const nextStroke = defaultStrokeForMachine(machine);
+      const ideal = action.idealStrokeMm;
+      const nextStroke =
+        action.machineId && machine && machine.strokeOptionsMm.length > 0
+          ? ideal != null && Number.isFinite(ideal)
+            ? (closestStrokeOptionMm(machine.strokeOptionsMm, ideal) ??
+              defaultStrokeForMachine(machine))
+            : defaultStrokeForMachine(machine)
+          : null;
       const next = {
         ...state,
         machineId: action.machineId,
         selectedStrokeMm: action.machineId ? nextStroke : null,
       };
-      const style = state.styleId ? stylesById.get(state.styleId) : undefined;
-      const rec =
-        style && machine
-          ? recommendedTechniqueForStyleAndMachine(style, machine)
-          : null;
+      const rec = recommendedSlot(state.selectedStyleName, machine);
       const needleHangMm = clampNeedleHangMm(
         state.needleHangMm,
         machine,
@@ -115,7 +135,7 @@ export function dialedInReducer(
       return {
         ...next,
         needleHangMm,
-        highlightedTechniqueId: rec,
+        highlightedTechniqueSlot: rec,
       };
     }
     case "SET_SELECTED_STROKE_MM": {
@@ -134,11 +154,12 @@ export function dialedInReducer(
       );
       return { ...state, selectedStrokeMm: action.strokeMm, needleHangMm };
     }
-    case "SET_TECHNIQUE":
+    case "SET_TECHNIQUE_SLOT": {
       return {
         ...state,
-        techniqueId: action.techniqueId,
+        techniqueSlot: action.slot,
       };
+    }
     case "SET_NEEDLE_HANG": {
       const machine = state.machineId
         ? machinesById.get(state.machineId)
@@ -155,21 +176,13 @@ export function dialedInReducer(
     case "SET_HAND_SPEED":
       return { ...state, handSpeed: action.handSpeed };
     case "SYNC_RECOMMENDED_TECHNIQUE": {
-      const style = state.styleId ? stylesById.get(state.styleId) : undefined;
       const machine = state.machineId
         ? machinesById.get(state.machineId)
         : undefined;
-      const rec =
-        style && machine
-          ? recommendedTechniqueForStyleAndMachine(style, machine)
-          : null;
-      return { ...state, highlightedTechniqueId: rec };
+      const rec = recommendedSlot(state.selectedStyleName, machine);
+      return { ...state, highlightedTechniqueSlot: rec };
     }
     default:
       return state;
   }
-}
-
-export function buildStyleMap(): Map<string, StylePreset> {
-  return new Map(STYLE_PRESETS.map((s) => [s.id, s]));
 }

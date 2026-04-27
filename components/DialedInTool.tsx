@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
+  closestStrokeOptionMm,
   computeVoltageOutput,
   frequencySweetSpotFromVoltage,
   needleHangMaxMm,
   resolveActiveStrokeMm,
 } from "@/lib/dialedInData";
+import { buildAdaptedVoltRange } from "@/lib/adaptiveVoltage";
+import { engineTechniqueNameForSelection } from "@/lib/engineTechniqueMap";
 import { isAcusFrequencyFirstBrand } from "@/lib/machineBrand";
 import { dialedInEngineToJson, evaluateDialedInEngine } from "@/lib/dialedInEngine";
 import { useDialedIn } from "@/components/DialedInProvider";
 import Link from "next/link";
 import { HowItWorks } from "./HowItWorks";
+import { SelectionInterface } from "./SelectionInterface";
 import { HandSpeedSlider } from "./HandSpeedSlider";
 import { NeedleHangSlider } from "./NeedleHangSlider";
 import { ScienceWarningBanners } from "./ScienceWarningBanners";
@@ -27,11 +31,12 @@ export function DialedInTool() {
     machines,
     machinesLoading,
     machinesError,
-    styles,
-    techniques,
     machine,
-    style,
-    technique,
+    selectedTaxonomy,
+    taxonomyStyleOptions,
+    tuTaxonomyByStyleName,
+    tuTaxonomyLoading,
+    tuTaxonomyError,
   } = useDialedIn();
 
   const activeStrokeMm = useMemo(
@@ -44,32 +49,78 @@ export function DialedInTool() {
     [machine, state.selectedStrokeMm],
   );
 
+  const adaptedVolt = useMemo(() => {
+    if (!selectedTaxonomy) return null;
+    return buildAdaptedVoltRange(
+      selectedTaxonomy.voltMin,
+      selectedTaxonomy.voltMax,
+      activeStrokeMm,
+    );
+  }, [selectedTaxonomy, activeStrokeMm]);
+
+  const engineTechniqueName = useMemo(() => {
+    if (!state.selectedStyleName || !state.techniqueSlot) return null;
+    return engineTechniqueNameForSelection(
+      state.selectedStyleName,
+      state.techniqueSlot,
+    );
+  }, [state.selectedStyleName, state.techniqueSlot]);
+
+  const voltEnvelopeForEngine = useMemo(() => {
+    if (!machine) return null;
+    if (adaptedVolt) {
+      return {
+        min: adaptedVolt.adaptedMin,
+        max: adaptedVolt.adaptedMax,
+        baseline: (adaptedVolt.adaptedMin + adaptedVolt.adaptedMax) / 2,
+      };
+    }
+    return machine.defaultVoltRange;
+  }, [machine, adaptedVolt]);
+
   const engine = useMemo(() => {
-    if (!machine || !style || !technique) return null;
+    if (
+      !machine ||
+      !state.selectedStyleName ||
+      !state.techniqueSlot ||
+      !engineTechniqueName ||
+      !voltEnvelopeForEngine
+    ) {
+      return null;
+    }
     return evaluateDialedInEngine(
       {
         strokeMm: activeStrokeMm,
-        technique: technique.name,
-        style: style.styleName,
+        technique: engineTechniqueName,
+        style: selectedTaxonomy?.styleName ?? state.selectedStyleName,
         handSpeed: state.handSpeed,
         machineTier: machine.tier,
       },
-      { voltEnvelope: machine.defaultVoltRange },
+      { voltEnvelope: voltEnvelopeForEngine },
     );
-  }, [machine, style, technique, state.handSpeed, activeStrokeMm]);
+  }, [
+    machine,
+    state.selectedStyleName,
+    selectedTaxonomy?.styleName,
+    state.techniqueSlot,
+    engineTechniqueName,
+    state.handSpeed,
+    activeStrokeMm,
+    voltEnvelopeForEngine,
+  ]);
 
   const voltage = useMemo(
     () =>
       computeVoltageOutput(
         machine,
-        technique?.name ?? null,
+        engineTechniqueName,
         activeStrokeMm,
       ),
-    [machine, technique, activeStrokeMm],
+    [machine, engineTechniqueName, activeStrokeMm],
   );
 
   const gaugePack = useMemo(() => {
-    if (!machine) return null;
+    if (!machine || !voltEnvelopeForEngine) return null;
     const v = engine?.voltage_baseline ?? voltage?.adjustedVolts;
     if (v == null) return null;
     if (engine) {
@@ -81,9 +132,11 @@ export function DialedInTool() {
         cps: engine.cps_derived,
         cpsMin: engine.cps_band_min,
         cpsMax: engine.cps_band_max,
+        voltMin: voltEnvelopeForEngine.min,
+        voltMax: voltEnvelopeForEngine.max,
       };
     }
-    const f = frequencySweetSpotFromVoltage(v, machine.defaultVoltRange);
+    const f = frequencySweetSpotFromVoltage(v, voltEnvelopeForEngine);
     return {
       volts: v,
       hz: Math.round(f.hz * 10) / 10,
@@ -92,13 +145,23 @@ export function DialedInTool() {
       cps: Math.round(f.cps_derived * 10) / 10,
       cpsMin: f.cpsMin,
       cpsMax: f.cpsMax,
+      voltMin: voltEnvelopeForEngine.min,
+      voltMax: voltEnvelopeForEngine.max,
     };
-  }, [machine, engine, voltage]);
+  }, [machine, engine, voltage, voltEnvelopeForEngine]);
+
+  /** Educational “lesson” when machine stroke ≠ style ideal (drives adapted band). */
+  const showLessonBanner = useMemo(() => {
+    if (!selectedTaxonomy || !machine) return false;
+    return (
+      Math.abs(activeStrokeMm - selectedTaxonomy.idealStrokeMm) > 0.01
+    );
+  }, [selectedTaxonomy, activeStrokeMm, machine]);
 
   const proTips = useMemo(() => {
     const tips: string[] = [];
     const stroke = activeStrokeMm;
-    if (stroke >= 4.2 && technique?.name === "Black & Grey Realism") {
+    if (stroke >= 4.2 && engineTechniqueName === "Black & Grey Realism") {
       tips.push(
         "Using a 4.2mm stroke for realism requires a very light hand — let needle work do the heavy lifting.",
       );
@@ -110,15 +173,15 @@ export function DialedInTool() {
     }
     if (
       state.needleHangMm >= 2.0 &&
-      technique &&
-      /shading|realism|portrait/i.test(technique.name)
+      engineTechniqueName &&
+      /shading|realism|portrait/i.test(engineTechniqueName)
     ) {
       tips.push(
         "Higher hanging with soft techniques: float the needle and watch ink saturation — avoid over-driving voltage.",
       );
     }
     return tips;
-  }, [activeStrokeMm, technique, voltage, state.needleHangMm]);
+  }, [activeStrokeMm, engineTechniqueName, voltage, state.needleHangMm]);
 
   const strokeOptionsSorted = useMemo(() => {
     if (!machine) return [];
@@ -129,6 +192,20 @@ export function DialedInTool() {
     () => isAcusFrequencyFirstBrand(machine?.brand),
     [machine?.brand],
   );
+
+  const strokeSnapSigRef = useRef<string>("");
+  const strokeSnapSig = `${state.selectedStyleName ?? ""}|${machine?.id ?? ""}|${selectedTaxonomy?.idealStrokeMm ?? ""}`;
+
+  /** Snap stroke to style ideal only when style / machine / ideal identity changes (not on manual stroke tweaks). */
+  useEffect(() => {
+    if (strokeSnapSig === strokeSnapSigRef.current) return;
+    strokeSnapSigRef.current = strokeSnapSig;
+    if (!machine || !selectedTaxonomy) return;
+    const ideal = selectedTaxonomy.idealStrokeMm;
+    const closest = closestStrokeOptionMm(machine.strokeOptionsMm, ideal);
+    if (closest == null) return;
+    dispatch({ type: "SET_SELECTED_STROKE_MM", strokeMm: closest });
+  }, [strokeSnapSig, machine, selectedTaxonomy, dispatch]);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -167,65 +244,33 @@ export function DialedInTool() {
         <section className="dialed__panel" aria-label="Inputs">
           <h2 className="dialed__h2">Inputs</h2>
 
-          <label className="dialed__field">
-            <span>1 · Style</span>
-            <select
-              className="dialed__select"
-              value={state.styleId ?? ""}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_STYLE",
-                  styleId: e.target.value || null,
-                })
-              }
-            >
-              <option value="">Select style…</option>
-              {styles.map((s) => (
-                <option key={s.id} value={s.id}>
-                  {s.styleName}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label className="dialed__field">
-            <span>2 · Technique</span>
-            <select
-              className="dialed__select"
-              value={state.techniqueId ?? ""}
-              onChange={(e) =>
-                dispatch({
-                  type: "SET_TECHNIQUE",
-                  techniqueId: e.target.value || null,
-                })
-              }
-            >
-              <option value="">Select technique…</option>
-              {techniques.map((t) => (
-                <option key={t.id} value={t.id}>
-                  {t.name}
-                  {state.highlightedTechniqueId === t.id ? " · Recommended" : ""}
-                </option>
-              ))}
-            </select>
-            {state.highlightedTechniqueId ? (
-              <p className="dialed__hint">
-                Recommended technique is highlighted when style and machine are
-                both set.
-              </p>
-            ) : null}
-          </label>
+          <SelectionInterface
+            taxonomyStyleOptions={taxonomyStyleOptions}
+            tuTaxonomyByStyleName={tuTaxonomyByStyleName}
+            taxonomyLoading={tuTaxonomyLoading}
+            taxonomyError={tuTaxonomyError}
+            selectedStyleName={state.selectedStyleName}
+            onStyleNameChange={(name) =>
+              dispatch({ type: "SET_STYLE", styleName: name })
+            }
+            techniqueSlot={state.techniqueSlot}
+            onTechniqueSlotChange={(slot) =>
+              dispatch({ type: "SET_TECHNIQUE_SLOT", slot })
+            }
+            highlightedSlot={state.highlightedTechniqueSlot}
+          />
 
           <label className="dialed__field">
             <span>3 · Select Machine Library</span>
             <select
               className="dialed__select"
               value={state.machineId ?? ""}
-              disabled={machinesLoading}
+              disabled={machinesLoading && !state.selectedStyleName}
               onChange={(e) =>
                 dispatch({
                   type: "SET_MACHINE",
                   machineId: e.target.value || null,
+                  idealStrokeMm: selectedTaxonomy?.idealStrokeMm ?? null,
                 })
               }
             >
@@ -241,6 +286,13 @@ export function DialedInTool() {
             {machinesError ? (
               <p className="dialed__error" role="alert">
                 {machinesError}
+              </p>
+            ) : null}
+            {selectedTaxonomy ? (
+              <p className="dialed__hint">
+                Recommended stroke baseline for {selectedTaxonomy.styleName}:{" "}
+                {selectedTaxonomy.idealStrokeMm.toFixed(1)} mm — when you pick a
+                machine, stroke snaps to the closest available option.
               </p>
             ) : null}
           </label>
@@ -276,25 +328,6 @@ export function DialedInTool() {
               dispatch({ type: "SET_HAND_SPEED", handSpeed })
             }
           />
-
-          <div className="dialed__chips" aria-label="Technique quick pick">
-            {techniques.map((t) => {
-              const rec = state.highlightedTechniqueId === t.id;
-              return (
-                <button
-                  key={t.id}
-                  type="button"
-                  className={`dialed__chip${rec ? " dialed__chip--rec" : ""}${state.techniqueId === t.id ? " dialed__chip--on" : ""}`}
-                  onClick={() =>
-                    dispatch({ type: "SET_TECHNIQUE", techniqueId: t.id })
-                  }
-                >
-                  {t.name}
-                  {rec ? <span className="dialed__rec-badge">Rec</span> : null}
-                </button>
-              );
-            })}
-          </div>
         </section>
 
         <section className="dialed__panel dialed__panel--out" aria-label="Output dashboard">
@@ -306,21 +339,50 @@ export function DialedInTool() {
             Output Dashboard (Recommended)
           </h2>
 
+          {selectedTaxonomy?.technicalFocus && machine ? (
+            <div className="dialed__goal" role="region" aria-label="Setup goal">
+              <p className="dialed__goal__kicker">Goal</p>
+              <p className="dialed__goal__text">{selectedTaxonomy.technicalFocus}</p>
+            </div>
+          ) : null}
+
           <div className="dialed__gauges-shell">
             <div className="dialed__gauges dialed__gauges--stable-row">
               {gaugePack && machine ? (
                 <>
-                  <SweetSpotGauge
-                    label="Voltage"
-                    value={gaugePack.volts}
-                    min={machine.defaultVoltRange.min}
-                    max={machine.defaultVoltRange.max}
-                    unit="V"
-                    badge={
-                      acusHzFirst ? "Power supply reference" : undefined
-                    }
-                    emphasis={acusHzFirst ? "muted" : "default"}
-                  />
+                  <div className="dialed__voltage-column">
+                    <SweetSpotGauge
+                      label="Voltage"
+                      value={gaugePack.volts}
+                      min={gaugePack.voltMin}
+                      max={gaugePack.voltMax}
+                      unit="V"
+                      badge={
+                        acusHzFirst
+                          ? "Power supply reference"
+                          : adaptedVolt
+                            ? "Adapted range"
+                            : undefined
+                      }
+                      emphasis={acusHzFirst ? "muted" : "default"}
+                    />
+                    {showLessonBanner && selectedTaxonomy ? (
+                      <div
+                        className="dialed__lesson-banner dialed__adaptive-mismatch"
+                        role="status"
+                        aria-live="polite"
+                      >
+                        <p className="dialed__adaptive-mismatch__title">Lesson</p>
+                        <p className="dialed__adaptive-mismatch__body">
+                          DialedIn has adapted your voltage for a{" "}
+                          {activeStrokeMm.toFixed(1)}mm stroke. For{" "}
+                          {selectedTaxonomy.styleName}, the industry standard is{" "}
+                          {selectedTaxonomy.idealStrokeMm.toFixed(1)}mm to ensure
+                          optimal saturation without skin trauma.
+                        </p>
+                      </div>
+                    ) : null}
+                  </div>
                   <SweetSpotGauge
                     label={
                       acusHzFirst
@@ -374,17 +436,27 @@ export function DialedInTool() {
                   : "—"}
               </dd>
             </div>
+            {selectedTaxonomy ? (
+              <div>
+                <dt>Style baseline (ideal stroke)</dt>
+                <dd className="dialed__kv-value">
+                  {selectedTaxonomy.idealStrokeMm.toFixed(1)} mm
+                </dd>
+              </div>
+            ) : null}
           </dl>
 
           <div className="dialed__cartridge-section">
             <h3 className="dialed__h3">Cartridge Configuration</h3>
             <dl className="dialed__kv dialed__kv--cartridge">
               <div>
-                <dt>Cartridge (technical range)</dt>
+                <dt>Recommended Grouping</dt>
                 <dd className="dialed__kv-value dialed__kv-value--cartridge">
-                  {style ? (
+                  {selectedTaxonomy?.idealNeedleRange ? (
                     <span className="dialed__kv-value__inner">
-                      <TechnicalResultWithHints text={style.idealNeedleRange} />
+                      <TechnicalResultWithHints
+                        text={selectedTaxonomy.idealNeedleRange}
+                      />
                     </span>
                   ) : (
                     "—"
@@ -438,10 +510,23 @@ export function DialedInTool() {
           {voltage ? (
             <dl className="dialed__kv dialed__kv--footer">
               <div>
-                <dt>Machine voltage envelope</dt>
+                <dt>
+                  {adaptedVolt
+                    ? "Adapted voltage band (Setup Engine)"
+                    : "Machine voltage envelope"}
+                </dt>
                 <dd className="dialed__kv-value">
-                  Baseline {voltage.baselineVolts.toFixed(1)} V → adjusted{" "}
-                  {voltage.adjustedVolts.toFixed(1)} V
+                  {adaptedVolt ? (
+                    <>
+                      Operating band {adaptedVolt.adaptedMin.toFixed(1)} –{" "}
+                      {adaptedVolt.adaptedMax.toFixed(1)} V (3.5 mm pivot offset{" "}
+                      {adaptedVolt.modifierV >= 0 ? "+" : ""}
+                      {adaptedVolt.modifierV.toFixed(1)} V).{" "}
+                    </>
+                  ) : null}
+                  Machine baseline {voltage.baselineVolts.toFixed(1)} V →
+                  soft-guard / stroke adjusted {voltage.adjustedVolts.toFixed(1)}{" "}
+                  V
                   {voltage.longStrokeSoftShadingGuard
                     ? " (long-stroke soft shading guard active)"
                     : ""}

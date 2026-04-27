@@ -20,6 +20,12 @@ export function SiteFooter() {
           <span className="site-footer__sep" aria-hidden>
             ·
           </span>
+          <Link className="site-footer__link" href="/how-it-works">
+            How it works
+          </Link>
+          <span className="site-footer__sep" aria-hidden>
+            ·
+          </span>
           <Link className="site-footer__link" href="/terms">
             Terms of Service
           </Link>
