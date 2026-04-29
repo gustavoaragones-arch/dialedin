@@ -22,6 +22,7 @@
   "handSpeedNote": "Nota: a velocidade da mão é uma variável relativa. Esta escala mostra a relação conceitual entre movimento e frequência de ciclo, não uma medição literal.",
   "needleHangLabel": "Recuo da agulha",
   "needleHangAriaLabel": "Profundidade do recuo da agulha em milímetros",
+  "needleHangDisclaimer": "Embora recomendemos o hang de agulha padrão da marca, o ajuste final é uma escolha pessoal baseada em habilidade técnica e intenção artística.",
   "styleNoteKicker": "Nota de estilo",
   "recommendedPathHint": "O caminho recomendado aparece destacado quando estilo e máquina estão definidos.",
   "recommendedChipSuffix": " · Recomendado",
@@ -67,10 +68,12 @@
   "devAriaShow": "Mostrar dados brutos (JSON)",
   "devAriaHide": "Ocultar dados brutos",
   "handSpeed": {
+    "VerySlow": "Muito Lenta",
     "Slow": "Lenta",
-    "SlowModerate": "Lenta–moderada",
+    "SlowModerate": "Lenta Moderada",
     "Moderate": "Moderada",
-    "FastModerate": "Rápida–moderada",
-    "Fast": "Rápida"
+    "FastModerate": "Rápida Moderada",
+    "Fast": "Rápida",
+    "VeryFast": "Muito Rápida"
   }
 }

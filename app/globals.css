@@ -68,8 +68,8 @@ main.site-main {
 .dialed__hero-lockup {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   padding: 0.25rem 0 0;
   margin: 0 0 1.25rem;
 }
@@ -102,7 +102,7 @@ main.site-main {
   color: var(--muted);
   margin: 0 0 1rem;
   line-height: 1.45;
-  max-width: min(48ch, 100%);
+  max-width: min(52ch, 100%);
 }
 
 .dialed__hero-body {
@@ -731,6 +731,15 @@ select.dialed__select:disabled {
   color: var(--muted);
 }
 
+.hang-slider__disclaimer {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 48ch;
+}
+
 .hand-speed-slider {
   margin: 0 0 1rem;
   padding: 0.85rem 1rem;
@@ -759,18 +768,26 @@ select.dialed__select:disabled {
 
 .hand-speed-slider__ticks {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 0.2rem;
   margin-bottom: 0.4rem;
-  font-size: 0.62rem;
-  line-height: 1.2;
+  font-size: 0.52rem;
+  line-height: 1.15;
   color: var(--muted);
   text-align: center;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__ticks {
+  font-size: 0.5rem;
 }
 
 .hand-speed-slider__tick {
   min-width: 0;
   overflow-wrap: break-word;
+}
+
+.hand-speed-slider__track-wrap {
+  margin: 0;
 }
 
 .hand-speed-slider__track {
@@ -779,6 +796,25 @@ select.dialed__select:disabled {
   border-radius: 999px;
   background: var(--gauge-track);
   overflow: hidden;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__track-wrap {
+  padding: 12px 2px 14px;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__track {
+  height: 8px;
+  overflow: visible;
+  border-radius: 999px;
+  background: rgba(42, 47, 58, 0.92);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.45);
+  transition: box-shadow 0.2s ease;
+}
+
+.hand-speed-slider--fluid:hover .hand-speed-slider__track,
+.hand-speed-slider--fluid.hand-speed-slider--dragging .hand-speed-slider__track {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(110, 231, 255, 0.12), 0 0 16px rgba(34, 211, 238, 0.14);
 }
 
 .hand-speed-slider__fill {
@@ -793,8 +829,77 @@ select.dialed__select:disabled {
   position: absolute;
   inset: 0;
   width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   opacity: 0;
   cursor: pointer;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__input {
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 32px;
+  width: 100%;
+  transform: translateY(-50%);
+  opacity: 1;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-top: -1px;
+  background: var(--gauge-needle);
+  border: 2px solid rgba(110, 231, 255, 0.45);
+  opacity: 0.2;
+  cursor: grab;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+.hand-speed-slider--fluid:hover .hand-speed-slider__input::-webkit-slider-thumb,
+.hand-speed-slider--fluid.hand-speed-slider--dragging
+  .hand-speed-slider__input::-webkit-slider-thumb,
+.hand-speed-slider--fluid .hand-speed-slider__input:focus-visible::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__input:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(110, 231, 255, 0.45);
+  background: var(--gauge-needle);
+  opacity: 0.2;
+  cursor: grab;
+  transition: opacity 0.15s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
+}
+
+.hand-speed-slider--fluid:hover .hand-speed-slider__input::-moz-range-thumb,
+.hand-speed-slider--fluid.hand-speed-slider--dragging
+  .hand-speed-slider__input::-moz-range-thumb {
+  opacity: 1;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__input::-moz-range-track {
+  background: transparent;
+  height: 8px;
+}
+
+.hand-speed-slider--fluid .hand-speed-slider__input:focus {
+  outline: none;
 }
 
 .hand-speed-slider__note {

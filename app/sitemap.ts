@@ -13,6 +13,7 @@ const PATHS = [
   "/blog/stroke-physics",
   "/blog/cartridge-drag",
   "/blog/hand-speed-sync",
+  "/blog/physics-of-rule-breaking",
   "/blog/hardware-tiers",
   "/blog/needle-hang-depth",
   "/blog/hertz-vs-volts",

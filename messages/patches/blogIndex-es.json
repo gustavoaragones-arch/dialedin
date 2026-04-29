@@ -36,6 +36,10 @@
       "title": "Sincronizar la mano con los hercios de la máquina",
       "summary": "Sincronía CPS–mano para densidad de puntada más limpia en línea y textura controlada en whip shading."
     },
+    "physicsRuleBreaking": {
+      "title": "La física de romper las reglas: por qué los tatuadores avanzados contradicen los estándares",
+      "summary": "Stroke largo en sombreado, magnums que dibujan “líneas” y micro-realismo con una sola 3RL: la física disciplinada detrás de romper reglas con intención."
+    },
     "membraneTax": {
       "title": "Impuesto de membrana: por qué se ahoga con cartuchos económicos",
       "summary": "Por qué membranas más rígidas absorben par efectivo y cómo compensar voltaje sin sobrepasar la piel, sobre todo en máquinas tier 2."

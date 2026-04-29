@@ -66,6 +66,10 @@
     "blogMembraneTax": {
       "title": "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
       "description": "Tattoo machine stalling explained: membrane tension, rotary torque loss, and practical voltage compensation for Dragonhawk Mast and other tier-2 setups."
+    },
+    "blogPhysicsRuleBreaking": {
+      "title": "The Physics of Rule-Breaking: Why Advanced Tattooers Contradict Setup Standards",
+      "description": "High stroke shading, magnum lining technique, pepper vs smooth shading, and tattoo machine physics—why standards are a starting line, not a cage."
     }
   },
   "nav": {
@@ -161,18 +165,21 @@
     "devAriaShow": "Show raw setup data (JSON)",
     "devAriaHide": "Hide raw setup data",
     "handSpeed": {
+      "VerySlow": "Very Slow",
       "Slow": "Slow",
-      "SlowModerate": "Slow-Moderate",
+      "SlowModerate": "Slow Moderate",
       "Moderate": "Moderate",
-      "FastModerate": "Fast-Moderate",
-      "Fast": "Fast"
+      "FastModerate": "Moderate Fast",
+      "Fast": "Fast",
+      "VeryFast": "Very Fast"
     },
     "proTipsAriaLabel": "Pro tips",
     "goalAriaLabel": "Setup goal",
     "needleHangLabel": "Needle hanging",
     "styleNoteKicker": "Style note",
     "recommendedPathHint": "Recommended path is highlighted when both style and machine are set.",
-    "recommendedChipSuffix": " · Recommended"
+    "recommendedChipSuffix": " · Recommended",
+    "needleHangDisclaimer": "While we recommend brand-standard needle hang, setup remains a personal choice dictated by technical skill and artistic intent."
   },
   "legal": {
     "common": {
@@ -266,6 +273,10 @@
         "title": "Syncing Hand Speed to Machine Hertz",
         "summary": "Master CPS-to-hand velocity sync for cleaner stitch density in lining and controlled texture in whip shading."
       },
+      "physicsRuleBreaking": {
+        "title": "The Physics of Rule-Breaking: Why Advanced Tattooers Contradict Setup Standards",
+        "summary": "When long-stroke machines shade, when magnums draw “lines,” and when micro-realism runs on a single 3RL—disciplined physics behind deliberate rule-breaking."
+      },
       "membraneTax": {
         "title": "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
         "summary": "Learn why stiffer cartridge membranes can absorb effective drive and how to compensate voltage without overdriving skin, especially on tier-2 machines."
@@ -284,7 +295,7 @@
     },
     "strokeCycle": {
       "h2": "The stroke–cycle equilibrium",
-      "p1": "Rotary tattoo machines convert electrical cycles into needle displacement. For a given stroke length (mm), the needle travels a fixed arc per revolution. When hand velocity exceeds the rate at which those cycles deposit pigment, the skin sees under-filled segments—often misread as a \"machine problem\" when it is a velocity mismatch. The DialedIn.ink engine models this by pairing a five-step hand-speed scale (slow through fast-moderate) with recommended voltage bands: faster hands generally require higher effective cycle energy, bounded by tissue safety envelopes.",
+      "p1": "Rotary tattoo machines convert electrical cycles into needle displacement. For a given stroke length (mm), the needle travels a fixed arc per revolution. When hand velocity exceeds the rate at which those cycles deposit pigment, the skin sees under-filled segments—often misread as a \"machine problem\" when it is a velocity mismatch. The DialedIn.ink engine models this by pairing a seven-tier hand-speed scale with recommended voltage bands: faster hands generally require higher effective cycle energy, bounded by tissue safety envelopes.",
       "p2": "Long-stroke machines (typically 4.0 mm+) store more kinetic energy in each impact. During soft shading or whip-style passes, that extra momentum raises the risk of hammer effect trauma unless voltage is deliberately pulled down—our Hammer Effect Guard applies a −1.5 V offset when stroke ≥ 4.0 mm and the technique is delicate shading-class."
     },
     "acusParadigm": {

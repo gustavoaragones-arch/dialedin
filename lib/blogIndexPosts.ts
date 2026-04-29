@@ -7,5 +7,10 @@ export const BLOG_INDEX_POSTS = [
   { slug: "needle-hang-depth", key: "needleHangDepth", categoryKey: "applicationMechanics" },
   { slug: "cartridge-drag", key: "cartridgeDrag", categoryKey: "applicationMechanics" },
   { slug: "hand-speed-sync", key: "handSpeedSync", categoryKey: "motorPhysics" },
+  {
+    slug: "physics-of-rule-breaking",
+    key: "physicsRuleBreaking",
+    categoryKey: "motorPhysics",
+  },
   { slug: "the-membrane-tax", key: "membraneTax", categoryKey: "needleGeometry" },
 ] as const;

@@ -8,43 +8,74 @@ export const HIGH_STROKE_MM = 4.0;
 const HAMMER_REDUCTION_V = 1.5;
 const TIER2_CARTRIDGE_TENSION_COMPENSATION_V = 0.2;
 
-/** Five discrete hand-speed steps (slider indices 0–4). */
+/**
+ * Seven discrete hand-speed tiers. UI uses a fluid 0–100% slider; values snap to
+ * the nearest anchor in {@link HAND_SPEED_ANCHORS} for engine calculations.
+ */
 export const HAND_SPEED_STEPS = [
+  "VerySlow",
   "Slow",
   "SlowModerate",
   "Moderate",
   "FastModerate",
   "Fast",
+  "VeryFast",
+] as const;
+
+/** Percent anchors (0–100) aligned index-wise with HAND_SPEED_STEPS. */
+export const HAND_SPEED_ANCHORS = [
+  0, 16, 32, 50, 66, 82, 100,
 ] as const;
 
 export type HandSpeed = (typeof HAND_SPEED_STEPS)[number];
 
-export function handSpeedLabel(s: HandSpeed): string {
-  const map: Record<HandSpeed, string> = {
-    Slow: "Slow",
-    SlowModerate: "Slow-Moderate",
-    Moderate: "Moderate",
-    FastModerate: "Fast-Moderate",
-    Fast: "Fast",
-  };
-  return map[s];
+export function clampHandSpeedPct(raw: number): number {
+  if (!Number.isFinite(raw)) return 50;
+  return Math.min(100, Math.max(0, Math.round(raw)));
 }
 
-export function handSpeedFromSliderIndex(i: number): HandSpeed {
-  const idx = Math.min(4, Math.max(0, Math.round(i)));
-  return HAND_SPEED_STEPS[idx]!;
+/** Map continuous slider percentage to the nearest logical tier (tie → slower tier). */
+export function snapHandSpeedFromPct(pctRaw: number): HandSpeed {
+  const pct = clampHandSpeedPct(pctRaw);
+  let bestI = 0;
+  let bestD = Infinity;
+  for (let i = 0; i < HAND_SPEED_ANCHORS.length; i++) {
+    const a = HAND_SPEED_ANCHORS[i]!;
+    const d = Math.abs(pct - a);
+    if (
+      d < bestD ||
+      (d === bestD && a < HAND_SPEED_ANCHORS[bestI]!)
+    ) {
+      bestD = d;
+      bestI = i;
+    }
+  }
+  return HAND_SPEED_STEPS[bestI]!;
 }
 
 export function sliderIndexFromHandSpeed(s: HandSpeed): number {
   return HAND_SPEED_STEPS.indexOf(s);
 }
 
+export function handSpeedLabel(s: HandSpeed): string {
+  const map: Record<HandSpeed, string> = {
+    VerySlow: "Very Slow",
+    Slow: "Slow",
+    SlowModerate: "Slow Moderate",
+    Moderate: "Moderate",
+    FastModerate: "Moderate Fast",
+    Fast: "Fast",
+    VeryFast: "Very Fast",
+  };
+  return map[s];
+}
+
 /**
- * Slider steps 1–5 (indices 0–4: Slow → Fast) map to voltage offsets (V)
- * applied after relational baseline, before envelope clamp.
+ * Seven tiers map to voltage offsets (V), applied after relational baseline,
+ * before envelope clamp. Endpoints extend the prior 5-step curve smoothly.
  */
 export const HAND_SPEED_VOLTAGE_OFFSETS = [
-  -0.6, -0.3, 0.0, 0.4, 0.8,
+  -0.85, -0.6, -0.3, 0.0, 0.4, 0.8, 1.05,
 ] as const;
 
 export function handSpeedOffsetVolts(speed: HandSpeed): number {
@@ -323,7 +354,9 @@ export function evaluateDialedInEngine(
   }
 
   if (
-    (speed === "Fast" || speed === "FastModerate") &&
+    (speed === "Fast" ||
+      speed === "FastModerate" ||
+      speed === "VeryFast") &&
     voltageRounded < 7.5
   ) {
     checks.push({

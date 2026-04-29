@@ -11,7 +11,7 @@
     },
     "strokeCycle": {
       "h2": "The stroke–cycle equilibrium",
-      "p1": "Rotary tattoo machines convert electrical cycles into needle displacement. For a given stroke length (mm), the needle travels a fixed arc per revolution. When hand velocity exceeds the rate at which those cycles deposit pigment, the skin sees under-filled segments—often misread as a \"machine problem\" when it is a velocity mismatch. The DialedIn.ink engine models this by pairing a five-step hand-speed scale (slow through fast-moderate) with recommended voltage bands: faster hands generally require higher effective cycle energy, bounded by tissue safety envelopes.",
+      "p1": "Rotary tattoo machines convert electrical cycles into needle displacement. For a given stroke length (mm), the needle travels a fixed arc per revolution. When hand velocity exceeds the rate at which those cycles deposit pigment, the skin sees under-filled segments—often misread as a \"machine problem\" when it is a velocity mismatch. The DialedIn.ink engine models this by pairing a seven-tier hand-speed scale with recommended voltage bands: faster hands generally require higher effective cycle energy, bounded by tissue safety envelopes.",
       "p2": "Long-stroke machines (typically 4.0 mm+) store more kinetic energy in each impact. During soft shading or whip-style passes, that extra momentum raises the risk of hammer effect trauma unless voltage is deliberately pulled down—our Hammer Effect Guard applies a −1.5 V offset when stroke ≥ 4.0 mm and the technique is delicate shading-class."
     },
     "acusParadigm": {

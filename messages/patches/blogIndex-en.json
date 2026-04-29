@@ -36,6 +36,10 @@
       "title": "Syncing Hand Speed to Machine Hertz",
       "summary": "Master CPS-to-hand velocity sync for cleaner stitch density in lining and controlled texture in whip shading."
     },
+    "physicsRuleBreaking": {
+      "title": "The Physics of Rule-Breaking: Why Advanced Tattooers Contradict Setup Standards",
+      "summary": "When long-stroke machines shade, when magnums draw “lines,” and when micro-realism runs on a single 3RL—disciplined physics behind deliberate rule-breaking."
+    },
     "membraneTax": {
       "title": "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
       "summary": "Learn why stiffer cartridge membranes can absorb effective drive and how to compensate voltage without overdriving skin, especially on tier-2 machines."

@@ -8,7 +8,7 @@ import {
 } from "./dialedInData";
 import { recommendedTechniqueSlot } from "./recommendedTechniqueSlot";
 
-import type { HandSpeed } from "./dialedInEngine";
+import { clampHandSpeedPct } from "./dialedInEngine";
 
 export type TechniqueSlot = "lining" | "shading";
 
@@ -21,7 +21,8 @@ export type DialedInState = {
   /** Active stroke length (mm) for the selected machine; drives engine + guards. */
   selectedStrokeMm: number | null;
   needleHangMm: number;
-  handSpeed: HandSpeed;
+  /** Continuous 0–100 slider; engine uses snap-to-nearest tier. */
+  handSpeedPct: number;
   /** When style + machine are set, UI highlights a recommended slot */
   highlightedTechniqueSlot: TechniqueSlot | null;
 };
@@ -37,7 +38,7 @@ export type DialedInAction =
     }
   | { type: "SET_SELECTED_STROKE_MM"; strokeMm: number }
   | { type: "SET_NEEDLE_HANG"; mm: number }
-  | { type: "SET_HAND_SPEED"; handSpeed: HandSpeed }
+  | { type: "SET_HAND_SPEED_PCT"; handSpeedPct: number }
   | { type: "SYNC_RECOMMENDED_TECHNIQUE" };
 
 /** Never seed a legacy style id (e.g. s-fine-line); style comes only from Supabase style_name. */
@@ -47,7 +48,7 @@ const initial: DialedInState = {
   machineId: null,
   selectedStrokeMm: null,
   needleHangMm: 1.5,
-  handSpeed: "Moderate",
+  handSpeedPct: 50,
   highlightedTechniqueSlot: null,
 };
 
@@ -173,8 +174,11 @@ export function dialedInReducer(
         ),
       };
     }
-    case "SET_HAND_SPEED":
-      return { ...state, handSpeed: action.handSpeed };
+    case "SET_HAND_SPEED_PCT":
+      return {
+        ...state,
+        handSpeedPct: clampHandSpeedPct(action.handSpeedPct),
+      };
     case "SYNC_RECOMMENDED_TECHNIQUE": {
       const machine = state.machineId
         ? machinesById.get(state.machineId)

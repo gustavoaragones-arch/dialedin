@@ -66,6 +66,10 @@
     "blogMembraneTax": {
       "title": "Impuesto de membrana: por qué se ahoga con cartuchos económicos",
       "description": "Paradas del motor: tensión de membrana, pérdida de par y compensación práctica en Dragonhawk Mast y setups tier 2."
+    },
+    "blogPhysicsRuleBreaking": {
+      "title": "La física de romper las reglas: por qué los tatuadores avanzados contradicen los estándares",
+      "description": "Sombreado con stroke largo, técnica de línea con magnum, pepper shading frente a sombreado suave y física de la máquina: por qué los estándares son un punto de partida, no una jaula."
     }
   },
   "nav": {
@@ -161,18 +165,21 @@
     "devAriaShow": "Mostrar datos crudos (JSON)",
     "devAriaHide": "Ocultar datos crudos",
     "handSpeed": {
+      "VerySlow": "Muy Lenta",
       "Slow": "Lenta",
-      "SlowModerate": "Lenta–moderada",
+      "SlowModerate": "Lenta Moderada",
       "Moderate": "Moderada",
-      "FastModerate": "Rápida–moderada",
-      "Fast": "Rápida"
+      "FastModerate": "Rápida Moderada",
+      "Fast": "Rápida",
+      "VeryFast": "Muy Rápida"
     },
     "proTipsAriaLabel": "Consejos pro",
     "goalAriaLabel": "Objetivo de setup",
     "needleHangLabel": "Salida de aguja",
     "styleNoteKicker": "Nota de estilo",
     "recommendedPathHint": "La ruta recomendada se resalta cuando el estilo y la máquina están definidos.",
-    "recommendedChipSuffix": " · Recomendado"
+    "recommendedChipSuffix": " · Recomendado",
+    "needleHangDisclaimer": "Aunque recomendamos el «needle hang» estándar de la marca, el ajuste final es una elección personal basada en la habilidad técnica y la intención artística."
   },
   "legal": {
     "common": {
@@ -265,6 +272,10 @@
       "handSpeedSync": {
         "title": "Sincronizar la mano con los hercios de la máquina",
         "summary": "Sincronía CPS–mano para densidad de puntada más limpia en línea y textura controlada en whip shading."
+      },
+      "physicsRuleBreaking": {
+        "title": "La física de romper las reglas: por qué los tatuadores avanzados contradicen los estándares",
+        "summary": "Stroke largo en sombreado, magnums que dibujan “líneas” y micro-realismo con una sola 3RL: la física disciplinada detrás de romper reglas con intención."
       },
       "membraneTax": {
         "title": "Impuesto de membrana: por qué se ahoga con cartuchos económicos",

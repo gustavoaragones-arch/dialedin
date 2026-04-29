@@ -11,7 +11,11 @@ import {
 import { buildAdaptedVoltRange } from "@/lib/adaptiveVoltage";
 import { engineTechniqueNameForSelection } from "@/lib/engineTechniqueMap";
 import { isAcusFrequencyFirstBrand } from "@/lib/machineBrand";
-import { dialedInEngineToJson, evaluateDialedInEngine } from "@/lib/dialedInEngine";
+import {
+  dialedInEngineToJson,
+  evaluateDialedInEngine,
+  snapHandSpeedFromPct,
+} from "@/lib/dialedInEngine";
 import { useDialedIn } from "@/components/DialedInProvider";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { Link } from "@/i18n/navigation";
@@ -19,6 +23,7 @@ import {
   localizeEngineCopy,
   localizeTechnicalFocus,
 } from "@/lib/localizeEngineCopy";
+import { useDebouncedValue } from "@/lib/useDebouncedValue";
 import { useLocale, useTranslations } from "next-intl";
 import { HowItWorks } from "./HowItWorks";
 import { SelectionInterface } from "./SelectionInterface";
@@ -75,6 +80,12 @@ export function DialedInTool() {
     );
   }, [state.selectedStyleName, state.techniqueSlot]);
 
+  const debouncedHandSpeedPct = useDebouncedValue(state.handSpeedPct, 115);
+  const engineHandSpeed = useMemo(
+    () => snapHandSpeedFromPct(debouncedHandSpeedPct),
+    [debouncedHandSpeedPct],
+  );
+
   const voltEnvelopeForEngine = useMemo(() => {
     if (!machine) return null;
     if (adaptedVolt) {
@@ -102,7 +113,7 @@ export function DialedInTool() {
         strokeMm: activeStrokeMm,
         technique: engineTechniqueName,
         style: selectedTaxonomy?.styleName ?? state.selectedStyleName,
-        handSpeed: state.handSpeed,
+        handSpeed: engineHandSpeed,
         machineTier: machine.tier,
       },
       { voltEnvelope: voltEnvelopeForEngine },
@@ -113,7 +124,7 @@ export function DialedInTool() {
     selectedTaxonomy?.styleName,
     state.techniqueSlot,
     engineTechniqueName,
-    state.handSpeed,
+    engineHandSpeed,
     activeStrokeMm,
     voltEnvelopeForEngine,
   ]);
@@ -347,9 +358,9 @@ export function DialedInTool() {
           ) : null}
 
           <HandSpeedSlider
-            value={state.handSpeed}
-            onChange={(handSpeed) =>
-              dispatch({ type: "SET_HAND_SPEED", handSpeed })
+            pct={state.handSpeedPct}
+            onPctChange={(pct) =>
+              dispatch({ type: "SET_HAND_SPEED_PCT", handSpeedPct: pct })
             }
           />
         </section>

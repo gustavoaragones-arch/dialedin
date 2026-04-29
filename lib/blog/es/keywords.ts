@@ -24,6 +24,12 @@ export const BLOG_KEYWORDS_ES: Partial<Record<string, string[]>> = {
     "saturación de color tatuaje",
     "CPS tatuaje",
   ],
+  "/blog/physics-of-rule-breaking": [
+    "sombreado stroke largo tatuaje",
+    "líneas con magnum realismo",
+    "pepper shading vs smooth shading",
+    "física máquina de tatuar",
+  ],
   "/blog/hardware-tiers": [
     "mejores máquinas de tatuar económicas",
     "Dragonhawk vs Cheyenne",

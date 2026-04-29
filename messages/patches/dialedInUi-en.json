@@ -22,6 +22,7 @@
   "handSpeedNote": "Note: Hand speed is a relative variable. This scale is designed to demonstrate the conceptual relationship between movement and cycle frequency, not as a literal measurement.",
   "needleHangLabel": "Needle hanging",
   "needleHangAriaLabel": "Needle hanging depth in millimeters",
+  "needleHangDisclaimer": "While we recommend brand-standard needle hang, setup remains a personal choice dictated by technical skill and artistic intent.",
   "styleNoteKicker": "Style note",
   "recommendedPathHint": "Recommended path is highlighted when both style and machine are set.",
   "recommendedChipSuffix": " · Recommended",
@@ -67,10 +68,12 @@
   "devAriaShow": "Show raw setup data (JSON)",
   "devAriaHide": "Hide raw setup data",
   "handSpeed": {
+    "VerySlow": "Very Slow",
     "Slow": "Slow",
-    "SlowModerate": "Slow-Moderate",
+    "SlowModerate": "Slow Moderate",
     "Moderate": "Moderate",
-    "FastModerate": "Fast-Moderate",
-    "Fast": "Fast"
+    "FastModerate": "Moderate Fast",
+    "Fast": "Fast",
+    "VeryFast": "Very Fast"
   }
 }

@@ -66,6 +66,10 @@
     "blogMembraneTax": {
       "title": "Taxa de membrana: por que trava em cartuchos econômicos",
       "description": "Travamento explicado: tensão de membrana, perda de torque e compensação prática em Dragonhawk Mast e setups tier 2."
+    },
+    "blogPhysicsRuleBreaking": {
+      "title": "A física de quebrar regras: por que tatuadores avançados contradizem os padrões",
+      "description": "Sombreado com stroke longo, linha com magnum, pepper vs smooth shading e física da máquina: padrões como linha de partida, não como gaiola."
     }
   },
   "nav": {
@@ -161,18 +165,21 @@
     "devAriaShow": "Mostrar dados brutos (JSON)",
     "devAriaHide": "Ocultar dados brutos",
     "handSpeed": {
+      "VerySlow": "Muito Lenta",
       "Slow": "Lenta",
-      "SlowModerate": "Lenta–moderada",
+      "SlowModerate": "Lenta Moderada",
       "Moderate": "Moderada",
-      "FastModerate": "Rápida–moderada",
-      "Fast": "Rápida"
+      "FastModerate": "Rápida Moderada",
+      "Fast": "Rápida",
+      "VeryFast": "Muito Rápida"
     },
     "proTipsAriaLabel": "Dicas pro",
     "goalAriaLabel": "Objetivo do setup",
     "needleHangLabel": "Recuo da agulha",
     "styleNoteKicker": "Nota de estilo",
     "recommendedPathHint": "O caminho recomendado aparece destacado quando estilo e máquina estão definidos.",
-    "recommendedChipSuffix": " · Recomendado"
+    "recommendedChipSuffix": " · Recomendado",
+    "needleHangDisclaimer": "Embora recomendemos o hang de agulha padrão da marca, o ajuste final é uma escolha pessoal baseada em habilidade técnica e intenção artística."
   },
   "legal": {
     "common": {
@@ -265,6 +272,10 @@
       "handSpeedSync": {
         "title": "Sincronizar a mão com os hertz da máquina",
         "summary": "Sincronia CPS–mão para densidade de ponto mais limpa e textura controlada."
+      },
+      "physicsRuleBreaking": {
+        "title": "A física de quebrar regras: por que tatuadores avançados contradizem os padrões",
+        "summary": "Sombreado com stroke longo, magnums em “linhas” e micro-realismo com uma 3RL: física disciplinada por trás de escolhas deliberadas."
       },
       "membraneTax": {
         "title": "Taxa de membrana: por que trava em cartuchos econômicos",

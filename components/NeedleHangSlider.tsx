@@ -45,6 +45,7 @@ export function NeedleHangSlider({ valueMm, maxMm, onChange }: Props) {
         <span>{min.toFixed(1)} mm</span>
         <span>{max.toFixed(1)} mm</span>
       </div>
+      <p className="hang-slider__disclaimer">{t("needleHangDisclaimer")}</p>
     </div>
   );
 }

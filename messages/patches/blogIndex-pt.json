@@ -36,6 +36,10 @@
       "title": "Sincronizar a mão com os hertz da máquina",
       "summary": "Sincronia CPS–mão para densidade de ponto mais limpa e textura controlada."
     },
+    "physicsRuleBreaking": {
+      "title": "A física de quebrar regras: por que tatuadores avançados contradizem os padrões",
+      "summary": "Sombreado com stroke longo, magnums em “linhas” e micro-realismo com uma 3RL: física disciplinada por trás de escolhas deliberadas."
+    },
     "membraneTax": {
       "title": "Taxa de membrana: por que trava em cartuchos econômicos",
       "summary": "Por que membranas mais rígidas roubam torque efetivo e como compensar sem overdriving na pele."
