@@ -1,0 +1,12 @@
+{
+  "title": {
+    "HAMMER_EFFECT": "Risco de impacto cinético",
+    "GEOMETRY_DESYNC": "Incompatibilidade de geometria",
+    "VELOCITY_SYNC": "Dessincronia frequência / velocidade"
+  },
+  "message": {
+    "HAMMER_EFFECT": "Risco de impacto cinético: curso de 4,0 mm+ entrega alto momento na agulha. Reduzir voltagem em 1,5 V é necessário para evitar o «efeito martelo» durante sombreamento delicado.",
+    "GEOMETRY_DESYNC": "Incompatibilidade de geometria: tapers padrão criam deslocamento excessivo da pele em micro-detalhes. Super Long Taper (SLT) é recomendado para evitar blowouts.",
+    "VELOCITY_SYNC": "Dessincronia frequência/velocidade: sua mão está mais rápida que o ciclo do motor. Pode causar linhas tracejadas ou travamentos na pele. Aumente a voltagem ou reduza o movimento da mão."
+  }
+}

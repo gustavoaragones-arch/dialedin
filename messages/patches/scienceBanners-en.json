@@ -1,0 +1,12 @@
+{
+  "title": {
+    "HAMMER_EFFECT": "Kinetic impact hazard",
+    "GEOMETRY_DESYNC": "Geometry mismatch",
+    "VELOCITY_SYNC": "Frequency / velocity desync"
+  },
+  "message": {
+    "HAMMER_EFFECT": "Kinetic Impact Hazard: A 4.0mm+ stroke delivers high needle momentum. Reducing voltage by 1.5V is required to prevent the 'Hammer Effect' (sub-dermal scarring) during delicate shading.",
+    "GEOMETRY_DESYNC": "Geometry Mismatch: Standard tapers create excessive skin displacement for micro-details. Super Long Taper (SLT) is recommended to prevent ink spread (blowouts).",
+    "VELOCITY_SYNC": "Frequency/Velocity Desync: Your hand speed exceeds the machine's cycle rate. This may cause 'dashed' lines or skin snagging. Increase voltage or decelerate hand movement."
+  }
+}

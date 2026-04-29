@@ -119,11 +119,9 @@
     "handSpeedHeading": "Velocidade da mão (modelo de velocidade)",
     "handSpeedAriaLabel": "Velocidade da mão relativa ao ciclo do motor",
     "handSpeedNote": "Nota: a velocidade da mão é uma variável relativa. Esta escala mostra a relação conceitual entre movimento e frequência de ciclo, não uma medição literal.",
-    "needleHangPrefix": "Recuo da ",
-    "needleHangWord": "agulha",
     "needleHangAriaLabel": "Profundidade do recuo da agulha em milímetros",
-    "outputHeading": "Painel de saída (recomendado)",
-    "outputAriaLabel": "Painel de saída",
+    "outputHeading": "Resultado (recomendado)",
+    "outputAriaLabel": "Resultado recomendado",
     "goalKicker": "Objetivo",
     "gaugePlaceholder": "Selecione estilo, técnica e máquina para carregar leituras e medidores recomendados.",
     "voltageLabel": "Voltagem",
@@ -169,7 +167,11 @@
       "Fast": "Rápida"
     },
     "proTipsAriaLabel": "Dicas pro",
-    "goalAriaLabel": "Objetivo do setup"
+    "goalAriaLabel": "Objetivo do setup",
+    "needleHangLabel": "Recuo da agulha",
+    "styleNoteKicker": "Nota de estilo",
+    "recommendedPathHint": "O caminho recomendado aparece destacado quando estilo e máquina estão definidos.",
+    "recommendedChipSuffix": " · Recomendado"
   },
   "legal": {
     "common": {
@@ -401,5 +403,17 @@
     },
     "footerMeta": "MÉTODO · CONSCIENTE DO CURSO · ANCORADO AO ESTILO · PRESTAÇÃO DE CONTAS",
     "fab": "Abrir motor de setup"
+  },
+  "scienceBanners": {
+    "title": {
+      "HAMMER_EFFECT": "Risco de impacto cinético",
+      "GEOMETRY_DESYNC": "Incompatibilidade de geometria",
+      "VELOCITY_SYNC": "Dessincronia frequência / velocidade"
+    },
+    "message": {
+      "HAMMER_EFFECT": "Risco de impacto cinético: curso de 4,0 mm+ entrega alto momento na agulha. Reduzir voltagem em 1,5 V é necessário para evitar o «efeito martelo» durante sombreamento delicado.",
+      "GEOMETRY_DESYNC": "Incompatibilidade de geometria: tapers padrão criam deslocamento excessivo da pele em micro-detalhes. Super Long Taper (SLT) é recomendado para evitar blowouts.",
+      "VELOCITY_SYNC": "Dessincronia frequência/velocidade: sua mão está mais rápida que o ciclo do motor. Pode causar linhas tracejadas ou travamentos na pele. Aumente a voltagem ou reduza o movimento da mão."
+    }
   }
 }

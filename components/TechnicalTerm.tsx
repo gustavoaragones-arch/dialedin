@@ -1,29 +1,40 @@
 "use client";
 
-import glossary from "@/lib/technicalHoverStates.json";
+import glossaryEn from "@/lib/technicalHoverStates.json";
+import glossaryEs from "@/lib/technicalHoverStates.es.json";
 import { type ReactNode, useId, useState } from "react";
 import { createPortal } from "react-dom";
+import { useLocale } from "next-intl";
 
-const GLOSSARY = glossary as Record<string, string>;
+function glossaryForLocale(locale: string): Record<string, string> {
+  if (locale === "es") return glossaryEs as Record<string, string>;
+  return glossaryEn as Record<string, string>;
+}
 
-/** Case-insensitive match to JSON keys (SLT, TX, #10, …). */
-function resolveGlossaryEntry(termKey: string): {
+/** Case-insensitive match to glossary keys (SLT, TX, #10, …). */
+function resolveGlossaryEntry(
+  glossary: Record<string, string>,
+  termKey: string,
+): {
   canonicalKey: string;
   text: string;
 } | null {
   const raw = String(termKey).trim();
-  if (GLOSSARY[raw]) return { canonicalKey: raw, text: GLOSSARY[raw] };
+  if (glossary[raw]) return { canonicalKey: raw, text: glossary[raw] };
   const lower = raw.toLowerCase();
-  for (const key of Object.keys(GLOSSARY)) {
+  for (const key of Object.keys(glossary)) {
     if (key.toLowerCase() === lower) {
-      return { canonicalKey: key, text: GLOSSARY[key] };
+      return { canonicalKey: key, text: glossary[key] };
     }
   }
   return null;
 }
 
-function canonicalGlossaryKey(matched: string): string {
-  const entry = resolveGlossaryEntry(matched);
+function canonicalGlossaryKey(
+  glossary: Record<string, string>,
+  matched: string,
+): string {
+  const entry = resolveGlossaryEntry(glossary, matched);
   return entry?.canonicalKey ?? matched;
 }
 
@@ -49,15 +60,17 @@ function InfoIcon() {
 }
 
 type Props = {
-  termKey: keyof typeof GLOSSARY | string;
+  termKey: string;
   children?: ReactNode;
 };
 
 export function TechnicalTerm({ termKey, children }: Props) {
+  const locale = useLocale();
+  const glossary = glossaryForLocale(locale);
   const id = useId();
   const [open, setOpen] = useState(false);
 
-  const entry = resolveGlossaryEntry(String(termKey));
+  const entry = resolveGlossaryEntry(glossary, String(termKey));
   if (!entry) return <>{children ?? termKey}</>;
 
   const tipNode =
@@ -99,7 +112,9 @@ export function TechnicalTerm({ termKey, children }: Props) {
  * Renders technical copy with glossary-linked info icons (case-insensitive token match).
  */
 export function TechnicalResultWithHints({ text }: { text: string }) {
-  const keys = Object.keys(GLOSSARY).sort((a, b) => b.length - a.length);
+  const locale = useLocale();
+  const glossary = glossaryForLocale(locale);
+  const keys = Object.keys(glossary).sort((a, b) => b.length - a.length);
   const parts: ReactNode[] = [];
   let rest = text;
   let guard = 0;
@@ -130,7 +145,7 @@ export function TechnicalResultWithHints({ text }: { text: string }) {
     }
 
     const matched = rest.slice(idx, idx + hit.length);
-    const canon = canonicalGlossaryKey(hit);
+    const canon = canonicalGlossaryKey(glossary, hit);
     parts.push(
       <TechnicalTerm key={`${canon}-${idx}-${parts.length}`} termKey={canon}>
         {matched}

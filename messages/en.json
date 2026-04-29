@@ -119,8 +119,6 @@
     "handSpeedHeading": "Hand speed (velocity model)",
     "handSpeedAriaLabel": "Hand speed relative to machine cycle rate",
     "handSpeedNote": "Note: Hand speed is a relative variable. This scale is designed to demonstrate the conceptual relationship between movement and cycle frequency, not as a literal measurement.",
-    "needleHangPrefix": "Needle ",
-    "needleHangWord": "hanging",
     "needleHangAriaLabel": "Needle hanging depth in millimeters",
     "outputHeading": "Output dashboard (recommended)",
     "outputAriaLabel": "Output dashboard",
@@ -169,7 +167,11 @@
       "Fast": "Fast"
     },
     "proTipsAriaLabel": "Pro tips",
-    "goalAriaLabel": "Setup goal"
+    "goalAriaLabel": "Setup goal",
+    "needleHangLabel": "Needle hanging",
+    "styleNoteKicker": "Style note",
+    "recommendedPathHint": "Recommended path is highlighted when both style and machine are set.",
+    "recommendedChipSuffix": " · Recommended"
   },
   "legal": {
     "common": {
@@ -401,5 +403,17 @@
     },
     "footerMeta": "METHOD · STROKE-AWARE · STYLE-ANCHORED · ACCOUNTABLE",
     "fab": "Open setup tool"
+  },
+  "scienceBanners": {
+    "title": {
+      "HAMMER_EFFECT": "Kinetic impact hazard",
+      "GEOMETRY_DESYNC": "Geometry mismatch",
+      "VELOCITY_SYNC": "Frequency / velocity desync"
+    },
+    "message": {
+      "HAMMER_EFFECT": "Kinetic Impact Hazard: A 4.0mm+ stroke delivers high needle momentum. Reducing voltage by 1.5V is required to prevent the 'Hammer Effect' (sub-dermal scarring) during delicate shading.",
+      "GEOMETRY_DESYNC": "Geometry Mismatch: Standard tapers create excessive skin displacement for micro-details. Super Long Taper (SLT) is recommended to prevent ink spread (blowouts).",
+      "VELOCITY_SYNC": "Frequency/Velocity Desync: Your hand speed exceeds the machine's cycle rate. This may cause 'dashed' lines or skin snagging. Increase voltage or decelerate hand movement."
+    }
   }
 }

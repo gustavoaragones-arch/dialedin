@@ -1,12 +1,7 @@
 "use client";
 
 import type { ScienceCheck } from "@/lib/dialedInEngine";
-
-const TITLES: Record<ScienceCheck["code"], string> = {
-  HAMMER_EFFECT: "Kinetic impact hazard",
-  GEOMETRY_DESYNC: "Geometry mismatch",
-  VELOCITY_SYNC: "Frequency / velocity desync",
-};
+import { useTranslations } from "next-intl";
 
 type Props = {
   checks: ScienceCheck[];
@@ -14,6 +9,8 @@ type Props = {
 
 /** High-visibility amber / black authority banners above the result dashboard. */
 export function ScienceWarningBanners({ checks }: Props) {
+  const t = useTranslations("scienceBanners");
+
   if (checks.length === 0) return null;
 
   return (
@@ -36,8 +33,10 @@ export function ScienceWarningBanners({ checks }: Props) {
             </svg>
           </span>
           <div className="science-banner__body">
-            <strong className="science-banner__title">{TITLES[c.code]}</strong>
-            <p className="science-banner__msg">{c.message}</p>
+            <strong className="science-banner__title">
+              {t(`title.${c.code}`)}
+            </strong>
+            <p className="science-banner__msg">{t(`message.${c.code}`)}</p>
           </div>
         </div>
       ))}

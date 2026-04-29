@@ -119,11 +119,9 @@
     "handSpeedHeading": "Velocidad de mano (modelo de velocidad)",
     "handSpeedAriaLabel": "Velocidad de mano relativa al ciclo del motor",
     "handSpeedNote": "Nota: la velocidad de mano es una variable relativa. Esta escala muestra la relación conceptual entre movimiento y frecuencia de ciclo, no una medición literal.",
-    "needleHangPrefix": "Salida de ",
-    "needleHangWord": "colgado",
     "needleHangAriaLabel": "Profundidad de salida de aguja en milímetros",
-    "outputHeading": "Panel de salida (recomendado)",
-    "outputAriaLabel": "Panel de salida",
+    "outputHeading": "Resultado (recomendado)",
+    "outputAriaLabel": "Resultado recomendado",
     "goalKicker": "Objetivo",
     "gaugePlaceholder": "Elige estilo, técnica y máquina para cargar lecturas y medidores recomendados.",
     "voltageLabel": "Voltaje",
@@ -140,7 +138,7 @@
     "lessonBody": "DialedIn ha adaptado tu voltaje para un stroke de {currentStroke} mm. Para {style}, el estándar de sector es {idealStroke} mm para una saturación óptima sin traumatismo.",
     "lessonLink": "Más sobre el pivote 3,5 mm y la física del stroke.",
     "selectedStrokeDt": "Stroke seleccionado (global)",
-    "styleBaselineDt": "Baseline de estilo (stroke ideal)",
+    "styleBaselineDt": "Línea base de estilo (stroke ideal)",
     "cartridgeConfigHeading": "Configuración de cartucho",
     "recommendedGroupingDt": "Agrupación recomendada",
     "sltContextDt": "Contexto SLT",
@@ -151,7 +149,7 @@
     "adaptedVoltageDt": "Banda de voltaje adaptada (motor de setup)",
     "machineVoltageDt": "Envolvente de voltaje de la máquina",
     "voltDetailAdapted": "Banda operativa {vmin} – {vmax} V (offset pivote 3,5 mm {mod} V). ",
-    "voltDetailBaseline": "Baseline de máquina {baseline} V → ajustado por guardas/trazo {adj} V",
+    "voltDetailBaseline": "Línea base de máquina {baseline} V → ajustado por guardas/trazo {adj} V",
     "longStrokeGuardSuffix": " (guardia activa de saturación suave en trazo largo)",
     "proTipsHeading": "Consejos pro",
     "proTipRealism": "Un stroke de 4,2 mm en realismo exige mano muy ligera—deja que trabaje la aguja.",
@@ -169,7 +167,11 @@
       "Fast": "Rápida"
     },
     "proTipsAriaLabel": "Consejos pro",
-    "goalAriaLabel": "Objetivo de setup"
+    "goalAriaLabel": "Objetivo de setup",
+    "needleHangLabel": "Salida de aguja",
+    "styleNoteKicker": "Nota de estilo",
+    "recommendedPathHint": "La ruta recomendada se resalta cuando el estilo y la máquina están definidos.",
+    "recommendedChipSuffix": " · Recomendado"
   },
   "legal": {
     "common": {
@@ -401,5 +403,17 @@
     },
     "footerMeta": "MÉTODO · SENSIBLE AL STROKE · ANCLADO AL ESTILO · RENDICIÓN DE CUENTAS",
     "fab": "Abrir motor de ajuste"
+  },
+  "scienceBanners": {
+    "title": {
+      "HAMMER_EFFECT": "Riesgo de impacto cinético",
+      "GEOMETRY_DESYNC": "Desajuste de geometría",
+      "VELOCITY_SYNC": "Desincronía frecuencia / velocidad"
+    },
+    "message": {
+      "HAMMER_EFFECT": "Riesgo de impacto cinético: un stroke de 4,0 mm o más aporta mucho momento en la aguja. Hay que reducir el voltaje en 1,5 V para evitar el «efecto martillo» (marcado subdérmico) en saturación delicada.",
+      "GEOMETRY_DESYNC": "Desajuste de geometría: los tapers estándar desplazan demasiada piel en micro-detalle. Se recomienda Super Long Taper (SLT) para limitar migración de tinta (blowouts).",
+      "VELOCITY_SYNC": "Desincronía de frecuencia y velocidad: la velocidad de tu mano supera el ciclo del motor. Puede producir líneas «discontinuas» o enganches en la piel. Sube el voltaje o reduce la velocidad de mano."
+    }
   }
 }

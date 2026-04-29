@@ -33,6 +33,11 @@ function merge(locale) {
     j.howItWorksPage = JSON.parse(fs.readFileSync(hiw, "utf8"));
   }
 
+  const sb = path.join(patchesDir, `scienceBanners-${locale}.json`);
+  if (fs.existsSync(sb)) {
+    j.scienceBanners = JSON.parse(fs.readFileSync(sb, "utf8"));
+  }
+
   fs.writeFileSync(target, JSON.stringify(j, null, 2) + "\n");
 }
 

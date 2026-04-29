@@ -2,7 +2,6 @@
 
 import { NEEDLE_HANG_ABS_MIN_MM } from "@/lib/dialedInData";
 import { useTranslations } from "next-intl";
-import { TechnicalTerm } from "./TechnicalTerm";
 
 type Props = {
   valueMm: number;
@@ -20,10 +19,7 @@ export function NeedleHangSlider({ valueMm, maxMm, onChange }: Props) {
   return (
     <div className="hang-slider">
       <div className="hang-slider__head">
-        <span>
-          {t("needleHangPrefix")}
-          <TechnicalTerm termKey="Hanging">{t("needleHangWord")}</TechnicalTerm>
-        </span>
+        <span>{t("needleHangLabel")}</span>
         <span className="hang-slider__value">{valueMm.toFixed(1)} mm</span>
       </div>
       <div className="hang-slider__track" aria-hidden>

@@ -1,0 +1,12 @@
+{
+  "title": {
+    "HAMMER_EFFECT": "Riesgo de impacto cinético",
+    "GEOMETRY_DESYNC": "Desajuste de geometría",
+    "VELOCITY_SYNC": "Desincronía frecuencia / velocidad"
+  },
+  "message": {
+    "HAMMER_EFFECT": "Riesgo de impacto cinético: un stroke de 4,0 mm o más aporta mucho momento en la aguja. Hay que reducir el voltaje en 1,5 V para evitar el «efecto martillo» (marcado subdérmico) en saturación delicada.",
+    "GEOMETRY_DESYNC": "Desajuste de geometría: los tapers estándar desplazan demasiada piel en micro-detalle. Se recomienda Super Long Taper (SLT) para limitar migración de tinta (blowouts).",
+    "VELOCITY_SYNC": "Desincronía de frecuencia y velocidad: la velocidad de tu mano supera el ciclo del motor. Puede producir líneas «discontinuas» o enganches en la piel. Sube el voltaje o reduce la velocidad de mano."
+  }
+}

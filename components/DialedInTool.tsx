@@ -15,7 +15,11 @@ import { dialedInEngineToJson, evaluateDialedInEngine } from "@/lib/dialedInEngi
 import { useDialedIn } from "@/components/DialedInProvider";
 import { LocaleSwitcher } from "@/components/LocaleSwitcher";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import {
+  localizeEngineCopy,
+  localizeTechnicalFocus,
+} from "@/lib/localizeEngineCopy";
+import { useLocale, useTranslations } from "next-intl";
 import { HowItWorks } from "./HowItWorks";
 import { SelectionInterface } from "./SelectionInterface";
 import { HandSpeedSlider } from "./HandSpeedSlider";
@@ -25,6 +29,7 @@ import { SweetSpotGauge } from "./SweetSpotGauge";
 import { TechnicalResultWithHints } from "./TechnicalTerm";
 
 export function DialedInTool() {
+  const locale = useLocale();
   const tNav = useTranslations("nav");
   const tUi = useTranslations("dialedInUi");
   const [developerModeEnabled, setDeveloperModeEnabled] = useState(false);
@@ -364,7 +369,12 @@ export function DialedInTool() {
               aria-label={tUi("goalAriaLabel")}
             >
               <p className="dialed__goal__kicker">{tUi("goalKicker")}</p>
-              <p className="dialed__goal__text">{selectedTaxonomy.technicalFocus}</p>
+              <p className="dialed__goal__text">
+                {localizeTechnicalFocus(
+                  locale,
+                  selectedTaxonomy.technicalFocus,
+                )}
+              </p>
             </div>
           ) : null}
 
@@ -487,7 +497,10 @@ export function DialedInTool() {
                   {selectedTaxonomy?.idealNeedleRange ? (
                     <span className="dialed__kv-value__inner">
                       <TechnicalResultWithHints
-                        text={selectedTaxonomy.idealNeedleRange}
+                        text={localizeEngineCopy(
+                          locale,
+                          selectedTaxonomy.idealNeedleRange,
+                        )}
                       />
                     </span>
                   ) : (
@@ -507,7 +520,10 @@ export function DialedInTool() {
                     <dt>{tUi("needleDiameterDt")}</dt>
                     <dd className="dialed__kv-value">
                       <TechnicalResultWithHints
-                        text={engine.needle_diameter_range}
+                        text={localizeEngineCopy(
+                          locale,
+                          engine.needle_diameter_range,
+                        )}
                       />
                     </dd>
                   </div>
@@ -515,7 +531,10 @@ export function DialedInTool() {
                     <dt>{tUi("needleCountDt")}</dt>
                     <dd className="dialed__kv-value">
                       <TechnicalResultWithHints
-                        text={engine.needle_count_range}
+                        text={localizeEngineCopy(
+                          locale,
+                          engine.needle_count_range,
+                        )}
                       />
                     </dd>
                   </div>
@@ -523,7 +542,10 @@ export function DialedInTool() {
                     <dt>{tUi("taperDt")}</dt>
                     <dd className="dialed__kv-value">
                       <TechnicalResultWithHints
-                        text={engine.taper_recommendation}
+                        text={localizeEngineCopy(
+                          locale,
+                          engine.taper_recommendation,
+                        )}
                       />
                     </dd>
                   </div>

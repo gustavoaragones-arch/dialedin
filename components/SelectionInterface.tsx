@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { localizeTechnicalFocus } from "@/lib/localizeEngineCopy";
 import type { TaxonomyStyleOption } from "@/lib/tattooTaxonomyLibrary";
 import {
   getTaxonomyForStyleName,
@@ -40,6 +41,7 @@ export function SelectionInterface({
   highlightedSlot,
 }: Props) {
   const t = useTranslations("dialedInUi");
+  const locale = useLocale();
   const styleKey = normalizeTaxonomyStyleKey(selectedStyleName);
   const currentRow = useMemo(
     () => getTaxonomyForStyleName(tuTaxonomyByStyleName, selectedStyleName),
@@ -50,7 +52,14 @@ export function SelectionInterface({
 
   const liningLabel = currentRow?.liningTechnique ?? t("liningFallback");
   const shadingLabel = currentRow?.shadingTechnique ?? t("shadingFallback");
-  const technicalFocus = currentRow?.technicalFocus ?? null;
+  const technicalFocusRaw = currentRow?.technicalFocus ?? null;
+  const technicalFocus = useMemo(
+    () =>
+      technicalFocusRaw != null
+        ? localizeTechnicalFocus(locale, technicalFocusRaw)
+        : null,
+    [locale, technicalFocusRaw],
+  );
 
   const techniqueFirstOption = !styleKey
     ? t("selectStyleFirst")
@@ -123,26 +132,24 @@ export function SelectionInterface({
           <option value="lining">
             {liningLabel}
             {highlightedSlot === "lining" && canPickTechnique
-              ? " · Recommended"
+              ? t("recommendedChipSuffix")
               : ""}
           </option>
           <option value="shading">
             {shadingLabel}
             {highlightedSlot === "shading" && canPickTechnique
-              ? " · Recommended"
+              ? t("recommendedChipSuffix")
               : ""}
           </option>
         </select>
         {highlightedSlot && canPickTechnique ? (
-          <p className="dialed__hint">
-            Recommended path is highlighted when both style and machine are set.
-          </p>
+          <p className="dialed__hint">{t("recommendedPathHint")}</p>
         ) : null}
       </label>
 
       {technicalFocus ? (
         <div className="dialed__style-note" role="note">
-          <p className="dialed__style-note__kicker">Style note</p>
+          <p className="dialed__style-note__kicker">{t("styleNoteKicker")}</p>
           <p className="dialed__style-note__text">{technicalFocus}</p>
         </div>
       ) : null}
