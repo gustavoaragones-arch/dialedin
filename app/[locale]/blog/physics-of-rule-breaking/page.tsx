@@ -94,6 +94,7 @@ export default async function PhysicsRuleBreakingPage({ params }: PageProps) {
         headline={headline}
         lede={description}
         backBlog={tNav("backBlog")}
+        locale={locale}
       />
     </>
   );

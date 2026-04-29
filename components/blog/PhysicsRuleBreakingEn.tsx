@@ -1,13 +1,23 @@
+import { BlogArticleFooter } from "@/components/blog/BlogArticleFooter";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 import { Link } from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 
 type Props = {
   headline: string;
   lede: string;
   backBlog: string;
+  locale: string;
 };
 
-export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props) {
+export async function PhysicsRuleBreakingEnArticle({
+  headline,
+  lede,
+  backBlog,
+  locale,
+}: Props) {
+  const t = await getTranslations({ locale, namespace: "contentLinks" });
+
   return (
     <article className="science-page">
       <header className="science-page__header">
@@ -55,7 +65,10 @@ export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props
         </section>
       </section>
 
-      <section className="science-section">
+      <section
+        className="science-section"
+        id="shading-high-stroke"
+      >
         <h2>Case study A: High stroke shading (4.0 mm+)</h2>
         <h3>The rule</h3>
         <p>
@@ -98,6 +111,12 @@ export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props
           </Link>
           . High stroke shading is lawful when spacing—not slogans—does the safety work.
         </p>
+        <p className="blog-contextual-cta">
+          {t("blogRuleBreaking.sweetSpotLead")}{" "}
+          <Link href="/" className="dialed__link">
+            {t("blogRuleBreaking.sweetSpotLink")}
+          </Link>
+        </p>
         <section
           className="blog-tech-summary"
           aria-labelledby="tech-summary-a-en"
@@ -113,7 +132,10 @@ export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props
         </section>
       </section>
 
-      <section className="science-section">
+      <section
+        className="science-section"
+        id="magnum-lines-realism"
+      >
         <h2>Case study B: Realism “lines” with magnums</h2>
         <h3>The rule</h3>
         <p>
@@ -146,6 +168,12 @@ export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props
             <strong>Angle + speed</strong> must stay inside the same CPS spacing discipline as lining.
           </li>
         </ul>
+        <p className="blog-contextual-cta">
+          {t("blogRuleBreaking.magnumLead")}{" "}
+          <Link href="/" className="dialed__link">
+            {t("blogRuleBreaking.magnumLink")}
+          </Link>
+        </p>
         <section
           className="blog-tech-summary"
           aria-labelledby="tech-summary-b-en"
@@ -222,6 +250,12 @@ export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props
             break rules with intent, measurement, and skin accountability.
           </p>
         </blockquote>
+        <p className="blog-contextual-cta blog-contextual-cta--exit">
+          <strong>{t("blogRuleBreakingExit.toolPrompt")}</strong>{" "}
+          <Link href="/" className="dialed__link">
+            {t("blogRuleBreakingExit.toolLinkLabel")}
+          </Link>
+        </p>
         <section
           className="blog-tech-summary"
           aria-labelledby="tech-summary-outro-en"
@@ -244,12 +278,7 @@ export function PhysicsRuleBreakingEnArticle({ headline, lede, backBlog }: Props
         secondaryLabel="View technical methodology"
       />
 
-      <footer className="science-section">
-        <p className="legal-page__note">
-          Published by DialedIn.ink, an Albor Digital LLC project. Technical guidance is
-          educational; clinical decisions remain the artist&apos;s responsibility.
-        </p>
-      </footer>
+      <BlogArticleFooter />
     </article>
   );
 }

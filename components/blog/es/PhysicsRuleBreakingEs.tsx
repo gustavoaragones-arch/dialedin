@@ -1,7 +1,8 @@
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 import { Link } from "@/i18n/navigation";
 import { BLOG_CTA_ES } from "@/components/blog/es/ctaEs";
-import { BlogArticleFooterEs } from "@/components/blog/es/FooterEs";
+import { BlogArticleFooter } from "@/components/blog/BlogArticleFooter";
+import { getTranslations } from "next-intl/server";
 
 type Props = {
   headline: string;
@@ -9,7 +10,13 @@ type Props = {
   backBlog: string;
 };
 
-export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props) {
+export async function PhysicsRuleBreakingEsArticle({
+  headline,
+  lede,
+  backBlog,
+}: Props) {
+  const t = await getTranslations({ locale: "es", namespace: "contentLinks" });
+
   return (
     <article className="science-page" lang="es">
       <header className="science-page__header">
@@ -57,7 +64,10 @@ export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props
         </section>
       </section>
 
-      <section className="science-section">
+      <section
+        className="science-section"
+        id="shading-high-stroke"
+      >
         <h2>Caso de estudio A: sombreado con stroke largo (4,0 mm+)</h2>
         <h3>La regla</h3>
         <p>
@@ -103,6 +113,12 @@ export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props
           . El sombreado con stroke largo es lícito cuando el espaciado—not el eslógan—hace el
           trabajo de seguridad.
         </p>
+        <p className="blog-contextual-cta">
+          {t("blogRuleBreaking.sweetSpotLead")}{" "}
+          <Link href="/" className="dialed__link">
+            {t("blogRuleBreaking.sweetSpotLink")}
+          </Link>
+        </p>
         <section
           className="blog-tech-summary"
           aria-labelledby="tech-summary-a-es"
@@ -118,7 +134,10 @@ export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props
         </section>
       </section>
 
-      <section className="science-section">
+      <section
+        className="science-section"
+        id="magnum-lines-realism"
+      >
         <h2>Caso de estudio B: “líneas” de realismo con magnum</h2>
         <h3>La regla</h3>
         <p>
@@ -151,6 +170,12 @@ export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props
             <strong>Ángulo + velocidad</strong> deben seguir la misma disciplina de espaciado CPS que en línea.
           </li>
         </ul>
+        <p className="blog-contextual-cta">
+          {t("blogRuleBreaking.magnumLead")}{" "}
+          <Link href="/" className="dialed__link">
+            {t("blogRuleBreaking.magnumLink")}
+          </Link>
+        </p>
         <section
           className="blog-tech-summary"
           aria-labelledby="tech-summary-b-es"
@@ -227,6 +252,12 @@ export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props
             luego, rómperla con intención, medición y responsabilidad frente a la piel.
           </p>
         </blockquote>
+        <p className="blog-contextual-cta blog-contextual-cta--exit">
+          <strong>{t("blogRuleBreakingExit.toolPrompt")}</strong>{" "}
+          <Link href="/" className="dialed__link">
+            {t("blogRuleBreakingExit.toolLinkLabel")}
+          </Link>
+        </p>
         <section
           className="blog-tech-summary"
           aria-labelledby="tech-summary-outro-es"
@@ -249,7 +280,7 @@ export function PhysicsRuleBreakingEsArticle({ headline, lede, backBlog }: Props
         secondaryLabel={BLOG_CTA_ES.secondary}
       />
 
-      <BlogArticleFooterEs />
+      <BlogArticleFooter />
     </article>
   );
 }

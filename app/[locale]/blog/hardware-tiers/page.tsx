@@ -1,3 +1,4 @@
+import { BlogArticleFooter } from "@/components/blog/BlogArticleFooter";
 import { HardwareTiersEsArticle } from "@/components/blog/es/HardwareTiersEs";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 import { Link } from "@/i18n/navigation";
@@ -154,12 +155,7 @@ export default async function HardwareTiersPage({ params }: PageProps) {
 
       <BlogTechnicalContext title="Open the Setup Engine" primaryLabel="Open the Setup Engine" />
 
-      <footer className="science-section">
-        <p className="legal-page__note">
-          Published by DialedIn.ink, an Albor Digital LLC project. Technical guidance is
-          educational; clinical decisions remain the artist&apos;s responsibility.
-        </p>
-      </footer>
+      <BlogArticleFooter />
     </article>
   );
 }

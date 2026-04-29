@@ -1,0 +1,16 @@
+{
+  "blogRuleBreaking": {
+    "sweetSpotLead": "¿Quieres ver cómo un stroke de 4,2 mm afecta el voltaje recomendado para tu técnica de sombreado?",
+    "sweetSpotLink": "Calcula tu sweet spot aquí",
+    "magnumLead": "Si vas a delinear con una aguja Magnum, asegúrate de que el calibre de la aguja sea el correcto.",
+    "magnumLink": "Verifica la compatibilidad en DialedIn"
+  },
+  "toolDashboard": {
+    "learnMoreVoltagePepper": "¿Por qué los artistas pro bajan el voltaje para hacer pepper shading?",
+    "learnMoreNeedleMagnum": "La lógica detrás de usar Magnums en realismo fotográfico"
+  },
+  "blogRuleBreakingExit": {
+    "toolPrompt": "Revisa tu ajuste concreto de máquina para esta técnica:",
+    "toolLinkLabel": "Abrir el motor de ajuste"
+  }
+}

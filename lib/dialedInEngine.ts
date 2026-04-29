@@ -110,9 +110,32 @@ export type SafetyTriggerState = {
   checks: ScienceCheck[];
 };
 
+/** Scale guidance for needle count: tattoo scale (surface) + fill strategy, not one static number. */
+export type NeedleCountLineage = "liner" | "magnum" | "balanced";
+
+export type NeedleCountScaleBands = {
+  detail: { min: number; max: number };
+  standard: { min: number; max: number };
+  large: { min: number; max: number; openEnded: boolean };
+};
+
+/** Relative grouping + anatomical scalability (engine-derived, educate-in-UI). */
+export type NeedleCountScale = {
+  overallMin: number;
+  overallMax: number;
+  bands: NeedleCountScaleBands;
+  /** Technique-inferred grouping lineage (RL vs shader / magnum logic). */
+  lineage: NeedleCountLineage;
+  /** Flag tighter-skin caution when bundles run large (efficiency vs trauma tradeoff). */
+  skinTraumaCallout: boolean;
+};
+
 export type DialedInEngineResult = {
   needle_diameter_range: string;
+  /** Legacy compact display string (`09–17`); UI prefers {@link needle_count_scale}. */
   needle_count_range: string;
+  /** Scale-relative recommendation context (coverage tiers, lineage, trauma cue). */
+  needle_count_scale: NeedleCountScale;
   taper_recommendation: string;
   voltage_baseline: number;
   needle_hang_mm: number;
@@ -237,11 +260,47 @@ function clampCount(
   low: number,
   high: number,
   floor = 3,
-  ceiling = 21,
+  ceiling = 31,
 ): [number, number] {
   const a = Math.min(Math.max(low, floor), ceiling);
   const b = Math.min(Math.max(high, floor), ceiling);
   return a <= b ? [a, b] : [b, a];
+}
+
+/** Industry-style coverage ladders (educational; independent of style clamp window). */
+const NEEDLE_COUNT_SCALE_BANDS: NeedleCountScaleBands = {
+  detail: { min: 7, max: 9 },
+  standard: { min: 11, max: 17 },
+  large: { min: 23, max: 27, openEnded: true },
+};
+
+function needleLineageFromTechnique(techNorm: string): NeedleCountLineage {
+  if (/(fine line|lining|line pass)/i.test(techNorm)) return "liner";
+  if (
+    /(shading|whip|realism|wash|portrait|pack|grey|gray)/i.test(techNorm)
+  ) {
+    return "magnum";
+  }
+  return "balanced";
+}
+
+function buildNeedleCountScale(
+  overallLo: number,
+  overallHi: number,
+  techniqueNormalized: string,
+): NeedleCountScale {
+  const lineage = needleLineageFromTechnique(techniqueNormalized);
+  /** Shader / wide-cluster paths: remind that efficiency trades against trauma on tight anatomy. */
+  const skinTraumaCallout =
+    lineage !== "liner" && Math.max(overallLo, overallHi) >= 12;
+
+  return {
+    overallMin: overallLo,
+    overallMax: overallHi,
+    bands: NEEDLE_COUNT_SCALE_BANDS,
+    lineage,
+    skinTraumaCallout,
+  };
 }
 
 /** True if recommendation explicitly centers SLT / super long taper. */
@@ -366,9 +425,13 @@ export function evaluateDialedInEngine(
     });
   }
 
+  const techN = norm(technique);
+  const needle_count_scale = buildNeedleCountScale(cLo, cHi, techN);
+
   return {
     needle_diameter_range: sp.needle_diameter_range,
     needle_count_range: `${String(cLo).padStart(2, "0")}–${String(cHi).padStart(2, "0")}`,
+    needle_count_scale,
     taper_recommendation: taper,
     voltage_baseline: voltageRounded,
     needle_hang_mm: Math.round(hang * 10) / 10,

@@ -1,3 +1,4 @@
+import { BlogArticleFooter } from "@/components/blog/BlogArticleFooter";
 import { HertzVsVoltsEsArticle } from "@/components/blog/es/HertzVsVoltsEs";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 import { Link } from "@/i18n/navigation";
@@ -190,12 +191,7 @@ export default async function HertzVsVoltsPage({ params }: PageProps) {
 
       <BlogTechnicalContext />
 
-      <footer className="science-section">
-        <p className="legal-page__note">
-          Published by DialedIn.ink, an Albor Digital LLC project. Technical data
-          last updated April 2026.
-        </p>
-      </footer>
+      <BlogArticleFooter />
     </article>
   );
 }

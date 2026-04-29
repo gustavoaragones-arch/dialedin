@@ -1,0 +1,22 @@
+{
+  "scalableSuffix": "(escalable)",
+  "lineage": {
+    "liner": "Ventana de agrupación orientada a línea / round liner.",
+    "magnum": "Ventana orientada a sombreador / magnum y campos amplios.",
+    "balanced": "Ventana que admite varias familias de cartucho válidas para este estilo."
+  },
+  "scaleLogicLink": "Lógica de escala",
+  "scaleLogicLinkAria": "Abrir explicación técnica del conteo de agujas según escala",
+  "modalTitle": "Conteo de agujas según escala",
+  "modalIntro": "Cómo interactúan cobertura, densidad y anatomía con el número del cartucho.",
+  "modalBody": "Lógica técnica: Nuestra recomendación de conteo es independiente de la escala. Mientras que la técnica dicta el tipo de agrupación (ej. magnum para sombras), el conteo específico debe escalar con el tamaño de la obra. Usa conteos mayores para superficies amplias para asegurar consistencia tonal y eficiencia; usa conteos menores para áreas anatómicas restringidas.",
+  "bandsHeading": "Escaleras de cobertura (referencia)",
+  "bandDetail": "Pequeña (micro / detalle fino): {low}–{high}",
+  "bandStandard": "Media (antebrazo / pierna): {low}–{high}",
+  "bandLarge": "Grande (espalda / torso): {low}–{high}{plus}",
+  "fillNote": "Nota: El conteo final depende de la superficie que vayas a cubrir y de la velocidad de tu relleno.",
+  "traumaTitle": "Umbral de trauma cutáneo",
+  "traumaInline": "Las agrupaciones amplias multiplican la carga mecánica—en pieles finas o tensas, eficiencia = control riguroso. Pulsa «Lógica de escala» para anatomía + trade-offs.",
+  "traumaBody": "Conteos muy altos (p. ej. magnum 25–27+) mueven mucha tinta por pasada; en piel fina, muy tensa o muy curva la misma eficiencia mecánica puede sobrestresar tejidos si pierdes estiramiento o ángulo. Nombrar el compromiso ayuda.",
+  "modalClose": "Cerrar"
+}

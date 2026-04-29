@@ -1,7 +1,7 @@
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 import { Link } from "@/i18n/navigation";
 import { BLOG_CTA_ES } from "@/components/blog/es/ctaEs";
-import { BlogArticleFooterEs } from "@/components/blog/es/FooterEs";
+import { BlogArticleFooter } from "@/components/blog/BlogArticleFooter";
 
 type Props = { headline: string; backBlog: string };
 
@@ -60,7 +60,7 @@ export function HertzVsVoltsEsArticle({ headline, backBlog }: Props) {
         secondaryLabel={BLOG_CTA_ES.secondary}
       />
 
-      <BlogArticleFooterEs />
+      <BlogArticleFooter />
     </article>
   );
 }

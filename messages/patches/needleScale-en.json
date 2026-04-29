@@ -1,0 +1,22 @@
+{
+  "scalableSuffix": "(scalable)",
+  "lineage": {
+    "liner": "Grouping window biased toward single-file / round-liner work.",
+    "magnum": "Grouping window biased toward shader / magnum-class coverage.",
+    "balanced": "Grouping window spans multiple valid cartridge families for this style."
+  },
+  "scaleLogicLink": "Scale logic",
+  "scaleLogicLinkAria": "Open technical explanation of scale-dependent needle count",
+  "modalTitle": "Scale-dependent needle count",
+  "modalIntro": "How coverage, density, and anatomy interact with the numbers on the box.",
+  "modalBody": "Technical logic: Our count recommendation is scale-agnostic. While technique dictates the grouping type (e.g., magnum for shading), the specific count should scale with the size of the artwork. Use larger counts for broad surfaces to ensure tonal consistency and efficiency; use smaller counts for restricted anatomical areas.",
+  "bandsHeading": "Coverage ladders (reference)",
+  "bandDetail": "Small (micro / fine detail): {low}–{high}",
+  "bandStandard": "Medium (forearm / leg pieces): {low}–{high}",
+  "bandLarge": "Large (back / torso saturation): {low}–{high}{plus}",
+  "fillNote": "Note: Final count depends on the surface area you intend to cover and the speed of your fill.",
+  "traumaTitle": "Skin trauma threshold",
+  "traumaInline": "Wide bundles amplify mechanical load across many points—in thin or high‑tension areas, efficiency must track stretch, angle, and speed. Use [Scale logic] for the full rationale.",
+  "traumaBody": "Very high counts (e.g. 25–27+ magnum-class bundles) move a lot of ink per pass; on thin, high-tension, or highly curved skin the same mechanical efficiency can over-stress tissue if stretch and angle drift. Naming the tradeoff matters.",
+  "modalClose": "Close"
+}

@@ -1,0 +1,38 @@
+{
+  "_comment": "Reference map for internal linking strategy (Blog ↔ Tool). Use next-intl Link with paths below; locales are prefixed automatically (/en/, /es/, /pt/).",
+  "linking_strategy": {
+    "target_tool_url": "/",
+    "anchors": [
+      {
+        "keyword": "pepper shading",
+        "link_to": "/blog/physics-of-rule-breaking#shading-high-stroke",
+        "context": "Tool dashboard voltage learn-more row"
+      },
+      {
+        "keyword": "magnum lining / photographic realism",
+        "link_to": "/blog/physics-of-rule-breaking#magnum-lines-realism",
+        "context": "Tool dashboard needle/cartridge learn-more row"
+      },
+      {
+        "keyword": "needle hang depth",
+        "link_to": "/blog/needle-hang-depth",
+        "context": "Supporting article (depth / riding the tube)"
+      },
+      {
+        "keyword": "scale-dependent needle count",
+        "link_to": "/blog/physics-of-rule-breaking#shading-high-stroke",
+        "context": "[Scale logic] modal + coverage ladders in tool output"
+      },
+      {
+        "keyword": "efficiency vs trauma",
+        "link_to": "glossary:Efficiency vs. Trauma",
+        "context": "Technical hover on wide magnum bundles"
+      },
+      {
+        "keyword": "calculate setup / sweet spot",
+        "link_to": "/",
+        "context": "Blog contextual CTAs (long stroke, magnums)"
+      }
+    ]
+  }
+}

@@ -233,7 +233,8 @@
     "backBlog": "← Blog",
     "backDial": "← DIALED-IN",
     "backTool": "← Ferramenta DIALED-IN",
-    "backSetup": "← Motor de setup"
+    "backSetup": "← Motor de setup",
+    "articleFooter": "Publicado pela equipe DialedIn.ink. Dados técnicos atualizados em abril de 2026."
   },
   "blogIndex": {
     "pageTitle": "Blog técnico",
@@ -427,5 +428,43 @@
       "GEOMETRY_DESYNC": "Incompatibilidade de geometria: tapers padrão criam deslocamento excessivo da pele em micro-detalhes. Super Long Taper (SLT) é recomendado para evitar blowouts.",
       "VELOCITY_SYNC": "Dessincronia frequência/velocidade: sua mão está mais rápida que o ciclo do motor. Pode causar linhas tracejadas ou travamentos na pele. Aumente a voltagem ou reduza o movimento da mão."
     }
+  },
+  "contentLinks": {
+    "blogRuleBreaking": {
+      "sweetSpotLead": "Quer ver como um stroke de 4,2 mm afeta a voltagem recomendada para a sua técnica de sombreamento?",
+      "sweetSpotLink": "Calcule seu sweet spot aqui",
+      "magnumLead": "Ao contornar com uma Magnum, confira se o calibre e o agrupamento combinam com o seu plano de realismo.",
+      "magnumLink": "Verifique compatibilidade no DialedIn"
+    },
+    "toolDashboard": {
+      "learnMoreVoltagePepper": "Por que profissionais experientes baixam a voltagem para pepper shading?",
+      "learnMoreNeedleMagnum": "A lógica por trás das Magnums em realismo fotográfico"
+    },
+    "blogRuleBreakingExit": {
+      "toolPrompt": "Confira seu setup específico de máquina para esta técnica:",
+      "toolLinkLabel": "Abrir o motor de setup"
+    }
+  },
+  "needleScale": {
+    "scalableSuffix": "(escalável)",
+    "lineage": {
+      "liner": "Faixa de agrupamento voltada a traço / round liner.",
+      "magnum": "Faixa voltada a sombreador / magnum e campos amplos.",
+      "balanced": "Faixa que admite várias famílias de cartucho válidas para o estilo."
+    },
+    "scaleLogicLink": "Lógica de escala",
+    "scaleLogicLinkAria": "Abrir explicação técnica da contagem de agulhas por escala",
+    "modalTitle": "Contagem de agulhas dependente de escala",
+    "modalIntro": "Como cobertura, densidade e anatomia interagem com o número do cartucho.",
+    "modalBody": "Lógica técnica: a recomendação de contagem é agnóstica de escala. A técnica define o tipo de agrupamento (ex.: magnum para sombra), mas o número específico deve escalar com o tamanho da obra. Contagens maiores para superfícies amplas garantem tonalidade e eficiência; menores para áreas anatômicas restritas.",
+    "bandsHeading": "Degraus de cobertura (referência)",
+    "bandDetail": "Pequeno (micro / detalhe fino): {low}–{high}",
+    "bandStandard": "Médio (antebraço / perna): {low}–{high}",
+    "bandLarge": "Grande (costas / torso): {low}–{high}{plus}",
+    "fillNote": "Nota: a contagem final depende da área coberta e da velocidade de preenchimento.",
+    "traumaTitle": "Limiar de trauma à pele",
+    "traumaInline": "Agrupamentos largos aumentam o par mecânico—em peles finas ou tensas, eficiência exige ângulo e esticamento impecáveis. Abra «Lógica de escala» para o racional completo.",
+    "traumaBody": "Contagens altas movem mais tinta por passagem; pele fina ou muito tensa penaliza rápido se o ângulo ou esticamento escaparem. O custo aparece antes do pigmento falhar.",
+    "modalClose": "Fechar"
   }
 }

@@ -38,6 +38,16 @@ function merge(locale) {
     j.scienceBanners = JSON.parse(fs.readFileSync(sb, "utf8"));
   }
 
+  const cl = path.join(patchesDir, `contentLinks-${locale}.json`);
+  if (fs.existsSync(cl)) {
+    j.contentLinks = JSON.parse(fs.readFileSync(cl, "utf8"));
+  }
+
+  const needleScale = path.join(patchesDir, `needleScale-${locale}.json`);
+  if (fs.existsSync(needleScale)) {
+    j.needleScale = JSON.parse(fs.readFileSync(needleScale, "utf8"));
+  }
+
   fs.writeFileSync(target, JSON.stringify(j, null, 2) + "\n");
 }
 

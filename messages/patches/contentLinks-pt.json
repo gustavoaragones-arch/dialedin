@@ -1,0 +1,16 @@
+{
+  "blogRuleBreaking": {
+    "sweetSpotLead": "Quer ver como um stroke de 4,2 mm afeta a voltagem recomendada para a sua técnica de sombreamento?",
+    "sweetSpotLink": "Calcule seu sweet spot aqui",
+    "magnumLead": "Ao contornar com uma Magnum, confira se o calibre e o agrupamento combinam com o seu plano de realismo.",
+    "magnumLink": "Verifique compatibilidade no DialedIn"
+  },
+  "toolDashboard": {
+    "learnMoreVoltagePepper": "Por que profissionais experientes baixam a voltagem para pepper shading?",
+    "learnMoreNeedleMagnum": "A lógica por trás das Magnums em realismo fotográfico"
+  },
+  "blogRuleBreakingExit": {
+    "toolPrompt": "Confira seu setup específico de máquina para esta técnica:",
+    "toolLinkLabel": "Abrir o motor de setup"
+  }
+}

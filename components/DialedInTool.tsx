@@ -28,6 +28,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { HowItWorks } from "./HowItWorks";
 import { SelectionInterface } from "./SelectionInterface";
 import { HandSpeedSlider } from "./HandSpeedSlider";
+import { NeedleCountScaleBlock } from "./NeedleCountScaleBlock";
 import { NeedleHangSlider } from "./NeedleHangSlider";
 import { ScienceWarningBanners } from "./ScienceWarningBanners";
 import { SweetSpotGauge } from "./SweetSpotGauge";
@@ -37,6 +38,7 @@ export function DialedInTool() {
   const locale = useLocale();
   const tNav = useTranslations("nav");
   const tUi = useTranslations("dialedInUi");
+  const tLinks = useTranslations("contentLinks");
   const [developerModeEnabled, setDeveloperModeEnabled] = useState(false);
   const [devJsonOpen, setDevJsonOpen] = useState(false);
   const {
@@ -242,25 +244,28 @@ export function DialedInTool() {
   return (
     <div className="dialed">
       <header className="dialed__header">
-        <p className="dialed__eyebrow dialed__eyebrow--nav">
-          <Link className="dialed__link" href="/">
-            {tNav("setupTool")}
-          </Link>
-          {" · "}
-          <Link className="dialed__link" href="/how-it-works">
-            {tNav("howItWorks")}
-          </Link>
-          {" · "}
-          <Link className="dialed__link" href="/science">
-            {tNav("science")}
-          </Link>
-          {" · "}
-          <Link className="dialed__link" href="/blog">
-            {tNav("blog")}
-          </Link>
-          {" · "}
-          <LocaleSwitcher />
-        </p>
+        <div className="dialed__header-bar">
+          <p className="dialed__eyebrow dialed__eyebrow--nav">
+            <Link className="dialed__link" href="/">
+              {tNav("setupTool")}
+            </Link>
+            {" · "}
+            <Link className="dialed__link" href="/how-it-works">
+              {tNav("howItWorks")}
+            </Link>
+            {" · "}
+            <Link className="dialed__link" href="/science">
+              {tNav("science")}
+            </Link>
+            {" · "}
+            <Link className="dialed__link" href="/blog">
+              {tNav("blog")}
+            </Link>
+          </p>
+          <div className="dialed__locale-slot">
+            <LocaleSwitcher />
+          </div>
+        </div>
         <div className="dialed__hero-lockup">
           <h1 className="dialed__title">
             <Link className="dialed__logo-link" href="/">
@@ -547,13 +552,8 @@ export function DialedInTool() {
                   </div>
                   <div>
                     <dt>{tUi("needleCountDt")}</dt>
-                    <dd className="dialed__kv-value">
-                      <TechnicalResultWithHints
-                        text={localizeEngineCopy(
-                          locale,
-                          engine.needle_count_range,
-                        )}
-                      />
+                    <dd className="dialed__kv-value dialed__kv-value--needle-scale">
+                      <NeedleCountScaleBlock scale={engine.needle_count_scale} />
                     </dd>
                   </div>
                   <div>
@@ -570,36 +570,64 @@ export function DialedInTool() {
                 </>
               ) : null}
             </dl>
+            {engine ? (
+              <p className="dialed__learn-more">
+                <span className="dialed__learn-more__mark" aria-hidden>
+                  ℹ️
+                </span>{" "}
+                <Link
+                  href="/blog/physics-of-rule-breaking#magnum-lines-realism"
+                  className="dialed__link dialed__learn-more__link"
+                >
+                  {tLinks("toolDashboard.learnMoreNeedleMagnum")}
+                </Link>
+              </p>
+            ) : null}
           </div>
 
           {voltage ? (
-            <dl className="dialed__kv dialed__kv--footer">
-              <div>
-                <dt>
-                  {adaptedVolt
-                    ? tUi("adaptedVoltageDt")
-                    : tUi("machineVoltageDt")}
-                </dt>
-                <dd className="dialed__kv-value">
-                  {adaptedVolt ? (
-                    <>
-                      {tUi("voltDetailAdapted", {
-                        vmin: adaptedVolt.adaptedMin.toFixed(1),
-                        vmax: adaptedVolt.adaptedMax.toFixed(1),
-                        mod: `${adaptedVolt.modifierV >= 0 ? "+" : ""}${adaptedVolt.modifierV.toFixed(1)}`,
-                      })}
-                    </>
-                  ) : null}
-                  {tUi("voltDetailBaseline", {
-                    baseline: voltage.baselineVolts.toFixed(1),
-                    adj: voltage.adjustedVolts.toFixed(1),
-                  })}
-                  {voltage.longStrokeSoftShadingGuard
-                    ? tUi("longStrokeGuardSuffix")
-                    : ""}
-                </dd>
-              </div>
-            </dl>
+            <>
+              <dl className="dialed__kv dialed__kv--footer">
+                <div>
+                  <dt>
+                    {adaptedVolt
+                      ? tUi("adaptedVoltageDt")
+                      : tUi("machineVoltageDt")}
+                  </dt>
+                  <dd className="dialed__kv-value">
+                    {adaptedVolt ? (
+                      <>
+                        {tUi("voltDetailAdapted", {
+                          vmin: adaptedVolt.adaptedMin.toFixed(1),
+                          vmax: adaptedVolt.adaptedMax.toFixed(1),
+                          mod: `${adaptedVolt.modifierV >= 0 ? "+" : ""}${adaptedVolt.modifierV.toFixed(1)}`,
+                        })}
+                      </>
+                    ) : null}
+                    {tUi("voltDetailBaseline", {
+                      baseline: voltage.baselineVolts.toFixed(1),
+                      adj: voltage.adjustedVolts.toFixed(1),
+                    })}
+                    {voltage.longStrokeSoftShadingGuard
+                      ? tUi("longStrokeGuardSuffix")
+                      : ""}
+                  </dd>
+                </div>
+              </dl>
+              {engine ? (
+                <p className="dialed__learn-more dialed__learn-more--volt">
+                  <span className="dialed__learn-more__mark" aria-hidden>
+                    ℹ️
+                  </span>{" "}
+                  <Link
+                    href="/blog/physics-of-rule-breaking#shading-high-stroke"
+                    className="dialed__link dialed__learn-more__link"
+                  >
+                    {tLinks("toolDashboard.learnMoreVoltagePepper")}
+                  </Link>
+                </p>
+              ) : null}
+            </>
           ) : null}
 
           {engine && developerModeEnabled ? (

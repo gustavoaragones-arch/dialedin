@@ -1,3 +1,4 @@
+import { BlogArticleFooter } from "@/components/blog/BlogArticleFooter";
 import { MembraneTaxEsArticle } from "@/components/blog/es/MembraneTaxEs";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
 import { Link } from "@/i18n/navigation";
@@ -166,12 +167,7 @@ export default async function TheMembraneTaxPage({ params }: PageProps) {
 
       <BlogTechnicalContext />
 
-      <footer className="science-section">
-        <p className="legal-page__note">
-          Published by DialedIn.ink, an Albor Digital LLC project. Technical data
-          last updated April 2026.
-        </p>
-      </footer>
+      <BlogArticleFooter />
     </article>
   );
 }

@@ -233,7 +233,8 @@
     "backBlog": "← Blog",
     "backDial": "← DIALED-IN",
     "backTool": "← Herramienta DIALED-IN",
-    "backSetup": "← Motor de ajuste"
+    "backSetup": "← Motor de ajuste",
+    "articleFooter": "Publicado por el equipo de DialedIn.ink. Datos técnicos actualizados en abril de 2026."
   },
   "blogIndex": {
     "pageTitle": "Blog técnico",
@@ -427,5 +428,43 @@
       "GEOMETRY_DESYNC": "Desajuste de geometría: los tapers estándar desplazan demasiada piel en micro-detalle. Se recomienda Super Long Taper (SLT) para limitar migración de tinta (blowouts).",
       "VELOCITY_SYNC": "Desincronía de frecuencia y velocidad: la velocidad de tu mano supera el ciclo del motor. Puede producir líneas «discontinuas» o enganches en la piel. Sube el voltaje o reduce la velocidad de mano."
     }
+  },
+  "contentLinks": {
+    "blogRuleBreaking": {
+      "sweetSpotLead": "¿Quieres ver cómo un stroke de 4,2 mm afecta el voltaje recomendado para tu técnica de sombreado?",
+      "sweetSpotLink": "Calcula tu sweet spot aquí",
+      "magnumLead": "Si vas a delinear con una aguja Magnum, asegúrate de que el calibre de la aguja sea el correcto.",
+      "magnumLink": "Verifica la compatibilidad en DialedIn"
+    },
+    "toolDashboard": {
+      "learnMoreVoltagePepper": "¿Por qué los artistas pro bajan el voltaje para hacer pepper shading?",
+      "learnMoreNeedleMagnum": "La lógica detrás de usar Magnums en realismo fotográfico"
+    },
+    "blogRuleBreakingExit": {
+      "toolPrompt": "Revisa tu ajuste concreto de máquina para esta técnica:",
+      "toolLinkLabel": "Abrir el motor de ajuste"
+    }
+  },
+  "needleScale": {
+    "scalableSuffix": "(escalable)",
+    "lineage": {
+      "liner": "Ventana de agrupación orientada a línea / round liner.",
+      "magnum": "Ventana orientada a sombreador / magnum y campos amplios.",
+      "balanced": "Ventana que admite varias familias de cartucho válidas para este estilo."
+    },
+    "scaleLogicLink": "Lógica de escala",
+    "scaleLogicLinkAria": "Abrir explicación técnica del conteo de agujas según escala",
+    "modalTitle": "Conteo de agujas según escala",
+    "modalIntro": "Cómo interactúan cobertura, densidad y anatomía con el número del cartucho.",
+    "modalBody": "Lógica técnica: Nuestra recomendación de conteo es independiente de la escala. Mientras que la técnica dicta el tipo de agrupación (ej. magnum para sombras), el conteo específico debe escalar con el tamaño de la obra. Usa conteos mayores para superficies amplias para asegurar consistencia tonal y eficiencia; usa conteos menores para áreas anatómicas restringidas.",
+    "bandsHeading": "Escaleras de cobertura (referencia)",
+    "bandDetail": "Pequeña (micro / detalle fino): {low}–{high}",
+    "bandStandard": "Media (antebrazo / pierna): {low}–{high}",
+    "bandLarge": "Grande (espalda / torso): {low}–{high}{plus}",
+    "fillNote": "Nota: El conteo final depende de la superficie que vayas a cubrir y de la velocidad de tu relleno.",
+    "traumaTitle": "Umbral de trauma cutáneo",
+    "traumaInline": "Las agrupaciones amplias multiplican la carga mecánica—en pieles finas o tensas, eficiencia = control riguroso. Pulsa «Lógica de escala» para anatomía + trade-offs.",
+    "traumaBody": "Conteos muy altos (p. ej. magnum 25–27+) mueven mucha tinta por pasada; en piel fina, muy tensa o muy curva la misma eficiencia mecánica puede sobrestresar tejidos si pierdes estiramiento o ángulo. Nombrar el compromiso ayuda.",
+    "modalClose": "Cerrar"
   }
 }
