@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import type { TaxonomyStyleOption } from "@/lib/tattooTaxonomyLibrary";
 import {
   getTaxonomyForStyleName,
@@ -38,6 +39,7 @@ export function SelectionInterface({
   onTechniqueSlotChange,
   highlightedSlot,
 }: Props) {
+  const t = useTranslations("dialedInUi");
   const styleKey = normalizeTaxonomyStyleKey(selectedStyleName);
   const currentRow = useMemo(
     () => getTaxonomyForStyleName(tuTaxonomyByStyleName, selectedStyleName),
@@ -46,16 +48,15 @@ export function SelectionInterface({
 
   const canPickTechnique = Boolean(styleKey && currentRow);
 
-  const liningLabel = currentRow?.liningTechnique ?? "Lining";
-  const shadingLabel = currentRow?.shadingTechnique ?? "Shading";
+  const liningLabel = currentRow?.liningTechnique ?? t("liningFallback");
+  const shadingLabel = currentRow?.shadingTechnique ?? t("shadingFallback");
   const technicalFocus = currentRow?.technicalFocus ?? null;
 
-  const techniqueFirstOption =
-    !styleKey
-      ? "Select a style first…"
-      : !currentRow
-        ? "Select Style First…"
-        : "Select technique path…";
+  const techniqueFirstOption = !styleKey
+    ? t("selectStyleFirst")
+    : !currentRow
+      ? t("selectStyleFirstCaps")
+      : t("selectTechniquePath");
 
   useEffect(() => {
     const n = taxonomyStyleOptions.length;
@@ -81,7 +82,7 @@ export function SelectionInterface({
   return (
     <>
       <label className="dialed__field">
-        <span>1 · Style</span>
+        <span>{t("styleStep")}</span>
         <select
           className="dialed__select"
           value={selectedStyleName ?? ""}
@@ -92,7 +93,7 @@ export function SelectionInterface({
           }}
         >
           <option value="">
-            {taxonomyLoading ? "Loading styles…" : "Select style…"}
+            {taxonomyLoading ? t("loadingStyles") : t("selectStyle")}
           </option>
           {taxonomyStyleOptions.map((item) => (
             <option key={item.style_key} value={item.style_key}>
@@ -108,7 +109,7 @@ export function SelectionInterface({
       </label>
 
       <label className="dialed__field">
-        <span>2 · Technique</span>
+        <span>{t("techniqueStep")}</span>
         <select
           className="dialed__select"
           value={canPickTechnique && techniqueSlot ? techniqueSlot : ""}

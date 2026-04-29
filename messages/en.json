@@ -1,0 +1,157 @@
+{
+  "og": {
+    "disciplinedLine": "Disciplined craft — technical accountability. Calibrate stroke, voltage, and style with DialedIn."
+  },
+  "meta": {
+    "home": {
+      "title": "DialedIn",
+      "description": "Tattoo Machine Setup Engine"
+    },
+    "howItWorks": {
+      "title": "The Science of the Sweet Spot",
+      "description": "Inside the DialedIn logic: Understanding the 3.5mm pivot, adaptive voltage logic, and style-first technical baselines."
+    },
+    "science": {
+      "title": "Scientific methodology",
+      "description": "Universal machine physics for tattoo setup: hammer effect on long stroke, ACUS Hz readouts, CPS consistency across hardware tiers, and membrane-aware voltage compensation for stiffer cartridges."
+    },
+    "terms": {
+      "title": "Terms of Service",
+      "description": "Terms of Service for DialedIn.ink, a product of Albor Digital LLC."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "Privacy Policy for DialedIn.ink, a product of Albor Digital LLC."
+    },
+    "responsibleAi": {
+      "title": "Responsible AI Policy",
+      "description": "Responsible AI practices for DialedIn.ink, aligned with Albor Digital LLC."
+    },
+    "disclaimer": {
+      "title": "Technical Disclaimer",
+      "description": "Technical disclaimer for DialedIn.ink: informational tool, physical risks of tattooing, equipment variability, and artist responsibility. Albor Digital LLC."
+    },
+    "blogHub": {
+      "title": "Technical Blog",
+      "description": "Stroke physics, needle geometry, hardware tiers, and disciplined setup methodology from DialedIn."
+    },
+    "blogStrokePhysics": {
+      "title": "Stroke Physics: The 3.5mm Pivot Guide",
+      "description": "Why your tattoo machine's stroke dictates your voltage. Mastering the relationship between mechanical force and needle frequency."
+    },
+    "blogNeedleGeometry": {
+      "title": "Needle Geometry: #10 vs #12 & Taper",
+      "description": "Understanding how needle gauge and taper length affect ink flow and skin trauma. Technical standards for professional tattooing."
+    },
+    "blogCartridgeDrag": {
+      "title": "Mastering Cartridge Drag & Skin Tension",
+      "description": "Overcoming membrane resistance (The Membrane Tax) and using three-point stretch techniques to ensure pigment saturation."
+    },
+    "blogHandSpeedSync": {
+      "title": "Syncing Hand Speed to Machine Hertz",
+      "description": "Technical guide on coordinating hand velocity with machine frequency (CPS) for perfect stitch density and texture."
+    },
+    "blogHardwareTiers": {
+      "title": "Tattoo Hardware: Tier 1 vs Tier 2 Gear",
+      "description": "A practical comparison of benchmark brands vs workhorse gear. When to upgrade your machine for professional consistency."
+    },
+    "blogNeedleHangDepth": {
+      "title": "Mastering Needle Hang & Depth Control",
+      "description": "The secret to visibility and precision. Why riding the tube vs. hanging the needle changes your saturation and safety."
+    },
+    "blogHertzVsVolts": {
+      "title": "Hertz vs. Volts: The Frequency Truth",
+      "description": "Tattoo machine Hertz-to-Volts explained for ACUS M1, Cheyenne, and standard rotary setups, with CPS/hand-speed sync guidance."
+    },
+    "blogMembraneTax": {
+      "title": "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
+      "description": "Tattoo machine stalling explained: membrane tension, rotary torque loss, and practical voltage compensation for Dragonhawk Mast and other tier-2 setups."
+    }
+  },
+  "nav": {
+    "setupTool": "Setup tool",
+    "howItWorks": "How it works",
+    "science": "Science",
+    "blog": "Technical blog"
+  },
+  "footer": {
+    "setupEngine": "Setup engine",
+    "howItWorks": "How it works",
+    "technicalBlog": "Technical blog",
+    "disclaimer": "Disclaimer",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "responsibleAi": "Responsible AI Policy",
+    "contactLabel": "Contact",
+    "lastUpdate": "Last engine update: April 2026"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Site language"
+  },
+  "dialedInUi": {
+    "styleStep": "1 · Style",
+    "techniqueStep": "2 · Technique",
+    "loadingStyles": "Loading styles…",
+    "selectStyle": "Select style…",
+    "selectStyleFirst": "Select a style first…",
+    "selectStyleFirstCaps": "Select Style First…",
+    "selectTechniquePath": "Select technique path…",
+    "liningFallback": "Lining",
+    "shadingFallback": "Shading",
+    "toolGuardrail": "Technical suggestion only — final machine adjustment is the artist’s responsibility."
+  },
+  "legal": {
+    "common": {
+      "operatorNote": "DialedIn.ink is operated by Albor Digital LLC. These pages are the public summary aligned with Albor Digital legal documentation.",
+      "contactEmailLabel": "Legal & privacy contact"
+    },
+    "disclaimer": {
+      "title": "Technical Disclaimer",
+      "lead": "DialedIn is an educational and decision-support tool intended solely for informational purposes. Suggested parameters (voltage, hertz, stroke, and needle configuration) reflect general industry consensus and manufacturer specifications; they do not replace professional judgment or training under a qualified mentor.",
+      "acknowledge": "By using this tool, you acknowledge that:",
+      "riskTitle": "Physical risk",
+      "riskBody": "Tattooing involves invasive procedures. Incorrect machine use or inappropriate settings can cause severe skin trauma or infections.",
+      "equipTitle": "Equipment variability",
+      "equipBody": "Machines and cartridges differ by brand and maintenance condition; DialedIn does not guarantee exact outcomes.",
+      "liabilityTitle": "User responsibility",
+      "liabilityBody": "Albor Digital LLC is not liable for injuries, legal claims, or unsatisfactory aesthetic results. Final machine adjustment remains solely the artist’s responsibility."
+    },
+    "privacy": {
+      "title": "Privacy & Data Transparency",
+      "lead": "At DialedIn, we value your craft and your privacy.",
+      "dataTitle": "Data we collect",
+      "dataBody": "We do not request sensitive personal information. We only store configuration preferences anonymously to improve our logic engine.",
+      "aiTitle": "Use of AI",
+      "aiBody": "This tool uses language models to process technical taxonomies. We do not process personal data through these models.",
+      "cookiesTitle": "Cookies",
+      "cookiesBody": "We use essential cookies to remember your language and equipment preferences for the session."
+    },
+    "terms": {
+      "title": "Guild Rules (Terms of Service)",
+      "useTitle": "Permitted use",
+      "useBody": "This tool is for individual use by apprentices and tattoo professionals. Bulk extraction (scraping) of our technical logic is prohibited.",
+      "ipTitle": "Intellectual property",
+      "ipBody": "The relational logic and interface design are the exclusive property of Albor Digital LLC.",
+      "lawTitle": "Jurisdiction",
+      "lawBody": "Any legal dispute shall be governed by the laws of the State of Wyoming, United States."
+    },
+    "responsibleAi": {
+      "title": "Responsible AI Policy",
+      "lead": "DialedIn.ink is operated by Albor Digital LLC. This policy describes how we use automation and language models transparently.",
+      "purposeTitle": "Purpose & limits",
+      "purposeBody": "DialedIn combines deterministic rules and documented heuristics with optional language-model assistance for technical taxonomy labeling. It is not a medical device and must not replace professional judgment or manufacturer documentation.",
+      "humanTitle": "Human oversight",
+      "humanBody": "Artists must validate every recommendation against manufacturer specs, skin type, session goals, and local regulations. The tool surfaces warnings where modeled checks flag potential mismatch.",
+      "dataTitle": "Personal data & models",
+      "dataBody": "We do not send identifiable personal data through language models for profiling. Taxonomy and preference handling follow this Privacy summary and essential cookie practices.",
+      "accuracyTitle": "Accuracy & updates",
+      "accuracyBody": "We version logic and publish a visible last-update stamp on the site. Material model changes will be reflected in release notes or methodology pages where practical."
+    }
+  },
+  "blogNav": {
+    "backBlog": "← Blog",
+    "backDial": "← DIALED-IN",
+    "backTool": "← DIALED-IN tool",
+    "backSetup": "← Setup tool"
+  }
+}

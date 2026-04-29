@@ -1,0 +1,157 @@
+{
+  "og": {
+    "disciplinedLine": "Oficio disciplinado — rigor técnico. Calibra trazo, voltaje y estilo con DialedIn."
+  },
+  "meta": {
+    "home": {
+      "title": "DialedIn",
+      "description": "Motor de ajuste de máquinas de tatuar"
+    },
+    "howItWorks": {
+      "title": "La ciencia del punto óptimo",
+      "description": "Dentro de la lógica DialedIn: pivote 3,5 mm, voltaje adaptativo y baselines técnicos guiados por el estilo."
+    },
+    "science": {
+      "title": "Metodología científica",
+      "description": "Física universal del equipo: efecto martillo en trazo largo, lecturas Hz ACUS, CPS estable entre tiers y compensación por cartuchos con membrana más rígida."
+    },
+    "terms": {
+      "title": "Términos del servicio",
+      "description": "Términos del servicio de DialedIn.ink, un producto de Albor Digital LLC."
+    },
+    "privacy": {
+      "title": "Política de privacidad",
+      "description": "Política de privacidad de DialedIn.ink, un producto de Albor Digital LLC."
+    },
+    "responsibleAi": {
+      "title": "Política de IA responsable",
+      "description": "Prácticas de IA responsable para DialedIn.ink, alineadas con Albor Digital LLC."
+    },
+    "disclaimer": {
+      "title": "Descargo de responsabilidad técnica",
+      "description": "Descargo de DialedIn.ink: herramienta informativa, riesgos físicos del tatuaje, variabilidad del equipo y responsabilidad del artista. Albor Digital LLC."
+    },
+    "blogHub": {
+      "title": "Blog técnico",
+      "description": "Física del trazo, geometría de agujas, tiers de hardware y metodología de ajuste disciplinada desde DialedIn."
+    },
+    "blogStrokePhysics": {
+      "title": "Física del trazo: guía del pivote 3,5 mm",
+      "description": "Por qué el recorrido del pistón dicta tu voltaje. Dominar la relación entre fuerza mecánica y frecuencia de aguja."
+    },
+    "blogNeedleGeometry": {
+      "title": "Geometría de aguja: #10 vs #12 y conicidad",
+      "description": "Cómo calibre y conicidad afectan flujo de tinta y traumatismo cutáneo. Estándares técnicos para tatuar con rigor."
+    },
+    "blogCartridgeDrag": {
+      "title": "Arrastre del cartucho y tensión de piel",
+      "description": "Vencer la resistencia de membrana (impuesto de membrana) y usar tensión en tres puntos para saturación controlada."
+    },
+    "blogHandSpeedSync": {
+      "title": "Sincronizar la mano con los hercios de la máquina",
+      "description": "Coordinar velocidad manual con frecuencia del motor (CPS) para densidad de puntada y textura coherentes."
+    },
+    "blogHardwareTiers": {
+      "title": "Hardware de tatuar: Tier 1 vs Tier 2",
+      "description": "Marcas referencia frente a equipos trabajo duro. Cuándo subir de tier para consistencia profesional."
+    },
+    "blogNeedleHangDepth": {
+      "title": "Salida de aguja y control de profundidad",
+      "description": "Visibilidad y precisión: tubo vs aguja colgante, y cómo cambia saturación y margen de seguridad."
+    },
+    "blogHertzVsVolts": {
+      "title": "Hercios vs voltios: la verdad de la frecuencia",
+      "description": "Relación Hz–V en ACUS M1, Cheyenne y rotativas estándar, con guía de sincronía CPS/mano."
+    },
+    "blogMembraneTax": {
+      "title": "Impuesto de membrana: por qué se ahoga con cartuchos económicos",
+      "description": "Paradas del motor: tensión de membrana, pérdida de par y compensación práctica en Dragonhawk Mast y setups tier 2."
+    }
+  },
+  "nav": {
+    "setupTool": "Motor de ajuste",
+    "howItWorks": "Cómo funciona",
+    "science": "Ciencia",
+    "blog": "Blog técnico"
+  },
+  "footer": {
+    "setupEngine": "Motor de ajuste",
+    "howItWorks": "Cómo funciona",
+    "technicalBlog": "Blog técnico",
+    "disclaimer": "Aviso legal",
+    "terms": "Términos del servicio",
+    "privacy": "Privacidad",
+    "responsibleAi": "Política de IA",
+    "contactLabel": "Contacto",
+    "lastUpdate": "Última actualización del motor: abril de 2026"
+  },
+  "localeSwitcher": {
+    "ariaLabel": "Idioma del sitio"
+  },
+  "dialedInUi": {
+    "styleStep": "1 · Estilo",
+    "techniqueStep": "2 · Técnica",
+    "loadingStyles": "Cargando estilos…",
+    "selectStyle": "Elige estilo…",
+    "selectStyleFirst": "Primero elige un estilo…",
+    "selectStyleFirstCaps": "Primero elige un estilo…",
+    "selectTechniquePath": "Elige trayectoria de técnica…",
+    "liningFallback": "Línea sólida",
+    "shadingFallback": "Saturación",
+    "toolGuardrail": "Sugerencia técnica. El ajuste final es responsabilidad del artista."
+  },
+  "legal": {
+    "common": {
+      "operatorNote": "DialedIn.ink es operado por Albor Digital LLC. Estas páginas son el resumen público alineado con la documentación legal de Albor Digital.",
+      "contactEmailLabel": "Contacto legal y privacidad"
+    },
+    "disclaimer": {
+      "title": "Descargo de Responsabilidad Técnica",
+      "lead": "DialedIn es una herramienta educativa y de apoyo a la toma de decisiones diseñada exclusivamente para fines informativos. Los parámetros sugeridos (voltaje, hertz, stroke y configuración de agujas) se basan en consensos generales de la industria y especificaciones de fabricantes, pero no sustituyen el juicio profesional ni la formación bajo un mentor calificado.",
+      "acknowledge": "Al usar esta herramienta, usted reconoce que:",
+      "riskTitle": "Riesgo físico",
+      "riskBody": "El tatuaje implica procedimientos invasivos. El uso incorrecto de la maquinaria o una configuración inadecuada puede causar trauma severo en la piel o infecciones.",
+      "equipTitle": "Variabilidad de equipo",
+      "equipBody": "Las máquinas y cartuchos varían según la marca y el estado de mantenimiento; DialedIn no garantiza resultados exactos.",
+      "liabilityTitle": "Responsabilidad del usuario",
+      "liabilityBody": "Albor Digital LLC no se hace responsable por lesiones, reclamos legales o resultados estéticos insatisfactorios. La responsabilidad final del ajuste de la máquina recae siempre en el artista."
+    },
+    "privacy": {
+      "title": "Privacidad de Datos y Transparencia",
+      "lead": "En DialedIn, valoramos tu oficio y tu privacidad.",
+      "dataTitle": "Datos que recolectamos",
+      "dataBody": "No solicitamos información personal sensible. Solo almacenamos preferencias de configuración de forma anónima para mejorar nuestro motor de lógica.",
+      "aiTitle": "Uso de IA",
+      "aiBody": "Esta herramienta utiliza modelos de lenguaje para procesar taxonomías técnicas. No procesamos datos personales a través de estos modelos.",
+      "cookiesTitle": "Cookies",
+      "cookiesBody": "Utilizamos cookies esenciales para recordar tus preferencias de idioma y configuración de equipo durante la sesión."
+    },
+    "terms": {
+      "title": "Reglas del Gremio",
+      "useTitle": "Uso permitido",
+      "useBody": "Esta herramienta es para uso individual por aprendices y profesionales del tatuaje. Queda prohibida la extracción masiva de datos (scraping) de nuestra base de lógica técnica.",
+      "ipTitle": "Propiedad intelectual",
+      "ipBody": "La lógica relacional y el diseño de la interfaz son propiedad exclusiva de Albor Digital LLC.",
+      "lawTitle": "Jurisdicción",
+      "lawBody": "Cualquier disputa legal será regida por las leyes del Estado de Wyoming, EE. UU."
+    },
+    "responsibleAi": {
+      "title": "Política de IA responsable",
+      "lead": "DialedIn.ink es operado por Albor Digital LLC. Esta política describe cómo usamos automatización y modelos de lenguaje con transparencia.",
+      "purposeTitle": "Finalidad y límites",
+      "purposeBody": "DialedIn combina reglas deterministas y heurísticas documentadas con apoyo opcional de modelos de lenguaje para etiquetado de taxonomías técnicas. No es un dispositivo médico y no sustituye el criterio profesional ni la documentación del fabricante.",
+      "humanTitle": "Supervisión humana",
+      "humanBody": "Los artistas deben validar cada recomendación frente a especificaciones del fabricante, tipo de piel, objetivos de sesión y normativa local. La herramienta muestra advertencias cuando las comprobaciones modeladas detectan posibles desajustes.",
+      "dataTitle": "Datos personales y modelos",
+      "dataBody": "No enviamos datos personales identificables a través de modelos de lenguaje con fines de perfilado. La taxonomía y las preferencias siguen este resumen de Privacidad y las prácticas de cookies esenciales.",
+      "accuracyTitle": "Precisión y actualizaciones",
+      "accuracyBody": "Versionamos la lógica y publicamos una marca visible de última actualización en el sitio. Los cambios materiales del modelo se reflejarán en notas de versión o páginas metodológicas cuando sea práctico."
+    }
+  },
+  "blogNav": {
+    "backBlog": "← Blog",
+    "backDial": "← DIALED-IN",
+    "backTool": "← Herramienta DIALED-IN",
+    "backSetup": "← Motor de ajuste"
+  }
+}

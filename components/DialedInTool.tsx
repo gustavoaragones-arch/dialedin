@@ -13,7 +13,9 @@ import { engineTechniqueNameForSelection } from "@/lib/engineTechniqueMap";
 import { isAcusFrequencyFirstBrand } from "@/lib/machineBrand";
 import { dialedInEngineToJson, evaluateDialedInEngine } from "@/lib/dialedInEngine";
 import { useDialedIn } from "@/components/DialedInProvider";
-import Link from "next/link";
+import { LocaleSwitcher } from "@/components/LocaleSwitcher";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { HowItWorks } from "./HowItWorks";
 import { SelectionInterface } from "./SelectionInterface";
 import { HandSpeedSlider } from "./HandSpeedSlider";
@@ -23,6 +25,8 @@ import { SweetSpotGauge } from "./SweetSpotGauge";
 import { TechnicalResultWithHints, TechnicalTerm } from "./TechnicalTerm";
 
 export function DialedInTool() {
+  const tNav = useTranslations("nav");
+  const tUi = useTranslations("dialedInUi");
   const [developerModeEnabled, setDeveloperModeEnabled] = useState(false);
   const [devJsonOpen, setDevJsonOpen] = useState(false);
   const {
@@ -222,22 +226,24 @@ export function DialedInTool() {
   return (
     <div className="dialed">
       <header className="dialed__header">
-        <p className="dialed__eyebrow">
+        <p className="dialed__eyebrow dialed__eyebrow--nav">
           <Link className="dialed__link" href="/">
-            Setup engine
+            {tNav("setupTool")}
           </Link>
           {" · "}
           <Link className="dialed__link" href="/how-it-works">
-            How it works
+            {tNav("howItWorks")}
           </Link>
           {" · "}
           <Link className="dialed__link" href="/science">
-            Scientific methodology
+            {tNav("science")}
           </Link>
           {" · "}
           <Link className="dialed__link" href="/blog">
-            Technical blog
+            {tNav("blog")}
           </Link>
+          {" · "}
+          <LocaleSwitcher />
         </p>
         <h1 className="dialed__title">DIALED-IN</h1>
         <p className="dialed__lede">
@@ -297,7 +303,7 @@ export function DialedInTool() {
             ) : null}
             {selectedTaxonomy ? (
               <p className="dialed__hint">
-                Recommended stroke baseline for {selectedTaxonomy.styleName}:{" "}
+                Recommended stroke baseline for {selectedTaxonomy.styleDisplayName}:{" "}
                 {selectedTaxonomy.idealStrokeMm.toFixed(1)} mm — when you pick a
                 machine, stroke snaps to the closest available option.
               </p>
@@ -345,6 +351,9 @@ export function DialedInTool() {
           <h2 className="dialed__h2 dialed__h2--gauges">
             Output Dashboard (Recommended)
           </h2>
+          <p className="dialed__tool-guardrail" role="note">
+            {tUi("toolGuardrail")}
+          </p>
 
           {selectedTaxonomy?.technicalFocus && machine ? (
             <div className="dialed__goal" role="region" aria-label="Setup goal">
@@ -383,7 +392,7 @@ export function DialedInTool() {
                         <p className="dialed__adaptive-mismatch__body">
                           DialedIn has adapted your voltage for a{" "}
                           {activeStrokeMm.toFixed(1)}mm stroke. For{" "}
-                          {selectedTaxonomy.styleName}, the industry standard is{" "}
+                          {selectedTaxonomy.styleDisplayName}, the industry standard is{" "}
                           {selectedTaxonomy.idealStrokeMm.toFixed(1)}mm to ensure
                           optimal saturation without skin trauma.
                         </p>

@@ -240,7 +240,15 @@ main.site-main {
 
 .dialed__h2--gauges {
   margin-top: 0.35rem;
-  margin-bottom: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.dialed__tool-guardrail {
+  margin: 0 0 0.85rem;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  color: var(--muted);
+  letter-spacing: 0.02em;
 }
 
 .dialed__h3 {
@@ -1842,4 +1850,39 @@ select.dialed__select:disabled {
   .blueprint-page__fab:hover {
     transform: translateX(-50%) translateY(-2px);
   }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.dialed__eyebrow--nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.locale-switcher {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.15rem;
+}
+
+.locale-switcher__select {
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.35);
+  color: inherit;
 }

@@ -16,6 +16,7 @@ import {
   type DialedInAction,
   type DialedInState,
 } from "@/lib/dialedInReducer";
+import { useLocale } from "next-intl";
 import {
   createContext,
   useCallback,
@@ -50,6 +51,7 @@ export type DialedInContextValue = {
 const DialedInContext = createContext<DialedInContextValue | null>(null);
 
 export function DialedInProvider({ children }: { children: ReactNode }) {
+  const locale = useLocale();
   const [machines, setMachines] = useState<Machine[]>([]);
   const [machinesLoading, setMachinesLoading] = useState(true);
   const [machinesError, setMachinesError] = useState<string | null>(null);
@@ -107,7 +109,7 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
       setTuTaxonomyLoading(true);
       setTuTaxonomyError(null);
       try {
-        const res = await fetchTattooTaxonomy();
+        const res = await fetchTattooTaxonomy(locale);
         if (cancelled) return;
         if (res.ok) {
           setTuTaxonomyByStyleName(res.byStyleName);
@@ -124,7 +126,7 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     if (!state.machineId) return;
@@ -169,10 +171,12 @@ export function DialedInProvider({ children }: { children: ReactNode }) {
   const taxonomyStyleOptions = useMemo<TaxonomyStyleOption[]>(
     () =>
       Array.from(tuTaxonomyByStyleName.values())
-        .sort((a, b) => a.styleName.localeCompare(b.styleName))
+        .sort((a, b) =>
+          a.styleDisplayName.localeCompare(b.styleDisplayName),
+        )
         .map((row) => ({
           style_key: normalizeTaxonomyStyleKey(row.styleName)!,
-          style_name: row.styleName,
+          style_name: row.styleDisplayName,
         })),
     [tuTaxonomyByStyleName],
   );

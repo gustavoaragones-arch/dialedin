@@ -2,33 +2,32 @@ import { getBrowserSupabase } from "./supabase/client";
 
 const TABLE = "tattoo_taxonomy";
 
-/** Style dropdown: `style_key` is the normalized map key; `style_name` is the DB label. */
+export type TaxonomyLocale = "en" | "es" | "pt";
+
+export function normalizeTaxonomyFetchLocale(
+  locale: string | undefined,
+): TaxonomyLocale {
+  if (locale === "es" || locale === "pt") return locale;
+  return "en";
+}
+
+/** Style dropdown: `style_key` is the normalized map key; `style_name` is the visible label (may be localized). */
 export type TaxonomyStyleOption = {
   style_key: string;
   style_name: string;
 };
 
-/** Normalized map key: `trim().toLowerCase()` (spacing-insensitive, case-insensitive). */
-export function normalizeTaxonomyStyleKey(
-  name: string | null | undefined,
-): string | null {
-  if (name == null) return null;
-  const k = String(name).trim().toLowerCase();
-  return k.length > 0 ? k : null;
-}
-
 export type TattooTaxonomyRow = {
+  /** Canonical English `style_name` from DB (map key + engine). */
   styleName: string;
+  /** Dropdown / UI label; localized when DB columns exist. */
+  styleDisplayName: string;
   idealStrokeMm: number;
   voltMin: number;
   voltMax: number;
-  /** Display label for the lining-oriented technique option. */
   liningTechnique: string;
-  /** Display label for the shading-oriented technique option. */
   shadingTechnique: string;
-  /** Short “style note” for the quick-tip under selectors. */
   technicalFocus: string | null;
-  /** Optional technical cartridge / needle string for Cartridge section. */
   idealNeedleRange: string | null;
 };
 
@@ -41,6 +40,16 @@ type TaxonomyRowRaw = {
   shading_technique?: string | null;
   technical_focus?: string | null;
   ideal_needle_range?: string | null;
+  style_name_es?: string | null;
+  style_name_pt?: string | null;
+  technical_focus_es?: string | null;
+  technical_focus_pt?: string | null;
+  lining_technique_es?: string | null;
+  lining_technique_pt?: string | null;
+  shading_technique_es?: string | null;
+  shading_technique_pt?: string | null;
+  ideal_needle_range_es?: string | null;
+  ideal_needle_range_pt?: string | null;
 };
 
 function toNum(n: number | string | null | undefined): number | null {
@@ -51,12 +60,27 @@ function toNum(n: number | string | null | undefined): number | null {
 const FALLBACK_LINING = "Lining (primary pass)";
 const FALLBACK_SHADING = "Shading (saturation)";
 
+function pickLocalized(
+  locale: TaxonomyLocale,
+  row: TaxonomyRowRaw,
+  english: string | null | undefined,
+  esVal: string | null | undefined,
+  ptVal: string | null | undefined,
+): string {
+  const base = String(english ?? "").trim();
+  if (locale === "en") return base;
+  const loc = locale === "es" ? esVal : ptVal;
+  const s = String(loc ?? "").trim();
+  return s.length > 0 ? s : base;
+}
+
 /** Temporary UI fallback when Supabase returns no usable rows (remove when DB is always populated). */
 export function seedDummyTaxonomyRow(
   byStyleName: Map<string, TattooTaxonomyRow>,
 ): void {
   byStyleName.set("test", {
     styleName: "Test",
+    styleDisplayName: "Test",
     idealStrokeMm: 3.5,
     voltMin: 5,
     voltMax: 9,
@@ -68,24 +92,67 @@ export function seedDummyTaxonomyRow(
   });
 }
 
-function mapRow(row: TaxonomyRowRaw): TattooTaxonomyRow | null {
+function mapRow(
+  row: TaxonomyRowRaw,
+  locale: TaxonomyLocale,
+): TattooTaxonomyRow | null {
   const styleName = String(row.style_name ?? "").trim();
+  const styleDisplayName = pickLocalized(
+    locale,
+    row,
+    styleName,
+    row.style_name_es,
+    row.style_name_pt,
+  );
   const ideal = toNum(row.ideal_stroke);
   const vmin = toNum(row.volt_min);
   const vmax = toNum(row.volt_max);
   if (!styleName || ideal == null || vmin == null || vmax == null) return null;
   if (vmax < vmin) return null;
-  const lining = String(row.lining_technique ?? "").trim() || FALLBACK_LINING;
-  const shading = String(row.shading_technique ?? "").trim() || FALLBACK_SHADING;
-  const tf = String(row.technical_focus ?? "").trim();
-  const needle = String(row.ideal_needle_range ?? "").trim();
+
+  const liningBase = String(row.lining_technique ?? "").trim() || FALLBACK_LINING;
+  const shadingBase = String(row.shading_technique ?? "").trim() || FALLBACK_SHADING;
+  const lining = pickLocalized(
+    locale,
+    row,
+    liningBase,
+    row.lining_technique_es,
+    row.lining_technique_pt,
+  );
+  const shading = pickLocalized(
+    locale,
+    row,
+    shadingBase,
+    row.shading_technique_es,
+    row.shading_technique_pt,
+  );
+
+  const tfBase = String(row.technical_focus ?? "").trim();
+  const tf = pickLocalized(
+    locale,
+    row,
+    tfBase,
+    row.technical_focus_es,
+    row.technical_focus_pt,
+  );
+
+  const needleBase = String(row.ideal_needle_range ?? "").trim();
+  const needle = pickLocalized(
+    locale,
+    row,
+    needleBase,
+    row.ideal_needle_range_es,
+    row.ideal_needle_range_pt,
+  );
+
   return {
     styleName,
+    styleDisplayName: styleDisplayName || styleName,
     idealStrokeMm: ideal,
     voltMin: vmin,
     voltMax: vmax,
-    liningTechnique: lining,
-    shadingTechnique: shading,
+    liningTechnique: lining || liningBase,
+    shadingTechnique: shading || shadingBase,
     technicalFocus: tf.length > 0 ? tf : null,
     idealNeedleRange: needle.length > 0 ? needle : null,
   };
@@ -96,10 +163,14 @@ export type FetchTattooTaxonomyResult =
   | { ok: false; error: string };
 
 /**
- * Loads rows from `public.tattoo_taxonomy` (ideal_stroke, volt_min, volt_max).
- * Keys in the map are `style_name.trim().toLowerCase()` (normalized).
+ * Loads rows from `public.tattoo_taxonomy`.
+ * Map keys are always `normalizeTaxonomyStyleKey(style_name)` (English column).
+ * Display strings use `style_name_es` / `style_name_pt` (etc.) when present for `locale`.
  */
-export async function fetchTattooTaxonomy(): Promise<FetchTattooTaxonomyResult> {
+export async function fetchTattooTaxonomy(
+  locale: string | undefined,
+): Promise<FetchTattooTaxonomyResult> {
+  const loc = normalizeTaxonomyFetchLocale(locale);
   const supabase = getBrowserSupabase();
   if (!supabase) {
     return {
@@ -123,7 +194,6 @@ export async function fetchTattooTaxonomy(): Promise<FetchTattooTaxonomyResult> 
     return { ok: false, error: error.message };
   }
 
-  // Legacy debug line — prefer Raw Supabase Response above
   console.log("Supabase tattoo_taxonomy data[]:", data);
 
   const rawRows = (data ?? []) as TaxonomyRowRaw[];
@@ -138,7 +208,7 @@ export async function fetchTattooTaxonomy(): Promise<FetchTattooTaxonomyResult> 
   }
 
   for (const raw of rawRows) {
-    const mapped = mapRow(raw);
+    const mapped = mapRow(raw, loc);
     if (!mapped) continue;
     const key = String(raw.style_name ?? "").trim().toLowerCase();
     if (!key) continue;
@@ -153,6 +223,14 @@ export async function fetchTattooTaxonomy(): Promise<FetchTattooTaxonomyResult> 
   }
 
   return { ok: true, byStyleName };
+}
+
+export function normalizeTaxonomyStyleKey(
+  name: string | null | undefined,
+): string | null {
+  if (name == null) return null;
+  const k = String(name).trim().toLowerCase();
+  return k.length > 0 ? k : null;
 }
 
 export function getTaxonomyForStyleName(
