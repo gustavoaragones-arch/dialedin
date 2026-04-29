@@ -1,0 +1,44 @@
+{
+  "pageTitle": "Blog técnico",
+  "pageSubhead": "Insights técnicos e física de máquinas da equipe DialedIn.",
+  "categories": {
+    "motorPhysics": "Física do motor",
+    "needleGeometry": "Geometria da agulha",
+    "hardwareSystems": "Sistemas de hardware",
+    "applicationMechanics": "Mecânica de aplicação"
+  },
+  "posts": {
+    "hertzVsVolts": {
+      "title": "Hertz vs voltagem: a verdade da frequência",
+      "summary": "Entenda o dilema entre volts e Hz e como o CPS derivado descreve a reciprocidade real da agulha em ACUS, Cheyenne e rotativas padrão."
+    },
+    "needleGeometry": {
+      "title": "Geometria da agulha: #10 vs #12 e taper",
+      "summary": "Calibre (#08–#12) e taper (longo vs curto) controlam pegada, resistência e fluxo de tinta—por que um 3RL não é igual a outro."
+    },
+    "strokePhysics": {
+      "title": "Física do curso: guia do pivô 3,5 mm",
+      "summary": "Força versus frequência: por que 3,5 mm é baseline versátil, como 4,0–4,2 mm age como martelo e como o DialedIn compensa voltagem em curso longo."
+    },
+    "hardwareTiers": {
+      "title": "Hardware de tatuagem: Tier 1 vs Tier 2",
+      "summary": "Guia de tiers para previsibilidade: de equipamentos de treino a rigs profissionais de referência."
+    },
+    "needleHangDepth": {
+      "title": "Recuo da agulha e controle de profundidade",
+      "summary": "Quando ‘subir no tubo’ versus pendurar a agulha e como a protrusão afeta visibilidade e fluxo."
+    },
+    "cartridgeDrag": {
+      "title": "Arrasto do cartucho e tensão de pele",
+      "summary": "Como tensão de membrana e qualidade do esticamento mudam torque, saturação e risco de trauma."
+    },
+    "handSpeedSync": {
+      "title": "Sincronizar a mão com os hertz da máquina",
+      "summary": "Sincronia CPS–mão para densidade de ponto mais limpa e textura controlada."
+    },
+    "membraneTax": {
+      "title": "Taxa de membrana: por que trava em cartuchos econômicos",
+      "summary": "Por que membranas mais rígidas roubam torque efetivo e como compensar sem overdriving na pele."
+    }
+  }
+}

@@ -3,10 +3,10 @@
 import {
   HAND_SPEED_STEPS,
   handSpeedFromSliderIndex,
-  handSpeedLabel,
   sliderIndexFromHandSpeed,
   type HandSpeed,
 } from "@/lib/dialedInEngine";
+import { useTranslations } from "next-intl";
 
 type Props = {
   value: HandSpeed;
@@ -15,19 +15,22 @@ type Props = {
 
 /** Five discrete steps mapped to a horizontal range input (0–4). */
 export function HandSpeedSlider({ value, onChange }: Props) {
+  const t = useTranslations("dialedInUi");
   const idx = sliderIndexFromHandSpeed(value);
   const pct = (idx / 4) * 100;
+
+  const label = (s: HandSpeed) => t(`handSpeed.${s}`);
 
   return (
     <div className="hand-speed-slider">
       <div className="hand-speed-slider__head">
-        <span>Hand speed (velocity model)</span>
-        <span className="hand-speed-slider__value">{handSpeedLabel(value)}</span>
+        <span>{t("handSpeedHeading")}</span>
+        <span className="hand-speed-slider__value">{label(value)}</span>
       </div>
       <div className="hand-speed-slider__ticks" aria-hidden>
         {HAND_SPEED_STEPS.map((s) => (
           <span key={s} className="hand-speed-slider__tick">
-            {handSpeedLabel(s)}
+            {label(s)}
           </span>
         ))}
       </div>
@@ -49,16 +52,12 @@ export function HandSpeedSlider({ value, onChange }: Props) {
           aria-valuemin={0}
           aria-valuemax={4}
           aria-valuenow={idx}
-          aria-valuetext={handSpeedLabel(value)}
-          aria-label="Hand speed relative to machine cycle rate"
+          aria-valuetext={label(value)}
+          aria-label={t("handSpeedAriaLabel")}
         />
       </div>
       <p className="hand-speed-slider__note">
-        <em>
-          Note: Hand speed is a relative variable. This scale is designed to
-          demonstrate the conceptual relationship between movement and cycle
-          frequency, not as a literal measurement.
-        </em>
+        <em>{t("handSpeedNote")}</em>
       </p>
     </div>
   );

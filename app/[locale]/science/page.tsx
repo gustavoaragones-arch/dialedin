@@ -17,6 +17,7 @@ export default async function SciencePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const tNav = await getTranslations({ locale, namespace: "blogNav" });
+  const t = await getTranslations({ locale, namespace: "sciencePage" });
 
   return (
     <div className="science-page">
@@ -24,12 +25,8 @@ export default async function SciencePage({ params }: PageProps) {
         <p className="science-page__eyebrow">
           <Link href="/">{tNav("backTool")}</Link>
         </p>
-        <h1 className="science-page__title">Scientific standard</h1>
-        <p className="science-page__lede">
-          Methodology for the DialedIn.ink authority layer: how stroke, voltage,
-          taper geometry, and hand velocity are modeled together—not as isolated
-          “settings,” but as coupled physical constraints.
-        </p>
+        <h1 className="science-page__title">{t("h1")}</h1>
+        <p className="science-page__lede">{t("lede")}</p>
       </header>
       <ScienceMethodologyContent />
     </div>

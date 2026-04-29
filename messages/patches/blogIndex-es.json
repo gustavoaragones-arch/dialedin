@@ -1,0 +1,44 @@
+{
+  "pageTitle": "Blog técnico",
+  "pageSubhead": "Ideas técnicas y física de máquinas del equipo DialedIn.",
+  "categories": {
+    "motorPhysics": "Física del motor",
+    "needleGeometry": "Geometría de aguja",
+    "hardwareSystems": "Sistemas de hardware",
+    "applicationMechanics": "Mecánica de aplicación"
+  },
+  "posts": {
+    "hertzVsVolts": {
+      "title": "Hercios vs voltios: la verdad de la frecuencia",
+      "summary": "Entiende el dilema entre voltios y Hz y cómo el CPS derivado describe la reciprocidad real de la aguja en ACUS, Cheyenne y rotativas estándar."
+    },
+    "needleGeometry": {
+      "title": "Geometría de aguja: #10 vs #12 y conicidad",
+      "summary": "Calibre (#08–#12) y conicidad (larga vs corta) controlan huella, resistencia y flujo de tinta: por qué un 3RL no es igual a otro y cómo elegir un default disciplinado."
+    },
+    "strokePhysics": {
+      "title": "Física del trazo: guía del pivote 3,5 mm",
+      "summary": "Fuerza frente a frecuencia: por qué 3,5 mm es baseline versátil, cómo 4,0–4,2 mm golpea como martillo, cuándo 2,5–3,0 mm encaja en trabajo suave y cómo DialedIn compensa voltaje en trazo largo."
+    },
+    "hardwareTiers": {
+      "title": "Hardware de tatuar: Tier 1 vs Tier 2",
+      "summary": "Guía de tiers para predictibilidad: desde equipos de entrenamiento hasta rigs pro de referencia y fiabilidad de cartucho."
+    },
+    "needleHangDepth": {
+      "title": "Salida de aguja y control de profundidad",
+      "summary": "Cuándo ir ‘al tubo’ frente a colgar la aguja y cómo la protrusión afecta visibilidad, control de profundidad y flujo de tinta."
+    },
+    "cartridgeDrag": {
+      "title": "Arrastre del cartucho y tensión de piel",
+      "summary": "Cómo la tensión de membrana del cartucho y la calidad del estiramiento cambian el par, la saturación y el riesgo de traumatismo."
+    },
+    "handSpeedSync": {
+      "title": "Sincronizar la mano con los hercios de la máquina",
+      "summary": "Sincronía CPS–mano para densidad de puntada más limpia en línea y textura controlada en whip shading."
+    },
+    "membraneTax": {
+      "title": "Impuesto de membrana: por qué se ahoga con cartuchos económicos",
+      "summary": "Por qué membranas más rígidas absorben par efectivo y cómo compensar voltaje sin sobrepasar la piel, sobre todo en máquinas tier 2."
+    }
+  }
+}

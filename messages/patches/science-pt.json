@@ -1,0 +1,33 @@
+{
+  "sciencePage": {
+    "h1": "Padrão científico",
+    "lede": "Metodologia da camada de autoridade DialedIn.ink: como curso, voltagem, geometria de taper e velocidade da mão são modelados juntos—não como “ajustes” isolados, mas como restrições físicas acopladas."
+  },
+  "scienceArticle": {
+    "universalMachinePhysics": {
+      "h2": "Física universal da máquina",
+      "p1": "O modelo de setup DialedIn opera com física relacional. Diferente de calculadoras lineares, incorpora o efeito martelo: aumento exponencial do impacto cinético em máquinas de curso longo em alta voltagem. Integrando o padrão ACUS, o artista migra do pensamento em volts para frequência (Hz) mantendo reciprocidade física (CPS) consistente entre tiers.",
+      "p2": "A qualidade do cartucho muda a excitação necessária. Cartuchos mais baratos costumam ter membranas mais rígidas, aumentando resistência mecânica no mesmo ajuste nominal. O modelo compensa mantendo voltagem, classe de taper e acoplamento mão/CPS num sistema só."
+    },
+    "strokeCycle": {
+      "h2": "Equilíbrio curso–ciclo",
+      "p1": "Rotativas convertem ciclos elétricos em deslocamento da agulha. Para um curso (mm), a agulha percorre arco fixo por volta. Quando a velocidade da mão excede a taxa de deposição de pigmento, surgem segmentos sub-preenchidos—muitas vezes lidos como “problema de máquina” quando é descompasso de velocidade. O motor DialedIn.ink modela isso com escala de mão em cinco passos e faixas de voltagem.",
+      "p2": "Máquinas de curso longo (≈4,0 mm+) armazenam mais energia por impacto. Em sombreamento suave ou passes tipo whip, esse momentum aumenta risco de trauma por efeito martelo se a voltagem não cair: a guarda aplica −1,5 V quando curso ≥ 4,0 mm e técnica é classe sombra suave."
+    },
+    "acusParadigm": {
+      "h2": "Paradigma ACUS: frequência vs potencial",
+      "p1": "Com ACUS M1/M2, o setor caminha do pensamento em volts para frequência. Fontes tradicionais medem potencial elétrico; ACUS prioriza ciclos por segundo.",
+      "p2": "DialedIn.ink faz a ponte: traduz constantes de motor em taxas físicas de reciprocidade para rotativa padrão ou ACUS, mantendo sincronia mão–motor matematicamente coerente."
+    },
+    "needleTaper": {
+      "h2": "Geometria de taper da agulha",
+      "p1": "O taper define o estreitamento do grupo da agulha. SLT reduz deslocamento frontal na pele para o mesmo calibre. O chequeio Geometry Desync sinaliza fluxos Fine Line onde o taper resolvido não centra SLT.",
+      "p2": "TX aumenta filme efetivo de tinta—útil em grandes áreas—e muda liberação no mesmo curso. Trate textura como modificador geométrico."
+    },
+    "gaugeTension": {
+      "h2": "Calibre e tensão de pele",
+      "p1": "Calibre (ex. #10 ~0,30 mm) define largura de contato. Calibres menores reduzem trauma por passada mas exigem melhor cadência: elasticidade da pele briga com a agulha. Com tensão alta, prefira tapers mais longos e voltagem conservadora; ajuste Hanging antes de subir agrupamento.",
+      "p2": "Em linha bold onde pontas não fecham round fino, Open Liner pode reduzir travamento—combine curso e voltagem, não agressão máxima."
+    }
+  }
+}

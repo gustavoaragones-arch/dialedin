@@ -98,7 +98,78 @@
     "selectTechniquePath": "Elige trayectoria de técnica…",
     "liningFallback": "Línea sólida",
     "shadingFallback": "Saturación",
-    "toolGuardrail": "Sugerencia técnica. El ajuste final es responsabilidad del artista."
+    "toolGuardrail": "Sugerencia técnica. El ajuste final es responsabilidad del artista.",
+    "heroLede": "Domina tu máquina, sin importar la marca. Obtén voltaje, aguja y guía de setup de nivel profesional para tu estilo—pensado para artistas que valoran la precisión sobre el hype.",
+    "howItWorksStripTitle": "Cómo funciona",
+    "step1Title": "Paso 1: define tu objetivo artístico.",
+    "step1Body": "Elige tu estilo. Esto fija la física necesaria para la piel en la que trabajas.",
+    "step2Title": "Paso 2: calibra tu técnica.",
+    "step2Body": "Define el golpe (línea vs saturación) para activar nuestra barrera de seguridad frente al traumatismo cutáneo.",
+    "step3Title": "Paso 3: domina tu equipo.",
+    "step3Body": "Elige tu máquina—tier 2 de trabajo o tier 1 de referencia. El motor se adapta a los límites reales de tu hardware.",
+    "step4Title": "Paso 4: encuentra tu sincronía.",
+    "step4Body": "Usa el control de velocidad de mano para alinear tu movimiento con la frecuencia del motor. Mira el CPS para no ir más rápido que la aguja.",
+    "inputsHeading": "Entradas",
+    "inputsAriaLabel": "Entradas",
+    "machineLibraryLabel": "3 · Biblioteca de máquinas",
+    "loadingMachines": "Cargando máquinas…",
+    "selectMachine": "Elige máquina…",
+    "strokeBaselineHint": "Trazo base recomendado para {style}: {mm} mm — al elegir máquina, el stroke salta a la opción disponible más cercana.",
+    "strokeLengthLabel": "Longitud de stroke (global)",
+    "handSpeedHeading": "Velocidad de mano (modelo de velocidad)",
+    "handSpeedAriaLabel": "Velocidad de mano relativa al ciclo del motor",
+    "handSpeedNote": "Nota: la velocidad de mano es una variable relativa. Esta escala muestra la relación conceptual entre movimiento y frecuencia de ciclo, no una medición literal.",
+    "needleHangPrefix": "Salida de ",
+    "needleHangWord": "colgado",
+    "needleHangAriaLabel": "Profundidad de salida de aguja en milímetros",
+    "outputHeading": "Panel de salida (recomendado)",
+    "outputAriaLabel": "Panel de salida",
+    "goalKicker": "Objetivo",
+    "gaugePlaceholder": "Elige estilo, técnica y máquina para cargar lecturas y medidores recomendados.",
+    "voltageLabel": "Voltaje",
+    "badgePowerSupplyRef": "Referencia de fuente",
+    "badgeAdaptedRange": "Rango adaptado",
+    "hzPrimary": "Hertz (Hz) — control principal",
+    "hzSupplyBand": "Hertz (Hz) — banda de fuente / lectura",
+    "hzBadgePrimary": "Lectura principal",
+    "hzCaptionAcus": "En ACUS, trata Hz como lectura operativa principal; el voltaje es referencia de fuente dentro de esa banda.",
+    "hzCaptionOther": "Banda heurística ligada al voltaje—similar a cómo muchas fuentes enmarcan la lectura de drive.",
+    "cpsLabel": "Ciclos por segundo (CPS)",
+    "cpsCaption": "CPS = redondeo((voltios finales × 1000) ÷ 60)—vista didáctica escalar de cuánto se exige al pack tras offset de mano y clamp.",
+    "lessonTitle": "Lección",
+    "lessonBody": "DialedIn ha adaptado tu voltaje para un stroke de {currentStroke} mm. Para {style}, el estándar de sector es {idealStroke} mm para una saturación óptima sin traumatismo.",
+    "lessonLink": "Más sobre el pivote 3,5 mm y la física del stroke.",
+    "selectedStrokeDt": "Stroke seleccionado (global)",
+    "styleBaselineDt": "Baseline de estilo (stroke ideal)",
+    "cartridgeConfigHeading": "Configuración de cartucho",
+    "recommendedGroupingDt": "Agrupación recomendada",
+    "sltContextDt": "Contexto SLT",
+    "sltContextBody": "Equivalentes puente de marca (SLT, #10, TX) aparecen en tooltips del glosario sobre texto de cartucho coincidente — la UI principal sigue primero el estándar.",
+    "needleDiameterDt": "Diámetro de aguja",
+    "needleCountDt": "Número de agujas",
+    "taperDt": "Conicidad",
+    "adaptedVoltageDt": "Banda de voltaje adaptada (motor de setup)",
+    "machineVoltageDt": "Envolvente de voltaje de la máquina",
+    "voltDetailAdapted": "Banda operativa {vmin} – {vmax} V (offset pivote 3,5 mm {mod} V). ",
+    "voltDetailBaseline": "Baseline de máquina {baseline} V → ajustado por guardas/trazo {adj} V",
+    "longStrokeGuardSuffix": " (guardia activa de saturación suave en trazo largo)",
+    "proTipsHeading": "Consejos pro",
+    "proTipRealism": "Un stroke de 4,2 mm en realismo exige mano muy ligera—deja que trabaje la aguja.",
+    "proTipLongStroke": "Trazo largo (4,0 mm+) con saturación suave: el voltaje base baja 1,5 V para limitar traumatismo.",
+    "proTipHang": "Mayor salida en técnicas suaves: flota la aguja y vigila la saturación—evita sobre-exigir voltaje.",
+    "devShowDetail": "Mostrar detalle técnico",
+    "devHideDetail": "Ocultar detalle técnico",
+    "devAriaShow": "Mostrar datos crudos (JSON)",
+    "devAriaHide": "Ocultar datos crudos",
+    "handSpeed": {
+      "Slow": "Lenta",
+      "SlowModerate": "Lenta–moderada",
+      "Moderate": "Moderada",
+      "FastModerate": "Rápida–moderada",
+      "Fast": "Rápida"
+    },
+    "proTipsAriaLabel": "Consejos pro",
+    "goalAriaLabel": "Objetivo de setup"
   },
   "legal": {
     "common": {
@@ -153,5 +224,182 @@
     "backDial": "← DIALED-IN",
     "backTool": "← Herramienta DIALED-IN",
     "backSetup": "← Motor de ajuste"
+  },
+  "blogIndex": {
+    "pageTitle": "Blog técnico",
+    "pageSubhead": "Ideas técnicas y física de máquinas del equipo DialedIn.",
+    "categories": {
+      "motorPhysics": "Física del motor",
+      "needleGeometry": "Geometría de aguja",
+      "hardwareSystems": "Sistemas de hardware",
+      "applicationMechanics": "Mecánica de aplicación"
+    },
+    "posts": {
+      "hertzVsVolts": {
+        "title": "Hercios vs voltios: la verdad de la frecuencia",
+        "summary": "Entiende el dilema entre voltios y Hz y cómo el CPS derivado describe la reciprocidad real de la aguja en ACUS, Cheyenne y rotativas estándar."
+      },
+      "needleGeometry": {
+        "title": "Geometría de aguja: #10 vs #12 y conicidad",
+        "summary": "Calibre (#08–#12) y conicidad (larga vs corta) controlan huella, resistencia y flujo de tinta: por qué un 3RL no es igual a otro y cómo elegir un default disciplinado."
+      },
+      "strokePhysics": {
+        "title": "Física del trazo: guía del pivote 3,5 mm",
+        "summary": "Fuerza frente a frecuencia: por qué 3,5 mm es baseline versátil, cómo 4,0–4,2 mm golpea como martillo, cuándo 2,5–3,0 mm encaja en trabajo suave y cómo DialedIn compensa voltaje en trazo largo."
+      },
+      "hardwareTiers": {
+        "title": "Hardware de tatuar: Tier 1 vs Tier 2",
+        "summary": "Guía de tiers para predictibilidad: desde equipos de entrenamiento hasta rigs pro de referencia y fiabilidad de cartucho."
+      },
+      "needleHangDepth": {
+        "title": "Salida de aguja y control de profundidad",
+        "summary": "Cuándo ir ‘al tubo’ frente a colgar la aguja y cómo la protrusión afecta visibilidad, control de profundidad y flujo de tinta."
+      },
+      "cartridgeDrag": {
+        "title": "Arrastre del cartucho y tensión de piel",
+        "summary": "Cómo la tensión de membrana del cartucho y la calidad del estiramiento cambian el par, la saturación y el riesgo de traumatismo."
+      },
+      "handSpeedSync": {
+        "title": "Sincronizar la mano con los hercios de la máquina",
+        "summary": "Sincronía CPS–mano para densidad de puntada más limpia en línea y textura controlada en whip shading."
+      },
+      "membraneTax": {
+        "title": "Impuesto de membrana: por qué se ahoga con cartuchos económicos",
+        "summary": "Por qué membranas más rígidas absorben par efectivo y cómo compensar voltaje sin sobrepasar la piel, sobre todo en máquinas tier 2."
+      }
+    }
+  },
+  "sciencePage": {
+    "h1": "Estándar científico",
+    "lede": "Metodología de la capa de autoridad DialedIn.ink: cómo se modelan juntos stroke, voltaje, geometría de conicidad y velocidad de mano—no como “ajustes” aislados, sino como restricciones físicas acopladas."
+  },
+  "scienceArticle": {
+    "universalMachinePhysics": {
+      "h2": "Física universal de la máquina",
+      "p1": "El modelo de setup DialedIn opera con física relacional. A diferencia de calculadoras lineales, incorpora el efecto martillo: el aumento exponencial del impacto cinético cuando se usan máquinas de trazo largo a alto voltaje. Integrando el estándar ACUS, el artista puede pasar del pensamiento en voltaje al pensamiento en frecuencia (Hz) manteniendo coherente la reciprocidad física (CPS) entre tiers de hardware.",
+      "p2": "La calidad del cartucho también cambia la excitación necesaria. Los cartuchos económicos suelen tener membranas más rígidas, que aumentan la resistencia mecánica al mismo ajuste nominal. El modelo compensa manteniendo voltaje, clase de conicidad y acoplo mano/CPS en un solo sistema, para ajustar voltaje con control en lugar de sobreactuar la máquina."
+    },
+    "strokeCycle": {
+      "h2": "Equilibrio trazo–ciclo",
+      "p1": "Las rotativas convierten ciclos eléctricos en desplazamiento de aguja. Para una longitud de stroke (mm), la aguja recorre un arco fijo por revolución. Cuando la velocidad de mano supera la tasa a la que esos ciclos depositan pigmento, la piel muestra segmentos infra-rellenados—a menudo leídos como “fallo de máquina” cuando es un desajuste de velocidad. El motor DialedIn.ink modela esto enlazando una escala de mano en cinco pasos con bandas de voltaje recomendadas: manos más rápidas suelen exigir más energía de ciclo efectiva, acotada por envolventes de seguridad tisular.",
+      "p2": "Las máquinas de trazo largo (≈4,0 mm+) almacenan más energía cinética por impacto. En saturación suave o pasadas tipo whip, ese momentum extra aumenta el riesgo de trauma por efecto martillo si no se baja voltaje de forma deliberada: nuestra guardia de efecto martillo aplica −1,5 V cuando el stroke es ≥ 4,0 mm y la técnica es clase saturación suave."
+    },
+    "acusParadigm": {
+      "h2": "El paradigma ACUS: frecuencia frente a potencial",
+      "p1": "Con ACUS M1 y M2, el sector se mueve del “pensamiento en voltaje” al “pensamiento en frecuencia”. Las fuentes clásicas miden potencial eléctrico (voltios); ACUS prioriza ciclos por segundo (hercios).",
+      "p2": "DialedIn.ink está pensado para tender ese puente. El modelo traduce constantes de motor a tasas físicas de reciprocidad. Así, ya sea rotativa estándar o ACUS, tu sincronía mano–motor permanece coherente en cálculo. Al trabajar con CPS físico, puedes interiorizar la “velocidad del golpe” más allá del nombre de la fuente."
+    },
+    "needleTaper": {
+      "h2": "Geometría de conicidad de aguja",
+      "p1": "La conicidad define cómo el grupo de agujas se estrecha del cuerpo a la punta. SLT (super long taper) reduce el desplazamiento frontal en piel para el mismo calibre, lo que importa en micro-detalle y línea fina donde conicidades largas estándar pueden partir tejido lateralmente. El chequeo Geometry Desync marca flujos Fine Line donde la conicidad resuelta no centra SLT, invitando a revisar geometría del cartucho antes de perseguir voltaje o velocidad.",
+      "p2": "TX (textured) aumenta la película efectiva de tinta en la agúija—útil en grandes campos o tintas poco viscosas—y cambia cómo libera tinta en el mismo stroke. Trata la textura como modificador geométrico, no como sustituto de la clase de conicidad correcta."
+    },
+    "gaugeTension": {
+      "h2": "Calibre y tensión de piel",
+      "p1": "El calibre (por ejemplo #10 ~0,30 mm) fija el ancho de contacto. Calibres menores reducen trauma por pasada pero exigen mejor cadencia del ciclo: el rebote elástico de la piel (tensión + grosor) combate la aguja a la entrada y salida. Con tensión alta—superficies convexas o piel deshidratada—prefiere conicidades algo más largas y voltaje conservador, y ajusta Hanging (salida más allá del tip) antes de subir agrupación. Más salida aumenta el throw para packing pero amplifica dispersión lateral si la geometría no acompaña. DialedIn.ink mantiene salida, conicidad y voltaje en una superficie relacional: un cambio de entrada recalcula todo el conjunto recomendado.",
+      "p2": "En línea maciza donde las puntas no se cierran en round fino, la geometría Open Liner (agrupación paralela) puede reducir trabamiento a costa de filo menos fino—empárela con stroke y voltaje coherentes, no con agresividad máxima."
+    }
+  },
+  "howItWorksPage": {
+    "crumbMethod": "Método",
+    "heroLede": "La precisión no es casualidad. DialedIn traduce la física de tu máquina en una hoja de ruta calculada para tu arte.",
+    "flowHeading": "Del estilo al resultado",
+    "flow": {
+      "step1": {
+        "title": "Estilo",
+        "body": "Nombras el oficio—fine line, American Traditional, gris suave. Esa elección fija la frecuencia base de aguja (CPS) y la ventana de voltaje, no un default genérico."
+      },
+      "step2": {
+        "title": "Máquina y stroke",
+        "body": "La longitud de stroke y el tier del cartucho cambian cómo llega la potencia a la piel. El motor sincroniza esas variables con tu mano para que la física del stroke rotativo siga siendo rigurosa."
+      },
+      "step3": {
+        "title": "Resultado",
+        "body": "Obtienes una lectura voltaje→CPS dentro de una banda segura—el punto dulce de la máquina—priorizando salud de la piel y vida del motor frente a voltaje irresponsable."
+      }
+    },
+    "specAria": "Cómo piensa el motor",
+    "spec": {
+      "styleFirst": {
+        "label": "Lógica primero por estilo",
+        "body": "Cada intención artística tiene una línea base técnica. No aplastamos todo en una sola tabla. DialedIn usa una taxonomía curada donde estilos como Fine Line o American Traditional anclan CPS y ventanas de voltaje—la lógica de setup sigue el estándar de esa disciplina."
+      },
+      "adaptiveStroke": {
+        "label": "Sincronía adaptativa del stroke",
+        "beforePivot": "El stroke de tu máquina es su golpe físico. Tomamos unos ",
+        "afterPivot": " como pivote entre un throw corto y un martillo de trazo largo (4,0 mm en adelante). En trabajo suave con throw largo, el motor baja voltaje para proteger la piel; en throw corto (~2,5 mm), puede subir potencia para penetración fiable.",
+        "pivotBold": "3,5 mm"
+      },
+      "hardwareTier": {
+        "label": "Tier de hardware y resistencia",
+        "body": "No todo el equipo es igual. Los cartuchos económicos suelen tener membranas más rígidas que roban potencia antes de mover la aguja—el impuesto de membrana. El tiering aplica un empuje medido para que el motor no calare cuando la membrana resiste."
+      },
+      "safety": {
+        "label": "Barreras de seguridad",
+        "beforeLink": "La rendición técnica implica que cada sugerencia permanece en un rango seguro. La prevención de trauma y el respeto al motor van antes que persiguier voltaje máximo. Para el marco de investigación, ver ",
+        "linkScience": "metodología científica",
+        "afterLink": "."
+      }
+    },
+    "pillarsHidden": "Tres pilares del cálculo",
+    "pillars": {
+      "p1": {
+        "id": "01 — ANCLA",
+        "title": "Baseline primero por estilo",
+        "body": "Fine line, American Traditional y saturación suave no comparten el mismo CPS ni perfil de impacto. El ancla es siempre el oficio que elegiste—incluido cómo pensamos voltaje en línea fina frente a packing más pesado."
+      },
+      "p2": {
+        "id": "02 — MODIFICADOR",
+        "title": "Stroke y mano",
+        "body": "El stroke es la longitud de throw en milímetros. El mismo dial en una máquina de 4,2 mm golpea más fuerte que en una de 3,0 mm—el voltaje no se lee aislado de la física del stroke rotativo."
+      },
+      "p3": {
+        "id": "03 — SALIDA",
+        "title": "Resultado calibrado",
+        "body": "El voltaje recomendado se desplaza para que la fuerza efectiva en la piel siga coherente al cambiar máquina, stroke o tier—alineado con una guía de agrupación que casa con tu técnica."
+      }
+    },
+    "sec01": {
+      "title": "Baseline primero por estilo",
+      "body": "No creemos en una talla para todos. DialedIn parte de tu objetivo artístico. Ya sea línea maciza o gris por capas, el motor fija una frecuencia base (CPS) acorde al estándar de ese oficio."
+    },
+    "sec02": {
+      "title": "El modificador de stroke (modo adaptativo)",
+      "body": "El stroke es el golpe físico de tu máquina. Un trazo largo (desde 4,0 mm) acumula más momento. Para evitar trauma, DialedIn reduce voltaje automáticamente si usas trazo largo en técnicas suaves. Si el stroke es corto, subimos potencia para la penetración que necesitas."
+    },
+    "sec03": {
+      "title": "Cálculo constante",
+      "body": "Si cambias máquina o estilo, el motor recalcula en tiempo real. Es como tener un mentor técnico en tu puesto: el equipo siempre sincronizado con tu mano.",
+      "noteBefore": "Sobre la ",
+      "noteStrong": "conversión voltaje→CPS",
+      "noteMid": ": frecuencia y voltios son socios, no duplicados. DialedIn los mantiene en un solo contexto—véase también ",
+      "noteBlogLink": "hercios y voltios en la máquina",
+      "noteAfter": "."
+    },
+    "sec04": {
+      "title": "El impuesto de membrana, en claro",
+      "beforeLink": "Membranas más rígidas suman resistencia antes de un movimiento útil de aguja. Por eso algunos cartuchos económicos parecen ‘gravar’ tu motor. DialedIn compensa tiers con un pequeño empuje para que el tirón siga honesto. Lectura profunda: ",
+      "linkMembrane": "El impuesto de membrana",
+      "afterLink": "."
+    },
+    "sec05": {
+      "title": "Qué te compra un setup disciplinado",
+      "li1": "Trauma controlado: alinear CPS a velocidad de mano y stroke reduce dispersión por pelear tu propio ritmo de motor.",
+      "li2": "Saturación predecible: menos pasadas titubeantes por adivinar voltaje en el vacío.",
+      "li3": "Estándares, no eslóganes: rotativas de entrada y máquinas flagship obedecen la misma física—el punto dulce es método, no historia de marca."
+    },
+    "sec06": {
+      "title": "Metodología científica: la constante de fuerza efectiva",
+      "p1": "La lógica se apoya en la relación física entre longitud de stroke (S) y frecuencia de aguja (F). Si S crece, la fuerza de impacto en la piel crece de forma explosiva. Para mantener una zona de impacto segura, la frecuencia (voltaje) debe ajustarse en sentido inverso.",
+      "beforeStrokeLink": "DialedIn usa una caída lineal alrededor del ",
+      "pivotBold": "pivote 3,5 mm",
+      "betweenLinks": " para mantener la máquina en el punto dulce mecánico, sea cual sea el tier. Para la narrativa completa del stroke, ver ",
+      "linkStroke": "El pivote 3,5 mm",
+      "midLinks": " y el marco profundo en ",
+      "linkScience": "metodología científica",
+      "afterLinks": "."
+    },
+    "footerMeta": "MÉTODO · SENSIBLE AL STROKE · ANCLADO AL ESTILO · RENDICIÓN DE CUENTAS",
+    "fab": "Abrir motor de ajuste"
   }
 }

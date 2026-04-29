@@ -22,7 +22,7 @@ import { HandSpeedSlider } from "./HandSpeedSlider";
 import { NeedleHangSlider } from "./NeedleHangSlider";
 import { ScienceWarningBanners } from "./ScienceWarningBanners";
 import { SweetSpotGauge } from "./SweetSpotGauge";
-import { TechnicalResultWithHints, TechnicalTerm } from "./TechnicalTerm";
+import { TechnicalResultWithHints } from "./TechnicalTerm";
 
 export function DialedInTool() {
   const tNav = useTranslations("nav");
@@ -166,26 +166,26 @@ export function DialedInTool() {
     const tips: string[] = [];
     const stroke = activeStrokeMm;
     if (stroke >= 4.2 && engineTechniqueName === "Black & Grey Realism") {
-      tips.push(
-        "Using a 4.2mm stroke for realism requires a very light hand — let needle work do the heavy lifting.",
-      );
+      tips.push(tUi("proTipRealism"));
     }
     if (voltage?.longStrokeSoftShadingGuard) {
-      tips.push(
-        "Long stroke (4.0mm+) with Soft Shading: baseline voltage is reduced by 1.5V to limit skin trauma.",
-      );
+      tips.push(tUi("proTipLongStroke"));
     }
     if (
       state.needleHangMm >= 2.0 &&
       engineTechniqueName &&
       /shading|realism|portrait/i.test(engineTechniqueName)
     ) {
-      tips.push(
-        "Higher hanging with soft techniques: float the needle and watch ink saturation — avoid over-driving voltage.",
-      );
+      tips.push(tUi("proTipHang"));
     }
     return tips;
-  }, [activeStrokeMm, engineTechniqueName, voltage, state.needleHangMm]);
+  }, [
+    activeStrokeMm,
+    engineTechniqueName,
+    voltage,
+    state.needleHangMm,
+    tUi,
+  ]);
 
   const strokeOptionsSorted = useMemo(() => {
     if (!machine) return [];
@@ -246,16 +246,14 @@ export function DialedInTool() {
           <LocaleSwitcher />
         </p>
         <h1 className="dialed__title">DIALED-IN</h1>
-        <p className="dialed__lede">
-          Master your machine, no matter the brand. Get pro-level voltage, needle, and setup guidance for your style—designed for artists who value precision over hype.
-        </p>
+        <p className="dialed__lede">{tUi("heroLede")}</p>
       </header>
 
       <HowItWorks />
 
       <div className="dialed__grid">
-        <section className="dialed__panel" aria-label="Inputs">
-          <h2 className="dialed__h2">Inputs</h2>
+        <section className="dialed__panel" aria-label={tUi("inputsAriaLabel")}>
+          <h2 className="dialed__h2">{tUi("inputsHeading")}</h2>
 
           <SelectionInterface
             taxonomyStyleOptions={taxonomyStyleOptions}
@@ -274,7 +272,7 @@ export function DialedInTool() {
           />
 
           <label className="dialed__field">
-            <span>3 · Select Machine Library</span>
+            <span>{tUi("machineLibraryLabel")}</span>
             <select
               className="dialed__select"
               value={state.machineId ?? ""}
@@ -288,7 +286,7 @@ export function DialedInTool() {
               }
             >
               <option value="">
-                {machinesLoading ? "Loading machines…" : "Select machine…"}
+                {machinesLoading ? tUi("loadingMachines") : tUi("selectMachine")}
               </option>
               {machines.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -303,16 +301,17 @@ export function DialedInTool() {
             ) : null}
             {selectedTaxonomy ? (
               <p className="dialed__hint">
-                Recommended stroke baseline for {selectedTaxonomy.styleDisplayName}:{" "}
-                {selectedTaxonomy.idealStrokeMm.toFixed(1)} mm — when you pick a
-                machine, stroke snaps to the closest available option.
+                {tUi("strokeBaselineHint", {
+                  style: selectedTaxonomy.styleDisplayName,
+                  mm: selectedTaxonomy.idealStrokeMm.toFixed(1),
+                })}
               </p>
             ) : null}
           </label>
 
           {machine && strokeOptionsSorted.length > 1 ? (
             <label className="dialed__field">
-              <span>Stroke length (global)</span>
+              <span>{tUi("strokeLengthLabel")}</span>
               <select
                 className="dialed__select"
                 value={String(
@@ -343,21 +342,28 @@ export function DialedInTool() {
           />
         </section>
 
-        <section className="dialed__panel dialed__panel--out" aria-label="Output dashboard">
+        <section
+          className="dialed__panel dialed__panel--out"
+          aria-label={tUi("outputAriaLabel")}
+        >
           {engine ? (
             <ScienceWarningBanners checks={engine.safety_trigger.checks} />
           ) : null}
 
           <h2 className="dialed__h2 dialed__h2--gauges">
-            Output Dashboard (Recommended)
+            {tUi("outputHeading")}
           </h2>
           <p className="dialed__tool-guardrail" role="note">
             {tUi("toolGuardrail")}
           </p>
 
           {selectedTaxonomy?.technicalFocus && machine ? (
-            <div className="dialed__goal" role="region" aria-label="Setup goal">
-              <p className="dialed__goal__kicker">Goal</p>
+            <div
+              className="dialed__goal"
+              role="region"
+              aria-label={tUi("goalAriaLabel")}
+            >
+              <p className="dialed__goal__kicker">{tUi("goalKicker")}</p>
               <p className="dialed__goal__text">{selectedTaxonomy.technicalFocus}</p>
             </div>
           ) : null}
@@ -368,16 +374,16 @@ export function DialedInTool() {
                 <>
                   <div className="dialed__voltage-column">
                     <SweetSpotGauge
-                      label="Voltage"
+                      label={tUi("voltageLabel")}
                       value={gaugePack.volts}
                       min={gaugePack.voltMin}
                       max={gaugePack.voltMax}
                       unit="V"
                       badge={
                         acusHzFirst
-                          ? "Power supply reference"
+                          ? tUi("badgePowerSupplyRef")
                           : adaptedVolt
-                            ? "Adapted range"
+                            ? tUi("badgeAdaptedRange")
                             : undefined
                       }
                       emphasis={acusHzFirst ? "muted" : "default"}
@@ -388,20 +394,23 @@ export function DialedInTool() {
                         role="status"
                         aria-live="polite"
                       >
-                        <p className="dialed__adaptive-mismatch__title">Lesson</p>
+                        <p className="dialed__adaptive-mismatch__title">
+                          {tUi("lessonTitle")}
+                        </p>
                         <p className="dialed__adaptive-mismatch__body">
-                          DialedIn has adapted your voltage for a{" "}
-                          {activeStrokeMm.toFixed(1)}mm stroke. For{" "}
-                          {selectedTaxonomy.styleDisplayName}, the industry standard is{" "}
-                          {selectedTaxonomy.idealStrokeMm.toFixed(1)}mm to ensure
-                          optimal saturation without skin trauma.
+                          {tUi("lessonBody", {
+                            currentStroke: activeStrokeMm.toFixed(1),
+                            style: selectedTaxonomy.styleDisplayName,
+                            idealStroke:
+                              selectedTaxonomy.idealStrokeMm.toFixed(1),
+                          })}
                         </p>
                         <p className="dialed__adaptive-mismatch__bridge">
                           <Link
                             className="dialed__link dialed__adaptive-mismatch__bridge-link"
                             href="/blog/stroke-physics"
                           >
-                            Learn more about the 3.5mm Pivot and Stroke Physics.
+                            {tUi("lessonLink")}
                           </Link>
                         </p>
                       </div>
@@ -409,37 +418,36 @@ export function DialedInTool() {
                   </div>
                   <SweetSpotGauge
                     label={
-                      acusHzFirst
-                        ? "Hertz (Hz) — primary control"
-                        : "Hertz (Hz) — supply / readout band"
+                      acusHzFirst ? tUi("hzPrimary") : tUi("hzSupplyBand")
                     }
                     value={gaugePack.hz}
                     min={gaugePack.hzMin}
                     max={gaugePack.hzMax}
                     unit="Hz"
                     decimals={0}
-                    badge={acusHzFirst ? "Primary readout" : undefined}
+                    badge={
+                      acusHzFirst ? tUi("hzBadgePrimary") : undefined
+                    }
                     emphasis={acusHzFirst ? "primary" : "default"}
                     caption={
                       acusHzFirst
-                        ? "For ACUS, treat Hz as the main operating readout; voltage is a bench supply reference into that band."
-                        : "Heuristic band tied to voltage—similar to how many bench supplies frame the drive readout."
+                        ? tUi("hzCaptionAcus")
+                        : tUi("hzCaptionOther")
                     }
                   />
                   <SweetSpotGauge
-                    label="Cycles Per Second (CPS)"
+                    label={tUi("cpsLabel")}
                     value={gaugePack.cps}
                     min={gaugePack.cpsMin}
                     max={gaugePack.cpsMax}
                     unit="CPS"
                     decimals={0}
-                    caption="CPS = round((final volts × 1000) ÷ 60)—a scalar teaching view of how hard the pack is being driven after hand-speed offset and clamp."
+                    caption={tUi("cpsCaption")}
                   />
                 </>
               ) : (
                 <p className="dialed__placeholder dialed__placeholder--gauges">
-                  Select style, technique, and machine to load recommended
-                  readouts and gauges.
+                  {tUi("gaugePlaceholder")}
                 </p>
               )}
             </div>
@@ -453,7 +461,7 @@ export function DialedInTool() {
 
           <dl className="dialed__kv">
             <div>
-              <dt>Selected stroke (global)</dt>
+              <dt>{tUi("selectedStrokeDt")}</dt>
               <dd className="dialed__kv-value">
                 {machine
                   ? `${activeStrokeMm.toFixed(1)} mm`
@@ -462,7 +470,7 @@ export function DialedInTool() {
             </div>
             {selectedTaxonomy ? (
               <div>
-                <dt>Style baseline (ideal stroke)</dt>
+                <dt>{tUi("styleBaselineDt")}</dt>
                 <dd className="dialed__kv-value">
                   {selectedTaxonomy.idealStrokeMm.toFixed(1)} mm
                 </dd>
@@ -471,10 +479,10 @@ export function DialedInTool() {
           </dl>
 
           <div className="dialed__cartridge-section">
-            <h3 className="dialed__h3">Cartridge Configuration</h3>
+            <h3 className="dialed__h3">{tUi("cartridgeConfigHeading")}</h3>
             <dl className="dialed__kv dialed__kv--cartridge">
               <div>
-                <dt>Recommended Grouping</dt>
+                <dt>{tUi("recommendedGroupingDt")}</dt>
                 <dd className="dialed__kv-value dialed__kv-value--cartridge">
                   {selectedTaxonomy?.idealNeedleRange ? (
                     <span className="dialed__kv-value__inner">
@@ -488,22 +496,15 @@ export function DialedInTool() {
                 </dd>
               </div>
               <div>
-                <dt>
-                  <TechnicalTerm termKey="SLT">SLT</TechnicalTerm> context
-                </dt>
+                <dt>{tUi("sltContextDt")}</dt>
                 <dd className="dialed__kv-value dialed__muted">
-                  Brand bridge equivalents (
-                  <TechnicalTerm termKey="SLT">SLT</TechnicalTerm>,{" "}
-                  <TechnicalTerm termKey="#10">#10</TechnicalTerm>,{" "}
-                  <TechnicalTerm termKey="TX">TX</TechnicalTerm>) appear in
-                  glossary hovers on matching cartridge copy — main UI stays
-                  standard-first.
+                  {tUi("sltContextBody")}
                 </dd>
               </div>
               {engine ? (
                 <>
                   <div>
-                    <dt>Needle diameter</dt>
+                    <dt>{tUi("needleDiameterDt")}</dt>
                     <dd className="dialed__kv-value">
                       <TechnicalResultWithHints
                         text={engine.needle_diameter_range}
@@ -511,7 +512,7 @@ export function DialedInTool() {
                     </dd>
                   </div>
                   <div>
-                    <dt>Needle count</dt>
+                    <dt>{tUi("needleCountDt")}</dt>
                     <dd className="dialed__kv-value">
                       <TechnicalResultWithHints
                         text={engine.needle_count_range}
@@ -519,7 +520,7 @@ export function DialedInTool() {
                     </dd>
                   </div>
                   <div>
-                    <dt>Taper</dt>
+                    <dt>{tUi("taperDt")}</dt>
                     <dd className="dialed__kv-value">
                       <TechnicalResultWithHints
                         text={engine.taper_recommendation}
@@ -536,23 +537,25 @@ export function DialedInTool() {
               <div>
                 <dt>
                   {adaptedVolt
-                    ? "Adapted voltage band (Setup Engine)"
-                    : "Machine voltage envelope"}
+                    ? tUi("adaptedVoltageDt")
+                    : tUi("machineVoltageDt")}
                 </dt>
                 <dd className="dialed__kv-value">
                   {adaptedVolt ? (
                     <>
-                      Operating band {adaptedVolt.adaptedMin.toFixed(1)} –{" "}
-                      {adaptedVolt.adaptedMax.toFixed(1)} V (3.5 mm pivot offset{" "}
-                      {adaptedVolt.modifierV >= 0 ? "+" : ""}
-                      {adaptedVolt.modifierV.toFixed(1)} V).{" "}
+                      {tUi("voltDetailAdapted", {
+                        vmin: adaptedVolt.adaptedMin.toFixed(1),
+                        vmax: adaptedVolt.adaptedMax.toFixed(1),
+                        mod: `${adaptedVolt.modifierV >= 0 ? "+" : ""}${adaptedVolt.modifierV.toFixed(1)}`,
+                      })}
                     </>
                   ) : null}
-                  Machine baseline {voltage.baselineVolts.toFixed(1)} V →
-                  soft-guard / stroke adjusted {voltage.adjustedVolts.toFixed(1)}{" "}
-                  V
+                  {tUi("voltDetailBaseline", {
+                    baseline: voltage.baselineVolts.toFixed(1),
+                    adj: voltage.adjustedVolts.toFixed(1),
+                  })}
                   {voltage.longStrokeSoftShadingGuard
-                    ? " (long-stroke soft shading guard active)"
+                    ? tUi("longStrokeGuardSuffix")
                     : ""}
                 </dd>
               </div>
@@ -568,14 +571,10 @@ export function DialedInTool() {
                   onClick={() => setDevJsonOpen((o) => !o)}
                   aria-expanded={devJsonOpen}
                   aria-label={
-                    devJsonOpen
-                      ? "Hide raw setup data"
-                      : "Show raw setup data (JSON)"
+                    devJsonOpen ? tUi("devAriaHide") : tUi("devAriaShow")
                   }
                 >
-                  {devJsonOpen
-                    ? "Hide technical detail"
-                    : "Show technical detail"}
+                  {devJsonOpen ? tUi("devHideDetail") : tUi("devShowDetail")}
                 </button>
               </div>
               {devJsonOpen ? (
@@ -587,8 +586,11 @@ export function DialedInTool() {
           ) : null}
 
           {proTips.length > 0 ? (
-            <aside className="dialed__protips" aria-label="Pro tips">
-              <h3 className="dialed__h3">Pro tips</h3>
+            <aside
+              className="dialed__protips"
+              aria-label={tUi("proTipsAriaLabel")}
+            >
+              <h3 className="dialed__h3">{tUi("proTipsHeading")}</h3>
               <ul>
                 {proTips.map((tip) => (
                   <li key={tip}>{tip}</li>

@@ -1,0 +1,102 @@
+{
+  "crumbMethod": "Método",
+  "heroLede": "Precisão não é acidente. O DialedIn traduz a física da sua máquina num roteiro calculado para a sua arte.",
+  "flowHeading": "Do estilo ao resultado",
+  "flow": {
+    "step1": {
+      "title": "Estilo",
+      "body": "Você nomeia o ofício—fine line, American Traditional, cinza suave. Essa escolha fixa a frequência base de agulha (CPS) e a janela de voltagem, não um padrão genérico."
+    },
+    "step2": {
+      "title": "Máquina e curso",
+      "body": "Comprimento de curso e tier do cartucho mudam como a potência chega à pele. O motor sincroniza essas variáveis com sua mão."
+    },
+    "step3": {
+      "title": "Resultado",
+      "body": "Você obtém leitura voltagem→CPS numa faixa segura—o ponto ideal—priorizando saúde da pele e vida do motor."
+    }
+  },
+  "specAria": "Como o motor pensa",
+  "spec": {
+    "styleFirst": {
+      "label": "Lógica primeiro por estilo",
+      "body": "Cada intenção artística tem baseline técnico. O DialedIn usa taxonomia curada onde estilos como Fine Line ou American Traditional ancoram CPS e voltagem."
+    },
+    "adaptiveStroke": {
+      "label": "Sincronia adaptativa do curso",
+      "beforePivot": "O curso da máquina é o golpe físico. Tratamos cerca de ",
+      "afterPivot": " como pivô entre throw curto e martelo de curso longo (4,0 mm+). Em trabalho suave com throw longo, o motor reduz voltagem; em throw curto (~2,5 mm), pode subir potência.",
+      "pivotBold": "3,5 mm"
+    },
+    "hardwareTier": {
+      "label": "Tier de hardware e resistência",
+      "body": "Cartuchos baratos costumam ter membranas mais rígidas—taxa de membrana. O tiering aplica compensação medida."
+    },
+    "safety": {
+      "label": "Barreiras de segurança",
+      "beforeLink": "Cada sugestão permanece num intervalo seguro. Ver ",
+      "linkScience": "metodologia científica",
+      "afterLink": "."
+    }
+  },
+  "pillarsHidden": "Três pilares do cálculo",
+  "pillars": {
+    "p1": {
+      "id": "01 — ÂNCORA",
+      "title": "Baseline primeiro por estilo",
+      "body": "Fine line, American Traditional e sombreamento suave não compartilham o mesmo CPS. A âncora é sempre o ofício escolhido."
+    },
+    "p2": {
+      "id": "02 — MODIFICADOR",
+      "title": "Curso e mão",
+      "body": "Curso é o comprimento do throw em milímetros. O mesmo dial numa máquina de 4,2 mm bate mais forte que numa de 3,0 mm."
+    },
+    "p3": {
+      "id": "03 — SAÍDA",
+      "title": "Resultado calibrado",
+      "body": "A voltagem recomendada se move para manter força efetiva coerente ao mudar máquina, curso ou tier."
+    }
+  },
+  "sec01": {
+    "title": "Baseline primeiro por estilo",
+    "body": "Não acreditamos num único tamanho. O DialedIn parte do seu objetivo artístico e define CPS alinhado ao ofício."
+  },
+  "sec02": {
+    "title": "O modificador de curso (modo adaptativo)",
+    "body": "Curso longo (4,0 mm+) acumula mais momento. Para evitar trauma, o DialedIn reduz voltagem em técnicas suaves; em curso curto, sobe potência para penetração."
+  },
+  "sec03": {
+    "title": "Cálculo constante",
+    "body": "Ao mudar máquina ou estilo, o motor recalcula em tempo real—como um mentor técnico na sua estação.",
+    "noteBefore": "Sobre ",
+    "noteStrong": "conversão voltagem→CPS",
+    "noteMid": ": frequência e volts são parceiros. Veja também ",
+    "noteBlogLink": "hertz e volts na máquina",
+    "noteAfter": "."
+  },
+  "sec04": {
+    "title": "A taxa de membrana, em termos claros",
+    "beforeLink": "Membranas mais rígidas somam resistência antes do movimento útil. Leitura profunda: ",
+    "linkMembrane": "A taxa de membrana",
+    "afterLink": "."
+  },
+  "sec05": {
+    "title": "O que um setup disciplinado compra",
+    "li1": "Trauma controlado: CPS alinhado à mão e ao curso reduz dispersão.",
+    "li2": "Saturação previsível: menos passadas hesitantes ao adivinhar voltagem.",
+    "li3": "Padrões, não slogans: mesma física para rotativa de entrada ou flagship."
+  },
+  "sec06": {
+    "title": "Metodologia científica: a constante de força efetiva",
+    "p1": "A lógica relaciona comprimento de curso (S) e frequência (F). Quando S sobe, o impacto na pele sobe de forma acentuada; a frequência (voltagem) deve compensar inversamente.",
+    "beforeStrokeLink": "O DialedIn usa decaimento linear em torno do ",
+    "pivotBold": "pivô 3,5 mm",
+    "betweenLinks": " para manter o ponto ideal mecânico. Narrativa completa: ",
+    "linkStroke": "O pivô 3,5 mm",
+    "midLinks": " e enquadramento em ",
+    "linkScience": "metodologia científica",
+    "afterLinks": "."
+  },
+  "footerMeta": "MÉTODO · CONSCIENTE DO CURSO · ANCORADO AO ESTILO · PRESTAÇÃO DE CONTAS",
+  "fab": "Abrir motor de setup"
+}

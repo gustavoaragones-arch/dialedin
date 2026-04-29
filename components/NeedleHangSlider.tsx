@@ -1,6 +1,7 @@
 "use client";
 
 import { NEEDLE_HANG_ABS_MIN_MM } from "@/lib/dialedInData";
+import { useTranslations } from "next-intl";
 import { TechnicalTerm } from "./TechnicalTerm";
 
 type Props = {
@@ -10,6 +11,7 @@ type Props = {
 };
 
 export function NeedleHangSlider({ valueMm, maxMm, onChange }: Props) {
+  const t = useTranslations("dialedInUi");
   const min = NEEDLE_HANG_ABS_MIN_MM;
   const max = Math.max(min, maxMm);
   const span = max - min;
@@ -19,7 +21,8 @@ export function NeedleHangSlider({ valueMm, maxMm, onChange }: Props) {
     <div className="hang-slider">
       <div className="hang-slider__head">
         <span>
-          Needle <TechnicalTerm termKey="Hanging">hanging</TechnicalTerm>
+          {t("needleHangPrefix")}
+          <TechnicalTerm termKey="Hanging">{t("needleHangWord")}</TechnicalTerm>
         </span>
         <span className="hang-slider__value">{valueMm.toFixed(1)} mm</span>
       </div>
@@ -39,7 +42,7 @@ export function NeedleHangSlider({ valueMm, maxMm, onChange }: Props) {
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={valueMm}
-          aria-label="Needle hanging depth in millimeters"
+          aria-label={t("needleHangAriaLabel")}
         />
       </div>
       <div className="hang-slider__ticks">
