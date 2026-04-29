@@ -250,8 +250,15 @@ export function DialedInTool() {
           {" · "}
           <LocaleSwitcher />
         </p>
-        <h1 className="dialed__title">DIALED-IN</h1>
-        <p className="dialed__lede">{tUi("heroLede")}</p>
+        <div className="dialed__hero-lockup">
+          <h1 className="dialed__title">
+            <Link className="dialed__logo-link" href="/">
+              DIALED-IN
+            </Link>
+          </h1>
+          <p className="dialed__hero-subtitle">{tUi("heroSubtitle")}</p>
+          <p className="dialed__hero-body">{tUi("heroLede")}</p>
+        </div>
       </header>
 
       <HowItWorks />
