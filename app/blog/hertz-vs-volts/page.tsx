@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/hertz-vs-volts";
+const pageUrl = `${SITE_URL}/blog/hertz-vs-volts`;
+
+const metaTitle = "Hertz vs. Volts: The Frequency Truth";
+const metaDescription =
+  "Tattoo machine Hertz-to-Volts explained for ACUS M1, Cheyenne, and standard rotary setups, with CPS/hand-speed sync guidance.";
 
 export const metadata: Metadata = {
-  title: "Hertz vs. Volts: The Frequency Truth",
-  description:
-    "Tattoo machine Hertz-to-Volts explained for ACUS M1, Cheyenne, and standard rotary setups, with CPS/hand-speed sync guidance.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "Tattoo machine hertz to volts",
     "ACUS M1 frequency settings",
@@ -17,6 +21,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/hertz-vs-volts" },
+  openGraph: openGraphArticle("/blog/hertz-vs-volts", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function HertzVsVoltsPage() {
@@ -24,10 +30,9 @@ export default function HertzVsVoltsPage() {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${pageUrl}#article`,
-    headline: "Hertz vs. Volts: The Frequency Truth",
+    headline: metaTitle,
     url: pageUrl,
-    description:
-      "A technical guide to electrical potential vs physical needle frequency, with derived CPS framing for rotary tattoo machine setups.",
+    description: metaDescription,
     author: {
       "@type": "Organization",
       name: "DialedIn Team",

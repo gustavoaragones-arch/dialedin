@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/hand-speed-sync";
+const pageUrl = `${SITE_URL}/blog/hand-speed-sync`;
+
+const metaTitle = "Syncing Hand Speed to Machine Hertz";
+const metaDescription =
+  "Technical guide on coordinating hand velocity with machine frequency (CPS) for perfect stitch density and texture.";
 
 export const metadata: Metadata = {
-  title: "Mastering Needle Hang: The Secret to Visibility and Precision",
-  description:
-    "Mastering the relationship between machine Hertz (CPS) and hand speed for perfect stitch density.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "tattoo machine CPS vs hand speed",
     "whip shading technique speed",
@@ -16,6 +20,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/hand-speed-sync" },
+  openGraph: openGraphArticle("/blog/hand-speed-sync", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function HandSpeedSyncPage() {
@@ -23,10 +29,9 @@ export default function HandSpeedSyncPage() {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "@id": `${pageUrl}#techarticle`,
-    headline: "The Hand Speed Variable: Why Hertz Is Only Half the Story",
+    headline: metaTitle,
     url: pageUrl,
-    description:
-      "Guide to tattoo machine CPS vs hand speed, stitch density, and practical speed control for lining and whip shading.",
+    description: metaDescription,
     author: {
       "@type": "Organization",
       name: "DialedIn Team",
@@ -54,9 +59,7 @@ export default function HandSpeedSyncPage() {
         <p className="science-page__eyebrow">
           <Link href="/blog">← Blog</Link>
         </p>
-        <h1 className="science-page__title">
-          The Hand Speed Variable: Why Hertz Is Only Half the Story
-        </h1>
+        <h1 className="science-page__title">{metaTitle}</h1>
         <p className="science-page__lede">
           Machine frequency is only one side of line quality. Stitch density is the product of CPS
           and how far your hand travels between hits.
@@ -139,12 +142,6 @@ export default function HandSpeedSyncPage() {
           The tool keeps CPS, voltage, and stroke inside a coherent band while you tune hand
           velocity to task. Use it as a <strong>lining hand speed guide</strong>, then validate in
           skin response and pass consistency.
-        </p>
-        <p>
-          In the Supabase tattoo taxonomy, the <code>technical_focus</code> column is where each
-          style records its priority constraint (for example, crisp line authority versus soft
-          texture control). Needle hang should follow that focus: short hang supports control-heavy
-          work, while longer protrusion supports visibility-heavy passes when hand discipline is high.
         </p>
       </section>
 

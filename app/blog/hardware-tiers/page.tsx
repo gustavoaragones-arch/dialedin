@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/hardware-tiers";
+const pageUrl = `${SITE_URL}/blog/hardware-tiers`;
+
+const metaTitle = "Tattoo Hardware: Tier 1 vs Tier 2 Gear";
+const metaDescription =
+  "A practical comparison of benchmark brands vs workhorse gear. When to upgrade your machine for professional consistency.";
 
 export const metadata: Metadata = {
-  title: "Tattoo Gear Tiers: When to Upgrade from Budget to Pro",
-  description:
-    "How cartridge membrane tension and skin stretching affects tattoo saturation and trauma.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "best professional tattoo machines",
     "budget vs premium tattoo cartridges",
@@ -17,6 +21,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/hardware-tiers" },
+  openGraph: openGraphArticle("/blog/hardware-tiers", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function HardwareTiersPage() {
@@ -24,10 +30,9 @@ export default function HardwareTiersPage() {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "@id": `${pageUrl}#techarticle`,
-    headline: "The Equipment Gap: Tier 1 vs. Tier 2 Hardware",
+    headline: metaTitle,
     url: pageUrl,
-    description:
-      "Tier-by-tier guide to machine and cartridge predictability, with practical upgrade criteria for artists moving from training rigs to client consistency.",
+    description: metaDescription,
     author: { "@type": "Organization", name: "DialedIn Team" },
     publisher: {
       "@type": "Organization",
@@ -53,7 +58,7 @@ export default function HardwareTiersPage() {
         <p className="science-page__eyebrow">
           <Link href="/blog">← Blog</Link>
         </p>
-        <h1 className="science-page__title">The Equipment Gap: Tier 1 vs. Tier 2 Hardware</h1>
+        <h1 className="science-page__title">{metaTitle}</h1>
         <p className="science-page__lede">
           The question is not pride. The question is predictability. Tiers describe how repeatable
           your setup stays when skin resistance and workload rise.

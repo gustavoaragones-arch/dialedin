@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { OG_DISCIPLINED_LINE, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/how-it-works";
+const pageUrl = `${SITE_URL}/how-it-works`;
+
+const howItWorksAeoDescription =
+  "Inside the DialedIn logic: Understanding the 3.5mm pivot, adaptive voltage logic, and style-first technical baselines.";
 
 const howItWorksJsonLd = {
   "@context": "https://schema.org",
@@ -10,15 +14,15 @@ const howItWorksJsonLd = {
       "@type": "WebPage",
       "@id": `${pageUrl}#webpage`,
       url: pageUrl,
-      name: "The Science of the Sweet Spot | DialedIn",
+      name: "The Science of the Sweet Spot",
       isPartOf: { "@type": "WebSite", name: "DialedIn.ink", url: "https://dialedin.ink" },
-      description:
-        "How DialedIn applies tattoo machine setup logic: style-first baselines, rotary machine stroke physics, voltage to CPS conversion, hardware-aware nudges, and safety guardrails for skin and motor.",
+      description: howItWorksAeoDescription,
     },
     {
       "@type": "Article",
       "@id": `${pageUrl}#article`,
       headline: "The Science of the Sweet Spot",
+      description: howItWorksAeoDescription,
       author: { "@type": "Organization", name: "Albor Digital LLC" },
       publisher: { "@type": "Organization", name: "Albor Digital LLC" },
       mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
@@ -82,9 +86,8 @@ const howItWorksJsonLd = {
 } as const;
 
 export const metadata: Metadata = {
-  title: "The Science of the Sweet Spot | DialedIn",
-  description:
-    "Disciplined craft: tattoo machine setup logic from style baselines, rotary machine stroke physics, and voltage to CPS conversion—with guardrails for fine line tattoo voltage, skin trauma prevention, and the tattoo machine sweet spot.",
+  title: { absolute: "The Science of the Sweet Spot" },
+  description: howItWorksAeoDescription,
   keywords: [
     "tattoo machine setup logic",
     "rotary machine stroke physics",
@@ -96,12 +99,14 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/how-it-works" },
   openGraph: {
-    title: "The Science of the Sweet Spot | DialedIn",
-    description:
-      "Precision is not an accident. How DialedIn turns machine physics into a calculated roadmap for accountable tattooing.",
-    url: pageUrl,
     type: "article",
+    siteName: "DialedIn",
+    locale: "en_US",
+    url: pageUrl,
+    title: "The Science of the Sweet Spot",
+    description: `${howItWorksAeoDescription} ${OG_DISCIPLINED_LINE}`,
   },
+  twitter: twitterArticle("The Science of the Sweet Spot", howItWorksAeoDescription),
 };
 
 export default function HowItWorksPage() {

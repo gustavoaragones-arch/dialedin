@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { openGraphWebsite, twitterArticle } from "@/lib/seoSite";
+
+const metaTitle = "Terms of Service";
+const metaDescription =
+  "Terms of Service for DialedIn.ink, a product of Albor Digital LLC.";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — DialedIn.ink",
-  description:
-    "Terms of Service for DialedIn.ink, a product of Albor Digital LLC.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
+  alternates: { canonical: "/terms" },
+  openGraph: openGraphWebsite("/terms", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function TermsPage() {

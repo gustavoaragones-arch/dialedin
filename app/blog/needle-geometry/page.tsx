@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/needle-geometry";
+const pageUrl = `${SITE_URL}/blog/needle-geometry`;
+
+const metaTitle = "Needle Geometry: #10 vs #12 & Taper";
+const metaDescription =
+  "Understanding how needle gauge and taper length affect ink flow and skin trauma. Technical standards for professional tattooing.";
 
 export const metadata: Metadata = {
-  title: "The Geometry of Trauma: Taper and Gauge Explained — DialedIn",
-  description:
-    "Difference between #10 and #12 needles, long taper vs short taper tattoo needles, and how needle gauge affects ink flow—grounded geometry for disciplined setup.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "Difference between #10 and #12 needles",
     "long taper vs short taper tattoo",
@@ -18,6 +22,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/needle-geometry" },
+  openGraph: openGraphArticle("/blog/needle-geometry", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function NeedleGeometryPage() {
@@ -27,10 +33,9 @@ export default function NeedleGeometryPage() {
       {
         "@type": "BlogPosting",
         "@id": `${pageUrl}#article`,
-        headline: "The Geometry of Trauma: Taper and Gauge Explained",
+        headline: metaTitle,
         url: pageUrl,
-        description:
-          "Gauge (#08, #10, #12) and taper (short vs long) control footprint, resistance, and ink delivery. Why one 3RL is not like another.",
+        description: metaDescription,
         author: {
           "@type": "Organization",
           name: "DialedIn Team",
@@ -49,9 +54,8 @@ export default function NeedleGeometryPage() {
       {
         "@type": "TechArticle",
         "@id": `${pageUrl}#techarticle`,
-        headline: "The Geometry of Trauma: Taper and Gauge Explained",
-        description:
-          "Technical guide to tattoo needle gauge (#08–#12), long vs short taper, ink flow, and trauma-aware grouping choices.",
+        headline: metaTitle,
+        description: metaDescription,
         author: { "@type": "Organization", name: "DialedIn Team" },
         publisher: {
           "@type": "Organization",
@@ -95,9 +99,7 @@ export default function NeedleGeometryPage() {
         <p className="science-page__eyebrow">
           <Link href="/blog">← Blog</Link>
         </p>
-        <h1 className="science-page__title">
-          The Geometry of Trauma: Taper and Gauge Explained
-        </h1>
+        <h1 className="science-page__title">{metaTitle}</h1>
         <p className="science-page__lede">
           Two cartridges labeled the same can behave like different tools. The
           silent variables are gauge and taper—and they govern trauma, ink flow,

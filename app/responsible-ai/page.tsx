@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { openGraphWebsite, twitterArticle } from "@/lib/seoSite";
+
+const metaTitle = "Responsible AI Policy";
+const metaDescription =
+  "Responsible AI practices for DialedIn.ink, aligned with Albor Digital LLC.";
 
 export const metadata: Metadata = {
-  title: "Responsible AI Policy — DialedIn.ink",
-  description:
-    "Responsible AI practices for DialedIn.ink, aligned with Albor Digital LLC.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
+  alternates: { canonical: "/responsible-ai" },
+  openGraph: openGraphWebsite("/responsible-ai", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function ResponsibleAiPage() {

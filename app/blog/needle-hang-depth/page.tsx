@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/needle-hang-depth";
+const pageUrl = `${SITE_URL}/blog/needle-hang-depth`;
+
+const metaTitle = "Mastering Needle Hang & Depth Control";
+const metaDescription =
+  "The secret to visibility and precision. Why riding the tube vs. hanging the needle changes your saturation and safety.";
 
 export const metadata: Metadata = {
-  title: "Mastering Needle Hang: The Secret to Visibility and Precision",
-  description:
-    "Mastering the relationship between machine Hertz (CPS) and hand speed for perfect stitch density.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "tattoo needle hang length",
     "riding the tube vs hanging the needle",
@@ -17,6 +21,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/needle-hang-depth" },
+  openGraph: openGraphArticle("/blog/needle-hang-depth", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function NeedleHangDepthPage() {
@@ -24,10 +30,9 @@ export default function NeedleHangDepthPage() {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "@id": `${pageUrl}#techarticle`,
-    headline: "The Depth Equation: Mastering Needle Hang and Protrusion",
+    headline: metaTitle,
     url: pageUrl,
-    description:
-      "Technical guide to needle hang length, visibility control, ink wicking behavior, and depth discipline for fine line and realism.",
+    description: metaDescription,
     author: { "@type": "Organization", name: "DialedIn Team" },
     publisher: {
       "@type": "Organization",
@@ -53,9 +58,7 @@ export default function NeedleHangDepthPage() {
         <p className="science-page__eyebrow">
           <Link href="/blog">← Blog</Link>
         </p>
-        <h1 className="science-page__title">
-          The Depth Equation: Mastering Needle Hang and Protrusion
-        </h1>
+        <h1 className="science-page__title">{metaTitle}</h1>
         <p className="science-page__lede">
           The final mechanical variable is not on your power supply. Needle hang determines what you
           can see, what depth you can control, and how cleanly ink moves to skin.

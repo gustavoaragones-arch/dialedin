@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/the-membrane-tax";
+const pageUrl = `${SITE_URL}/blog/the-membrane-tax`;
+
+const metaTitle = "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges";
+const metaDescription =
+  "Tattoo machine stalling explained: membrane tension, rotary torque loss, and practical voltage compensation for Dragonhawk Mast and other tier-2 setups.";
 
 export const metadata: Metadata = {
-  title: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
-  description:
-    "Tattoo machine stalling explained: membrane tension, rotary torque loss, and practical voltage compensation for Dragonhawk Mast and other tier-2 setups.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "Tattoo machine stalling",
     "Dragonhawk Mast voltage",
@@ -17,6 +21,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/the-membrane-tax" },
+  openGraph: openGraphArticle("/blog/the-membrane-tax", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function TheMembraneTaxPage() {
@@ -24,10 +30,9 @@ export default function TheMembraneTaxPage() {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "@id": `${pageUrl}#article`,
-    headline: "The Membrane Tax: Why Your Machine Stalls on Budget Cartridges",
+    headline: metaTitle,
     url: pageUrl,
-    description:
-      "Tattoo machine stalling explained through membrane tension and torque drag, with voltage compensation guidance for tier-2 hardware.",
+    description: metaDescription,
     author: {
       "@type": "Organization",
       name: "DialedIn Team",

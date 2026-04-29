@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/stroke-physics";
+const pageUrl = `${SITE_URL}/blog/stroke-physics`;
+
+const metaTitle = "Stroke Physics: The 3.5mm Pivot Guide";
+const metaDescription =
+  "Why your tattoo machine's stroke dictates your voltage. Mastering the relationship between mechanical force and needle frequency.";
 
 export const metadata: Metadata = {
-  title: "The 3.5mm Pivot: Why Your Machine's Stroke Dictates Your Art — DialedIn",
-  description:
-    "Best stroke for soft shading, 4.2mm vs 3.5mm stroke behavior, and a rotary machine stroke guide built around force, frequency, and the 3.5mm baseline.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "best stroke for soft shading",
     "4.2mm stroke vs 3.5mm stroke",
@@ -18,6 +22,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/stroke-physics" },
+  openGraph: openGraphArticle("/blog/stroke-physics", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function StrokePhysicsPage() {
@@ -27,10 +33,9 @@ export default function StrokePhysicsPage() {
       {
         "@type": "BlogPosting",
         "@id": `${pageUrl}#article`,
-        headline: "The 3.5mm Pivot: Why Your Machine's Stroke Dictates Your Art",
+        headline: metaTitle,
         url: pageUrl,
-        description:
-          "Stroke length sets impact depth at a given voltage. Why 3.5mm is a versatile baseline, how 4.0–4.2mm behaves as a hammer, and when 2.5–3.0mm is appropriate.",
+        description: metaDescription,
         author: {
           "@type": "Organization",
           name: "DialedIn Team",
@@ -49,9 +54,8 @@ export default function StrokePhysicsPage() {
       {
         "@type": "TechArticle",
         "@id": `${pageUrl}#techarticle`,
-        headline: "The 3.5mm Pivot: Why Your Machine's Stroke Dictates Your Art",
-        description:
-          "Technical guide to rotary stroke length, the 3.5mm baseline, long-throw hammer effect, and voltage compensation for soft shading.",
+        headline: metaTitle,
+        description: metaDescription,
         author: { "@type": "Organization", name: "DialedIn Team" },
         publisher: {
           "@type": "Organization",
@@ -95,9 +99,7 @@ export default function StrokePhysicsPage() {
         <p className="science-page__eyebrow">
           <Link href="/blog">← Blog</Link>
         </p>
-        <h1 className="science-page__title">
-          The 3.5mm Pivot: Why Your Machine&apos;s Stroke Dictates Your Art
-        </h1>
+        <h1 className="science-page__title">{metaTitle}</h1>
         <p className="science-page__lede">
           Force versus frequency: the dial on your supply is only half the
           story. Stroke length decides how much mechanical punch each cycle

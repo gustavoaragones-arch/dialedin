@@ -1,11 +1,18 @@
 import { ScienceMethodologyContent } from "@/components/ScienceMethodologyContent";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { openGraphWebsite, twitterArticle } from "@/lib/seoSite";
+
+const metaTitle = "Scientific methodology";
+const metaDescription =
+  "Universal machine physics for tattoo setup: hammer effect on long stroke, ACUS Hz readouts, CPS consistency across hardware tiers, and membrane-aware voltage compensation for stiffer cartridges.";
 
 export const metadata: Metadata = {
-  title: "Scientific methodology — DialedIn.ink",
-  description:
-    "Universal machine physics for tattoo setup: Hammer Effect on long stroke, ACUS Hz standard, CPS consistency across hardware tiers, and membrane-aware voltage compensation for stiffer cartridges.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
+  alternates: { canonical: "/science" },
+  openGraph: openGraphWebsite("/science", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function SciencePage() {

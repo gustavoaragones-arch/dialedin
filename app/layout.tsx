@@ -1,22 +1,33 @@
 import { DialedInProvider } from "@/components/DialedInProvider";
 import { SiteFooter } from "@/components/SiteFooter";
 import { dialedinSchema } from "@/lib/seoJsonLd";
+import { OG_DISCIPLINED_LINE, SITE_URL } from "@/lib/seoSite";
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title:
-    "DIALED-IN — Tattoo Voltage Calculator | ACUS M1 Frequency Guide | Tattoo Machine CPS",
+  metadataBase: new URL(SITE_URL),
+  title: "DialedIn",
   description:
-    "DialedIn is the premier tattoo machine voltage and setup calculator. Specialized for ACUS M1, Cheyenne, and Bishop hardware, our engine syncs machine stroke with hand speed for perfect tattoo needle configurations.",
-  keywords: [
-    "Tattoo Voltage Calculator",
-    "ACUS M1 Frequency Guide",
-    "Tattoo Machine CPS",
-    "tattoo machine voltage",
-    "rotary tattoo stroke",
-    "tattoo needle configuration",
-  ],
+    "Tattoo machine setup engine — style-first voltage, stroke sync, and CPS guidance for accountable tattooing.",
+  applicationName: "DialedIn",
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "DialedIn",
+    locale: "en_US",
+    title: "DialedIn",
+    description: `Tattoo Machine Setup Engine. ${OG_DISCIPLINED_LINE}`,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "DialedIn",
+    description: `Tattoo Machine Setup Engine. ${OG_DISCIPLINED_LINE}`,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

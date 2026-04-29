@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { openGraphWebsite, twitterArticle } from "@/lib/seoSite";
+
+const metaTitle = "Technical Blog";
+const metaDescription =
+  "Stroke physics, needle geometry, hardware tiers, and disciplined setup methodology from DialedIn.";
 
 export const metadata: Metadata = {
-  title: "Technical Blog — DialedIn.ink",
-  description:
-    "Technical insights and machine physics from the DialedIn Team.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
+  alternates: { canonical: "/blog" },
+  openGraph: openGraphWebsite("/blog", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 const POSTS = [
@@ -17,42 +24,42 @@ const POSTS = [
   },
   {
     slug: "needle-geometry",
-    title: "The Geometry of Trauma: Taper and Gauge Explained",
+    title: "Needle Geometry: #10 vs #12 & Taper",
     summary:
       "Gauge (#08–#12) and taper (long vs short) control footprint, resistance, and ink flow—why one 3RL is not like another, and how to choose a disciplined default.",
     category: "Needle Geometry",
   },
   {
     slug: "stroke-physics",
-    title: "The 3.5mm Pivot: Why Your Machine's Stroke Dictates Your Art",
+    title: "Stroke Physics: The 3.5mm Pivot Guide",
     summary:
       "Force versus frequency: why 3.5mm is a versatile baseline, how 4.0–4.2mm behaves as a hammer, when 2.5–3.0mm fits soft work, and how DialedIn offsets voltage for long throw.",
     category: "Motor Physics",
   },
   {
     slug: "hardware-tiers",
-    title: "The Equipment Gap: Tier 1 vs. Tier 2 Hardware",
+    title: "Tattoo Hardware: Tier 1 vs Tier 2 Gear",
     summary:
       "A disciplined tiering guide for predictability, from training-grade workhorses to benchmark pro rigs and cartridge reliability.",
     category: "Hardware Systems",
   },
   {
     slug: "needle-hang-depth",
-    title: "The Depth Equation: Mastering Needle Hang and Protrusion",
+    title: "Mastering Needle Hang & Depth Control",
     summary:
       "Learn when to ride the tube versus hang the needle, and how protrusion affects visibility, depth control, and ink flow.",
     category: "Application Mechanics",
   },
   {
     slug: "cartridge-drag",
-    title: "The Friction Factor: Understanding Cartridge Drag and Skin Tension",
+    title: "Mastering Cartridge Drag & Skin Tension",
     summary:
       "How cartridge membrane tension and skin stretch quality change torque delivery, saturation consistency, and skin trauma risk.",
     category: "Application Mechanics",
   },
   {
     slug: "hand-speed-sync",
-    title: "The Hand Speed Variable: Why Hertz Is Only Half the Story",
+    title: "Syncing Hand Speed to Machine Hertz",
     summary:
       "Master CPS-to-hand velocity sync for cleaner stitch density in lining and controlled texture in whip shading.",
     category: "Motor Physics",

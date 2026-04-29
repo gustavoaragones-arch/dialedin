@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { BlogTechnicalContext } from "@/components/BlogTechnicalContext";
+import { openGraphArticle, SITE_URL, twitterArticle } from "@/lib/seoSite";
 
-const pageUrl = "https://dialedin.ink/blog/cartridge-drag";
+const pageUrl = `${SITE_URL}/blog/cartridge-drag`;
+
+const metaTitle = "Mastering Cartridge Drag & Skin Tension";
+const metaDescription =
+  "Overcoming membrane resistance (The Membrane Tax) and using three-point stretch techniques to ensure pigment saturation.";
 
 export const metadata: Metadata = {
-  title: "Tattoo Gear Tiers: When to Upgrade from Budget to Pro",
-  description:
-    "How cartridge membrane tension and skin stretching affects tattoo saturation and trauma.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
   keywords: [
     "tattoo cartridge membrane tension",
     "skin stretching techniques",
@@ -17,6 +21,8 @@ export const metadata: Metadata = {
   authors: [{ name: "DialedIn Team" }],
   publisher: "DialedIn.ink",
   alternates: { canonical: "/blog/cartridge-drag" },
+  openGraph: openGraphArticle("/blog/cartridge-drag", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function CartridgeDragPage() {
@@ -24,10 +30,9 @@ export default function CartridgeDragPage() {
     "@context": "https://schema.org",
     "@type": "TechArticle",
     "@id": `${pageUrl}#techarticle`,
-    headline: "The Friction Factor: Understanding Cartridge Drag and Skin Tension",
+    headline: metaTitle,
     url: pageUrl,
-    description:
-      "How cartridge membrane tension, skin stretch quality, and needle drag determine saturation consistency and skin trauma.",
+    description: metaDescription,
     author: {
       "@type": "Organization",
       name: "DialedIn Team",
@@ -56,9 +61,7 @@ export default function CartridgeDragPage() {
         <p className="science-page__eyebrow">
           <Link href="/blog">← Blog</Link>
         </p>
-        <h1 className="science-page__title">
-          The Friction Factor: Understanding Cartridge Drag and Skin Tension
-        </h1>
+        <h1 className="science-page__title">{metaTitle}</h1>
         <p className="science-page__lede">
           Clean settings do not guarantee clean work. If membrane drag is high or your stretch
           collapses, energy is wasted before the needle can do disciplined work.
@@ -104,42 +107,12 @@ export default function CartridgeDragPage() {
             stable depth is discipline; random voltage jumps are guesswork.
           </p>
         </blockquote>
-      </section>
-
-      <section className="science-section">
-        <h2>The equipment gap: Tier 1 vs Tier 2 hardware</h2>
         <p>
-          From the internal tier map used by the DialedIn team (tattoo machines:cartridges), Tier
-          1 reference brands include Cheyenne, Bishop, and Kwadron. Tier 2 workhorse brands include
-          Dragonhawk, Mast, and Peak. This is not about status; it is about repeatability under load.
-        </p>
-        <ul>
-          <li>
-            <strong>Tier 1 benchmarks:</strong> tighter motor timing, better needle stabilization,
-            and cartridge consistency. This is where many artists identify the{" "}
-            <strong>best professional tattoo machines</strong> for daily client work.
-          </li>
-          <li>
-            <strong>Tier 2 workhorses:</strong> strong value and practical reliability for training,
-            backup rigs, and disciplined reps. In heavy packing, you may see more torque drift and
-            vibration than top-tier systems.
-          </li>
-        </ul>
-        <p>
-          The practical question is <strong>budget vs premium tattoo cartridges</strong> and machine
-          consistency over long sessions. In real station terms,{" "}
-          <strong>Cheyenne vs Dragonhawk performance</strong> often comes down to how stable the hit
-          remains when skin, stretch, and membrane resistance all rise together.
-        </p>
-        <blockquote>
-          <p>
-            <strong>Disciplined mentor:</strong> Start with reliable Tier 2 and master physics.
-            Upgrade when your hand precision consistently outruns what the hardware can repeat.
-          </p>
-        </blockquote>
-        <p>
-          Build decisions on <strong>tattoo gear reliability</strong>, not marketing volume. If your
-          machine can repeat clean output all day, you can build clean habits that transfer upward.
+          For a full tier comparison of benchmark rigs versus workhorse gear, read{" "}
+          <Link className="dialed__link" href="/blog/hardware-tiers">
+            Tattoo Hardware: Tier 1 vs Tier 2 Gear
+          </Link>
+          .
         </p>
       </section>
 

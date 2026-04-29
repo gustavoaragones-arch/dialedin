@@ -1,9 +1,26 @@
 import type { MetadataRoute } from "next";
-
-const base = "https://dialedin.ink";
+import { SITE_URL } from "@/lib/seoSite";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
+  const base = SITE_URL;
+
+  const weekly = [
+    "/how-it-works",
+    "/science",
+    "/blog",
+    "/blog/needle-geometry",
+    "/blog/stroke-physics",
+    "/blog/cartridge-drag",
+    "/blog/hand-speed-sync",
+    "/blog/hardware-tiers",
+    "/blog/needle-hang-depth",
+    "/blog/hertz-vs-volts",
+    "/blog/the-membrane-tax",
+    "/terms",
+    "/privacy",
+    "/responsible-ai",
+  ] as const;
 
   return [
     {
@@ -12,23 +29,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 1,
     },
-    {
-      url: `${base}/how-it-works`,
+    ...weekly.map((path) => ({
+      url: `${base}${path}`,
       lastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/blog/needle-geometry`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/blog/stroke-physics`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
+      changeFrequency: "weekly" as const,
+      priority: path === "/how-it-works" ? 0.9 : 0.75,
+    })),
   ];
 }

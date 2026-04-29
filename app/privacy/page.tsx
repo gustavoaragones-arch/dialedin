@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { openGraphWebsite, twitterArticle } from "@/lib/seoSite";
+
+const metaTitle = "Privacy Policy";
+const metaDescription =
+  "Privacy Policy for DialedIn.ink, a product of Albor Digital LLC.";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — DialedIn.ink",
-  description:
-    "Privacy Policy for DialedIn.ink, a product of Albor Digital LLC.",
+  title: { absolute: metaTitle },
+  description: metaDescription,
+  alternates: { canonical: "/privacy" },
+  openGraph: openGraphWebsite("/privacy", metaTitle, metaDescription),
+  twitter: twitterArticle(metaTitle, metaDescription),
 };
 
 export default function PrivacyPage() {
