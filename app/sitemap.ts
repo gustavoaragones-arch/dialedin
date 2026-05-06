@@ -10,6 +10,7 @@ const PATHS = [
   "/science",
   "/blog",
   "/blog/needle-geometry",
+  "/blog/needle-taper",
   "/blog/stroke-physics",
   "/blog/cartridge-drag",
   "/blog/hand-speed-sync",

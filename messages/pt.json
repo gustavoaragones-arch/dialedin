@@ -43,6 +43,10 @@
       "title": "Geometria de agulha: #10 vs #12 e taper",
       "description": "Como calibre e taper afetam fluxo de tinta e trauma na pele. Padrões técnicos para tatuagem profissional."
     },
+    "blogNeedleTaper": {
+      "title": "Dominando o taper da agulha: ciência do fio e o mito da precisão",
+      "description": "O que é taper em tatuagem técnica, ST/LT/SLT, tinta por impacto e por que milímetros de penetração são modelo mental—não uma leitura CNC na pele."
+    },
     "blogCartridgeDrag": {
       "title": "Arrasto do cartucho e tensão de pele",
       "description": "Superar resistência de membrana (taxa de membrana) e usar tensão em três pontos para saturação estável."
@@ -253,6 +257,10 @@
       "needleGeometry": {
         "title": "Geometria da agulha: #10 vs #12 e taper",
         "summary": "Calibre (#08–#12) e taper (longo vs curto) controlam pegada, resistência e fluxo de tinta—por que um 3RL não é igual a outro."
+      },
+      "needleTaper": {
+        "title": "Dominando o taper da agulha: ciência do fio e o mito da precisão",
+        "summary": "Geometria do taper na entrada na pele e tinta por batida; ST, LT e SLT; e por que profundidade real se calibra por resistência, saturação e som—não no micrometro."
       },
       "strokePhysics": {
         "title": "Física do curso: guia do pivô 3,5 mm",

@@ -2,6 +2,7 @@
 export const BLOG_INDEX_POSTS = [
   { slug: "hertz-vs-volts", key: "hertzVsVolts", categoryKey: "motorPhysics" },
   { slug: "needle-geometry", key: "needleGeometry", categoryKey: "needleGeometry" },
+  { slug: "needle-taper", key: "needleTaper", categoryKey: "needleGeometry" },
   { slug: "stroke-physics", key: "strokePhysics", categoryKey: "motorPhysics" },
   { slug: "hardware-tiers", key: "hardwareTiers", categoryKey: "hardwareSystems" },
   { slug: "needle-hang-depth", key: "needleHangDepth", categoryKey: "applicationMechanics" },

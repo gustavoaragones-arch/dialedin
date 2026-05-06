@@ -43,6 +43,10 @@
       "title": "Geometría de aguja: #10 vs #12 y conicidad",
       "description": "Cómo calibre y conicidad afectan flujo de tinta y traumatismo cutáneo. Estándares técnicos para tatuar con rigor."
     },
+    "blogNeedleTaper": {
+      "title": "Dominar el taper de aguja: ciencia del filo y el mito de la precisión",
+      "description": "Qué es el taper en tatuaje técnico, diferencias ST/LT/SLT, depósito de tinta por impacto y por qué los milímetros de penetración son modelo mental—no una lectura CNC en la piel."
+    },
     "blogCartridgeDrag": {
       "title": "Arrastre del cartucho y tensión de piel",
       "description": "Vencer la resistencia de membrana (impuesto de membrana) y usar tensión en tres puntos para saturación controlada."
@@ -253,6 +257,10 @@
       "needleGeometry": {
         "title": "Geometría de aguja: #10 vs #12 y conicidad",
         "summary": "Calibre (#08–#12) y conicidad (larga vs corta) controlan huella, resistencia y flujo de tinta: por qué un 3RL no es igual a otro y cómo elegir un default disciplinado."
+      },
+      "needleTaper": {
+        "title": "Dominar el taper de aguja: ciencia del filo y el mito de la precisión",
+        "summary": "Geometría del taper: entrada en piel y tinta por golpe; ST, LT y SLT; y por qué la profundidad real se calibra con resistencia, saturación y oído—no con micrómetro."
       },
       "strokePhysics": {
         "title": "Física del trazo: guía del pivote 3,5 mm",

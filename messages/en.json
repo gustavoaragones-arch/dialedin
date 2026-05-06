@@ -43,6 +43,10 @@
       "title": "Needle Geometry: #10 vs #12 & Taper",
       "description": "Understanding how needle gauge and taper length affect ink flow and skin trauma. Technical standards for professional tattooing."
     },
+    "blogNeedleTaper": {
+      "title": "Mastering Needle Taper: The Science of Sharpness and the Myth of Precision",
+      "description": "Tattoo needle taper explained: short vs long vs super-long taper, ink deposit per hit, and why millimeter depth quotes are a mental model—not a CNC depth gauge on skin."
+    },
     "blogCartridgeDrag": {
       "title": "Mastering Cartridge Drag & Skin Tension",
       "description": "Overcoming membrane resistance (The Membrane Tax) and using three-point stretch techniques to ensure pigment saturation."
@@ -253,6 +257,10 @@
       "needleGeometry": {
         "title": "Needle Geometry: #10 vs #12 & Taper",
         "summary": "Gauge (#08–#12) and taper (long vs short) control footprint, resistance, and ink flow—why one 3RL is not like another, and how to choose a disciplined default."
+      },
+      "needleTaper": {
+        "title": "Mastering Needle Taper: The Science of Sharpness and the Myth of Precision",
+        "summary": "How taper geometry controls entry angle and ink per hit; ST vs LT vs SLT; and why artists calibrate depth by feel, sound, and saturation—not a handheld micrometer."
       },
       "strokePhysics": {
         "title": "Stroke Physics: The 3.5mm Pivot Guide",

@@ -6,6 +6,12 @@ export const BLOG_KEYWORDS_ES: Partial<Record<string, string[]>> = {
     "calibre de agujas",
     "#10 vs #12 tatuaje",
   ],
+  "/blog/needle-taper": [
+    "diferencias taper aguja tatuaje",
+    "taper largo vs corto tatuaje",
+    "mito profundidad aguja milímetros",
+    "super long taper realismo",
+  ],
   "/blog/stroke-physics": [
     "stroke máquina rotativa",
     "recorrido máquina de tatuar",
