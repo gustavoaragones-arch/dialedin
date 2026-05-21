@@ -2,7 +2,6 @@ import { DialedInProvider } from "@/components/DialedInProvider";
 import { LocaleHtmlLang } from "@/components/LocaleHtmlLang";
 import { SiteFooter } from "@/components/SiteFooter";
 import { routing } from "@/i18n/routing";
-import { buildDialedInJsonLd } from "@/lib/seoJsonLd";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -27,16 +26,8 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const messages = await getMessages();
 
-  const jsonLd = buildDialedInJsonLd(locale);
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd),
-        }}
-      />
       <LocaleHtmlLang locale={locale} />
       <NextIntlClientProvider messages={messages}>
         <main className="site-main">

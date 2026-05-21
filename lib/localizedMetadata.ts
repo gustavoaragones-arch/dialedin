@@ -13,6 +13,9 @@ function ogLocaleTag(locale: string): string {
  * Localized title, description, canonical, hreflang alternates, OG/Twitter.
  * `pathWithoutLocale` is internal pathname: "" for home, "/how-it-works", "/blog/foo", etc.
  * `metaKey` matches `meta.<metaKey>.title` in messages.
+ *
+ * `alternates.canonical` and `alternates.languages` (en, es, pt, x-default → /en/…)
+ * are emitted by Next.js as `<link rel="canonical">` and `<link rel="alternate" hreflang="…">`.
  */
 export async function localizedPageMetadata(
   locale: string,

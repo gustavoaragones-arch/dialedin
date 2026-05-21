@@ -1,22 +1,13 @@
-import { SITE_URL } from "@/lib/seoSite";
 import type { AppLocale } from "@/lib/appLocales";
+import { SITE_URL } from "@/lib/seoSite";
 
-type JsonLdGraph = {
-  "@context": "https://schema.org";
-  "@graph": Record<string, unknown>[];
+type SoftwareAppCopy = {
+  appDescription: string;
+  featureList: string[];
+  keywords: string;
 };
 
-const COPY: Record<
-  AppLocale,
-  {
-    appDescription: string;
-    featureList: string[];
-    keywords: string;
-    howToName: string;
-    howToDescription: string;
-    howToSteps: string[];
-  }
-> = {
+const COPY: Record<AppLocale, SoftwareAppCopy> = {
   en: {
     appDescription:
       "Relational technical calculator for tattoo artists. Optimizes machine voltage, stroke, and needle configuration for your style and technique.",
@@ -28,15 +19,6 @@ const COPY: Record<
     ],
     keywords:
       "tattoo machine settings, tattoo needle gauge, voltage for fine line, tattoo apprentice tool, DialedIn",
-    howToName: "How to dial in your tattoo machine with DialedIn",
-    howToDescription:
-      "Select style and technique, pick your machine, sync hand speed to CPS, and read stroke-aware voltage guidance.",
-    howToSteps: [
-      "Choose your tattoo style and technique path to set the relational baseline.",
-      "Select your machine from the library to establish stroke limits and voltage envelope.",
-      "Adjust hand speed to align motor frequency (CPS) with your movement.",
-      "Use the recommended voltage band and warnings as a technical starting point—not a substitute for mentor-led training.",
-    ],
   },
   es: {
     appDescription:
@@ -49,15 +31,6 @@ const COPY: Record<
     ],
     keywords:
       "ajuste máquina tatuar, calibre aguja tatuaje, voltaje línea fina, herramienta aprendiz tatuaje, DialedIn",
-    howToName: "Cómo calibrar tu máquina con DialedIn",
-    howToDescription:
-      "Elige estilo y técnica, selecciona máquina, sincroniza la mano con CPS y usa la banda de voltaje con advertencias integradas.",
-    howToSteps: [
-      "Elige estilo y trayectoria de técnica para fijar la línea base relacional.",
-      "Selecciona tu máquina en la biblioteca para límites de stroke y envolvente de voltaje.",
-      "Ajusta la velocidad de mano para alinear la frecuencia del motor (CPS) con tu movimiento.",
-      "Usa la banda de voltaje y advertencias como punto de partida técnico—no sustituye formación con mentor.",
-    ],
   },
   pt: {
     appDescription:
@@ -70,15 +43,6 @@ const COPY: Record<
     ],
     keywords:
       "configuração máquina tatuagem, calibre agulha tatuagem, voltagem linha fina, ferramenta aprendiz tatuagem, DialedIn",
-    howToName: "Como calibrar sua máquina com o DialedIn",
-    howToDescription:
-      "Escolha estilo e técnica, selecione a máquina, sincronize a mão com CPS e use a faixa de voltagem com alertas.",
-    howToSteps: [
-      "Escolha estilo e trilha de técnica para definir a linha de base relacional.",
-      "Selecione sua máquina na biblioteca para limites de curso e envelope de voltagem.",
-      "Ajuste a velocidade da mão para alinhar a frequência do motor (CPS) ao movimento.",
-      "Use a faixa de voltagem e alertas como ponto de partida técnico—não substitui treino com mentor.",
-    ],
   },
 };
 
@@ -88,48 +52,49 @@ function resolveLocale(locale: string): AppLocale {
 }
 
 /**
- * Site-wide JSON-LD for the setup tool: Educational SoftwareApplication + HowTo (locale-aware).
+ * Home / setup tool JSON-LD — single SoftwareApplication object for Google Rich Results
+ * (name + offers required; EducationalApplication + operatingSystem recommended).
  */
-export function buildDialedInJsonLd(locale: string): JsonLdGraph {
+export function buildSoftwareApplicationJsonLd(locale: string): Record<string, unknown> {
   const loc = resolveLocale(locale);
   const c = COPY[loc];
-  const baseUrl = `${SITE_URL}/${loc}/`;
+  const pageUrl = `${SITE_URL}/${loc}`;
 
   return {
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "@id": `${baseUrl}#dialedin-educational-app`,
-        name: "DialedIn.ink",
-        url: baseUrl,
-        operatingSystem: "All",
-        applicationCategory: "EducationalApplication",
-        description: c.appDescription,
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "USD",
-        },
-        author: {
-          "@type": "Organization",
-          name: "Albor Digital LLC",
-          url: SITE_URL,
-        },
-        educationalLevel: "Beginner to Intermediate (Apprentices)",
-        featureList: c.featureList,
-        keywords: c.keywords,
-      },
-      {
-        "@type": "HowTo",
-        "@id": `${baseUrl}#howto-dial-in`,
-        name: c.howToName,
-        description: c.howToDescription,
-        step: c.howToSteps.map((text) => ({
-          "@type": "HowToStep",
-          text,
-        })),
-      },
-    ],
+    "@type": ["WebApplication", "SoftwareApplication"],
+    "@id": `${pageUrl}#softwareapplication`,
+    name: "DialedIn.ink",
+    url: pageUrl,
+    operatingSystem: "Any",
+    applicationCategory: "EducationalApplication",
+    description: c.appDescription,
+    isAccessibleForFree: true,
+    browserRequirements: "Requires JavaScript. Requires HTML5.",
+    image: `${SITE_URL}/opengraph-image`,
+    offers: {
+      "@type": "Offer",
+      price: 0,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: pageUrl,
+    },
+    author: {
+      "@type": "Organization",
+      name: "DialedIn Team",
+      url: pageUrl,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "DialedIn.ink",
+      url: SITE_URL,
+    },
+    featureList: c.featureList,
+    keywords: c.keywords,
   };
+}
+
+/** @deprecated Use buildSoftwareApplicationJsonLd on the home page only. */
+export function buildDialedInJsonLd(locale: string): Record<string, unknown> {
+  return buildSoftwareApplicationJsonLd(locale);
 }

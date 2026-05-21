@@ -1,5 +1,6 @@
 import { DialedInTool } from "@/components/DialedInTool";
 import { localizedPageMetadata } from "@/lib/localizedMetadata";
+import { buildSoftwareApplicationJsonLd } from "@/lib/seoJsonLd";
 import { setRequestLocale } from "next-intl/server";
 
 type Props = {
@@ -17,5 +18,17 @@ export async function generateMetadata({ params }: Props) {
 export default async function Page({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <DialedInTool />;
+  const softwareJsonLd = buildSoftwareApplicationJsonLd(locale);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareJsonLd),
+        }}
+      />
+      <DialedInTool />
+    </>
+  );
 }

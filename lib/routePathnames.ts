@@ -58,7 +58,24 @@ export const localizedPathnames: Record<
     es: "/blog/impuesto-membrana",
     pt: "/blog/the-membrane-tax",
   },
+  "/blog/needle-taper": {
+    en: "/blog/needle-taper",
+    es: "/blog/taper-aguja",
+    pt: "/blog/needle-taper",
+  },
+  "/blog/physics-of-rule-breaking": {
+    en: "/blog/physics-of-rule-breaking",
+    es: "/blog/fisica-romper-reglas",
+    pt: "/blog/physics-of-rule-breaking",
+  },
 };
+
+/** BCP 47-style keys for `<link rel="alternate" hreflang="…">` (matches locale URLs). */
+export function hreflangLabel(locale: AppLocale): string {
+  if (locale === "es") return "es";
+  if (locale === "pt") return "pt";
+  return "en";
+}
 
 /** User-facing path after locale prefix (e.g. `/blog/fisica-stroke` for ES). */
 export function outwardPath(locale: string, internalPath: string): string {
@@ -72,10 +89,11 @@ export function outwardPath(locale: string, internalPath: string): string {
   return row[loc] ?? internalPath;
 }
 
+/** Absolute alternate URLs for canonical + hreflang (`en`, `es`, `pt`, `x-default` → English). */
 export function hreflangUrlMap(internalPath: string): Record<string, string> {
   const languages: Record<string, string> = {};
   for (const loc of APP_LOCALES) {
-    languages[loc] = `${SITE_URL}/${loc}${outwardPath(loc, internalPath)}`;
+    languages[hreflangLabel(loc)] = `${SITE_URL}/${loc}${outwardPath(loc, internalPath)}`;
   }
   languages["x-default"] = `${SITE_URL}/en${outwardPath("en", internalPath)}`;
   return languages;
