@@ -43,7 +43,7 @@
   "cpsLabel": "Ciclos por segundo (CPS)",
   "cpsCaption": "CPS = arred((volts finais × 1000) ÷ 60)—visão escalar didática de quanto o pack é exigido após offset da mão e clamp.",
   "lessonTitle": "Lição",
-  "lessonBody": "O DialedIn adaptou sua voltagem para um curso de {currentStroke} mm. Para {style}, o padrão do setor é {idealStroke} mm para saturação ideal sem trauma.",
+  "lessonBody": "O tattoomachinesetup.com adaptou sua voltagem para um curso de {currentStroke} mm. Para {style}, o padrão do setor é {idealStroke} mm para saturação ideal sem trauma.",
   "lessonLink": "Saiba mais sobre o pivô 3,5 mm e a física do curso.",
   "selectedStrokeDt": "Curso selecionado (global)",
   "styleBaselineDt": "Baseline de estilo (curso ideal)",

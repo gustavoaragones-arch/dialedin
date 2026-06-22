@@ -43,7 +43,7 @@
   "cpsLabel": "Ciclos por segundo (CPS)",
   "cpsCaption": "CPS = redondeo((voltios finales × 1000) ÷ 60)—vista didáctica escalar de cuánto se exige al pack tras offset de mano y clamp.",
   "lessonTitle": "Lección",
-  "lessonBody": "DialedIn ha adaptado tu voltaje para un stroke de {currentStroke} mm. Para {style}, el estándar de sector es {idealStroke} mm para una saturación óptima sin traumatismo.",
+  "lessonBody": "tattoomachinesetup.com ha adaptado tu voltaje para un stroke de {currentStroke} mm. Para {style}, el estándar de sector es {idealStroke} mm para una saturación óptima sin traumatismo.",
   "lessonLink": "Más sobre el pivote 3,5 mm y la física del stroke.",
   "selectedStrokeDt": "Stroke seleccionado (global)",
   "styleBaselineDt": "Línea base de estilo (stroke ideal)",

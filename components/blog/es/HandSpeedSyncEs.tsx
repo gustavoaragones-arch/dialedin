@@ -23,7 +23,7 @@ export function HandSpeedSyncEsArticle({ headline, backBlog }: Props) {
         <h2>La matemática de una línea sólida</h2>
         <p>
           Si tu mano se mueve muy rápido para el voltage y el CPS elegidos, los impactos se
-          separan: aparece una línea fragmentada o “punteada”. DialedIn modela la lectura en el
+          separan: aparece una línea fragmentada o “punteada”. tattoomachinesetup.com modela la lectura en el
           mismo idioma que tu máquina: ver primero{" "}
           <Link className="dialed__link" href="/blog/hertz-vs-volts">
             Hertz versus voltios

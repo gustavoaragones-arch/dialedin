@@ -269,7 +269,7 @@ export function DialedInTool() {
         <div className="dialed__hero-lockup">
           <h1 className="dialed__title">
             <Link className="dialed__logo-link" href="/">
-              How to Setup a Tattoo Machine
+              {tUi("heroTitle")}
             </Link>
           </h1>
           <p className="dialed__hero-subtitle">{tUi("heroSubtitle")}</p>

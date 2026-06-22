@@ -125,7 +125,7 @@ export function NeedleTaperEsArticle({ headline, backBlog }: Props) {
       <section className="science-section">
         <h2>Conclusión: técnica sobre números</h2>
         <p>
-          En DialedIn damos base técnica: por ejemplo, para realismo suave, un long taper o SLT suele
+          En tattoomachinesetup.com damos base técnica: por ejemplo, para realismo suave, un long taper o SLT suele
           ser mejor aliado para reducir trauma relativo si el resto del setup es coherente. El
           control fino de profundidad sigue siendo tu firma personal.
         </p>

@@ -1,6 +1,6 @@
 {
   "pageTitle": "Blog técnico",
-  "pageSubhead": "Insights técnicos e física de máquinas da equipe DialedIn.",
+  "pageSubhead": "Insights técnicos e física de máquinas da equipe tattoomachinesetup.com.",
   "categories": {
     "motorPhysics": "Física do motor",
     "needleGeometry": "Geometria da agulha",
@@ -18,7 +18,7 @@
     },
     "strokePhysics": {
       "title": "Física do curso: guia do pivô 3,5 mm",
-      "summary": "Força versus frequência: por que 3,5 mm é baseline versátil, como 4,0–4,2 mm age como martelo e como o DialedIn compensa voltagem em curso longo."
+      "summary": "Força versus frequência: por que 3,5 mm é baseline versátil, como 4,0–4,2 mm age como martelo e como o tattoomachinesetup.com compensa voltagem em curso longo."
     },
     "hardwareTiers": {
       "title": "Hardware de tatuagem: Tier 1 vs Tier 2",

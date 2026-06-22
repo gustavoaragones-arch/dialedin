@@ -1,15 +1,15 @@
 {
   "og": {
-    "disciplinedLine": "Oficio disciplinado — rigor técnico. Calibra trazo, voltaje y estilo con DialedIn."
+    "disciplinedLine": "Oficio disciplinado — rigor técnico. Calibra trazo, voltaje y estilo con tattoomachinesetup.com."
   },
   "meta": {
     "home": {
-      "title": "How to Setup a Tattoo Machine",
+      "title": "Cómo configurar una máquina de tatuar",
       "description": "Motor de ajuste de máquinas de tatuar"
     },
     "howItWorks": {
       "title": "La ciencia del punto óptimo",
-      "description": "Dentro de la lógica DialedIn: pivote 3,5 mm, voltaje adaptativo y baselines técnicos guiados por el estilo."
+      "description": "Dentro de la lógica tattoomachinesetup.com: pivote 3,5 mm, voltaje adaptativo y baselines técnicos guiados por el estilo."
     },
     "science": {
       "title": "Metodología científica",
@@ -33,7 +33,7 @@
     },
     "blogHub": {
       "title": "Blog técnico",
-      "description": "Física del trazo, geometría de agujas, tiers de hardware y metodología de ajuste disciplinada desde DialedIn."
+      "description": "Física del trazo, geometría de agujas, tiers de hardware y metodología de ajuste disciplinada desde tattoomachinesetup.com."
     },
     "blogStrokePhysics": {
       "title": "Física del trazo: guía del pivote 3,5 mm",
@@ -107,6 +107,7 @@
     "liningFallback": "Línea sólida",
     "shadingFallback": "Saturación",
     "toolGuardrail": "Sugerencia técnica. El ajuste final es responsabilidad del artista.",
+    "heroTitle": "Cómo configurar una máquina de tatuar",
     "heroSubtitle": "Aprende a configurar tu máquina de tatuar y la lógica detrás de ella.",
     "heroLede": "Domina tu máquina, sin importar la marca. Obtén guía profesional de voltaje, agujas y setup según tu estilo—diseñado para artistas que valoran la precisión por encima del hype.",
     "howItWorksStripTitle": "Cómo funciona",
@@ -144,7 +145,7 @@
     "cpsLabel": "Ciclos por segundo (CPS)",
     "cpsCaption": "CPS = redondeo((voltios finales × 1000) ÷ 60)—vista didáctica escalar de cuánto se exige al pack tras offset de mano y clamp.",
     "lessonTitle": "Lección",
-    "lessonBody": "DialedIn ha adaptado tu voltaje para un stroke de {currentStroke} mm. Para {style}, el estándar de sector es {idealStroke} mm para una saturación óptima sin traumatismo.",
+    "lessonBody": "tattoomachinesetup.com ha adaptado tu voltaje para un stroke de {currentStroke} mm. Para {style}, el estándar de sector es {idealStroke} mm para una saturación óptima sin traumatismo.",
     "lessonLink": "Más sobre el pivote 3,5 mm y la física del stroke.",
     "selectedStrokeDt": "Stroke seleccionado (global)",
     "styleBaselineDt": "Línea base de estilo (stroke ideal)",
@@ -192,18 +193,18 @@
     },
     "disclaimer": {
       "title": "Descargo de Responsabilidad Técnica",
-      "lead": "DialedIn es una herramienta educativa y de apoyo a la toma de decisiones diseñada exclusivamente para fines informativos. Los parámetros sugeridos (voltaje, hertz, stroke y configuración de agujas) se basan en consensos generales de la industria y especificaciones de fabricantes, pero no sustituyen el juicio profesional ni la formación bajo un mentor calificado.",
+      "lead": "tattoomachinesetup.com es una herramienta educativa y de apoyo a la toma de decisiones diseñada exclusivamente para fines informativos. Los parámetros sugeridos (voltaje, hertz, stroke y configuración de agujas) se basan en consensos generales de la industria y especificaciones de fabricantes, pero no sustituyen el juicio profesional ni la formación bajo un mentor calificado.",
       "acknowledge": "Al usar esta herramienta, usted reconoce que:",
       "riskTitle": "Riesgo físico",
       "riskBody": "El tatuaje implica procedimientos invasivos. El uso incorrecto de la maquinaria o una configuración inadecuada puede causar trauma severo en la piel o infecciones.",
       "equipTitle": "Variabilidad de equipo",
-      "equipBody": "Las máquinas y cartuchos varían según la marca y el estado de mantenimiento; DialedIn no garantiza resultados exactos.",
+      "equipBody": "Las máquinas y cartuchos varían según la marca y el estado de mantenimiento; tattoomachinesetup.com no garantiza resultados exactos.",
       "liabilityTitle": "Responsabilidad del usuario",
       "liabilityBody": "Albor Digital LLC no se hace responsable por lesiones, reclamos legales o resultados estéticos insatisfactorios. La responsabilidad final del ajuste de la máquina recae siempre en el artista."
     },
     "privacy": {
       "title": "Privacidad de Datos y Transparencia",
-      "lead": "En DialedIn, valoramos tu oficio y tu privacidad.",
+      "lead": "En tattoomachinesetup.com, valoramos tu oficio y tu privacidad.",
       "dataTitle": "Datos que recolectamos",
       "dataBody": "No solicitamos información personal sensible. Solo almacenamos preferencias de configuración de forma anónima para mejorar nuestro motor de lógica.",
       "aiTitle": "Uso de IA",
@@ -224,7 +225,7 @@
       "title": "Política de IA responsable",
       "lead": "tattoomachinesetup.com es operado por Albor Digital LLC. Esta política describe cómo usamos automatización y modelos de lenguaje con transparencia.",
       "purposeTitle": "Finalidad y límites",
-      "purposeBody": "DialedIn combina reglas deterministas y heurísticas documentadas con apoyo opcional de modelos de lenguaje para etiquetado de taxonomías técnicas. No es un dispositivo médico y no sustituye el criterio profesional ni la documentación del fabricante.",
+      "purposeBody": "tattoomachinesetup.com combina reglas deterministas y heurísticas documentadas con apoyo opcional de modelos de lenguaje para etiquetado de taxonomías técnicas. No es un dispositivo médico y no sustituye el criterio profesional ni la documentación del fabricante.",
       "humanTitle": "Supervisión humana",
       "humanBody": "Los artistas deben validar cada recomendación frente a especificaciones del fabricante, tipo de piel, objetivos de sesión y normativa local. La herramienta muestra advertencias cuando las comprobaciones modeladas detectan posibles desajustes.",
       "dataTitle": "Datos personales y modelos",
@@ -235,14 +236,14 @@
   },
   "blogNav": {
     "backBlog": "← Blog",
-    "backDial": "← DIALED-IN",
-    "backTool": "← Herramienta DIALED-IN",
+    "backDial": "← tattoomachinesetup.com",
+    "backTool": "← Herramienta tattoomachinesetup.com",
     "backSetup": "← Motor de ajuste",
     "articleFooter": "Publicado por el equipo de tattoomachinesetup.com. Datos técnicos actualizados en abril de 2026."
   },
   "blogIndex": {
     "pageTitle": "Blog técnico",
-    "pageSubhead": "Ideas técnicas y física de máquinas del equipo DialedIn.",
+    "pageSubhead": "Ideas técnicas y física de máquinas del equipo tattoomachinesetup.com.",
     "categories": {
       "motorPhysics": "Física del motor",
       "needleGeometry": "Geometría de aguja",
@@ -264,7 +265,7 @@
       },
       "strokePhysics": {
         "title": "Física del trazo: guía del pivote 3,5 mm",
-        "summary": "Fuerza frente a frecuencia: por qué 3,5 mm es baseline versátil, cómo 4,0–4,2 mm golpea como martillo, cuándo 2,5–3,0 mm encaja en trabajo suave y cómo DialedIn compensa voltaje en trazo largo."
+        "summary": "Fuerza frente a frecuencia: por qué 3,5 mm es baseline versátil, cómo 4,0–4,2 mm golpea como martillo, cuándo 2,5–3,0 mm encaja en trabajo suave y cómo tattoomachinesetup.com compensa voltaje en trazo largo."
       },
       "hardwareTiers": {
         "title": "Hardware de tatuar: Tier 1 vs Tier 2",
@@ -299,7 +300,7 @@
   "scienceArticle": {
     "universalMachinePhysics": {
       "h2": "Física universal de la máquina",
-      "p1": "El modelo de setup DialedIn opera con física relacional. A diferencia de calculadoras lineales, incorpora el efecto martillo: el aumento exponencial del impacto cinético cuando se usan máquinas de trazo largo a alto voltaje. Integrando el estándar ACUS, el artista puede pasar del pensamiento en voltaje al pensamiento en frecuencia (Hz) manteniendo coherente la reciprocidad física (CPS) entre tiers de hardware.",
+      "p1": "El modelo de setup tattoomachinesetup.com opera con física relacional. A diferencia de calculadoras lineales, incorpora el efecto martillo: el aumento exponencial del impacto cinético cuando se usan máquinas de trazo largo a alto voltaje. Integrando el estándar ACUS, el artista puede pasar del pensamiento en voltaje al pensamiento en frecuencia (Hz) manteniendo coherente la reciprocidad física (CPS) entre tiers de hardware.",
       "p2": "La calidad del cartucho también cambia la excitación necesaria. Los cartuchos económicos suelen tener membranas más rígidas, que aumentan la resistencia mecánica al mismo ajuste nominal. El modelo compensa manteniendo voltaje, clase de conicidad y acoplo mano/CPS en un solo sistema, para ajustar voltaje con control en lugar de sobreactuar la máquina."
     },
     "strokeCycle": {
@@ -325,7 +326,7 @@
   },
   "howItWorksPage": {
     "crumbMethod": "Método",
-    "heroLede": "La precisión no es casualidad. DialedIn traduce la física de tu máquina en una hoja de ruta calculada para tu arte.",
+    "heroLede": "La precisión no es casualidad. tattoomachinesetup.com traduce la física de tu máquina en una hoja de ruta calculada para tu arte.",
     "flowHeading": "Del estilo al resultado",
     "flow": {
       "step1": {
@@ -345,7 +346,7 @@
     "spec": {
       "styleFirst": {
         "label": "Lógica primero por estilo",
-        "body": "Cada intención artística tiene una línea base técnica. No aplastamos todo en una sola tabla. DialedIn usa una taxonomía curada donde estilos como Fine Line o American Traditional anclan CPS y ventanas de voltaje—la lógica de setup sigue el estándar de esa disciplina."
+        "body": "Cada intención artística tiene una línea base técnica. No aplastamos todo en una sola tabla. tattoomachinesetup.com usa una taxonomía curada donde estilos como Fine Line o American Traditional anclan CPS y ventanas de voltaje—la lógica de setup sigue el estándar de esa disciplina."
       },
       "adaptiveStroke": {
         "label": "Sincronía adaptativa del stroke",
@@ -384,24 +385,24 @@
     },
     "sec01": {
       "title": "Baseline primero por estilo",
-      "body": "No creemos en una talla para todos. DialedIn parte de tu objetivo artístico. Ya sea línea maciza o gris por capas, el motor fija una frecuencia base (CPS) acorde al estándar de ese oficio."
+      "body": "No creemos en una talla para todos. tattoomachinesetup.com parte de tu objetivo artístico. Ya sea línea maciza o gris por capas, el motor fija una frecuencia base (CPS) acorde al estándar de ese oficio."
     },
     "sec02": {
       "title": "El modificador de stroke (modo adaptativo)",
-      "body": "El stroke es el golpe físico de tu máquina. Un trazo largo (desde 4,0 mm) acumula más momento. Para evitar trauma, DialedIn reduce voltaje automáticamente si usas trazo largo en técnicas suaves. Si el stroke es corto, subimos potencia para la penetración que necesitas."
+      "body": "El stroke es el golpe físico de tu máquina. Un trazo largo (desde 4,0 mm) acumula más momento. Para evitar trauma, tattoomachinesetup.com reduce voltaje automáticamente si usas trazo largo en técnicas suaves. Si el stroke es corto, subimos potencia para la penetración que necesitas."
     },
     "sec03": {
       "title": "Cálculo constante",
       "body": "Si cambias máquina o estilo, el motor recalcula en tiempo real. Es como tener un mentor técnico en tu puesto: el equipo siempre sincronizado con tu mano.",
       "noteBefore": "Sobre la ",
       "noteStrong": "conversión voltaje→CPS",
-      "noteMid": ": frecuencia y voltios son socios, no duplicados. DialedIn los mantiene en un solo contexto—véase también ",
+      "noteMid": ": frecuencia y voltios son socios, no duplicados. tattoomachinesetup.com los mantiene en un solo contexto—véase también ",
       "noteBlogLink": "hercios y voltios en la máquina",
       "noteAfter": "."
     },
     "sec04": {
       "title": "El impuesto de membrana, en claro",
-      "beforeLink": "Membranas más rígidas suman resistencia antes de un movimiento útil de aguja. Por eso algunos cartuchos económicos parecen ‘gravar’ tu motor. DialedIn compensa tiers con un pequeño empuje para que el tirón siga honesto. Lectura profunda: ",
+      "beforeLink": "Membranas más rígidas suman resistencia antes de un movimiento útil de aguja. Por eso algunos cartuchos económicos parecen ‘gravar’ tu motor. tattoomachinesetup.com compensa tiers con un pequeño empuje para que el tirón siga honesto. Lectura profunda: ",
       "linkMembrane": "El impuesto de membrana",
       "afterLink": "."
     },
@@ -414,7 +415,7 @@
     "sec06": {
       "title": "Metodología científica: la constante de fuerza efectiva",
       "p1": "La lógica se apoya en la relación física entre longitud de stroke (S) y frecuencia de aguja (F). Si S crece, la fuerza de impacto en la piel crece de forma explosiva. Para mantener una zona de impacto segura, la frecuencia (voltaje) debe ajustarse en sentido inverso.",
-      "beforeStrokeLink": "DialedIn usa una caída lineal alrededor del ",
+      "beforeStrokeLink": "tattoomachinesetup.com usa una caída lineal alrededor del ",
       "pivotBold": "pivote 3,5 mm",
       "betweenLinks": " para mantener la máquina en el punto dulce mecánico, sea cual sea el tier. Para la narrativa completa del stroke, ver ",
       "linkStroke": "El pivote 3,5 mm",
@@ -442,7 +443,7 @@
       "sweetSpotLead": "¿Quieres ver cómo un stroke de 4,2 mm afecta el voltaje recomendado para tu técnica de sombreado?",
       "sweetSpotLink": "Calcula tu sweet spot aquí",
       "magnumLead": "Si vas a delinear con una aguja Magnum, asegúrate de que el calibre de la aguja sea el correcto.",
-      "magnumLink": "Verifica la compatibilidad en DialedIn"
+      "magnumLink": "Verifica la compatibilidad en tattoomachinesetup.com"
     },
     "toolDashboard": {
       "learnMoreVoltagePepper": "¿Por qué los artistas pro bajan el voltaje para hacer pepper shading?",

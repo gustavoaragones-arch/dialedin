@@ -1,6 +1,6 @@
 {
   "crumbMethod": "Método",
-  "heroLede": "La precisión no es casualidad. DialedIn traduce la física de tu máquina en una hoja de ruta calculada para tu arte.",
+  "heroLede": "La precisión no es casualidad. tattoomachinesetup.com traduce la física de tu máquina en una hoja de ruta calculada para tu arte.",
   "flowHeading": "Del estilo al resultado",
   "flow": {
     "step1": {
@@ -20,7 +20,7 @@
   "spec": {
     "styleFirst": {
       "label": "Lógica primero por estilo",
-      "body": "Cada intención artística tiene una línea base técnica. No aplastamos todo en una sola tabla. DialedIn usa una taxonomía curada donde estilos como Fine Line o American Traditional anclan CPS y ventanas de voltaje—la lógica de setup sigue el estándar de esa disciplina."
+      "body": "Cada intención artística tiene una línea base técnica. No aplastamos todo en una sola tabla. tattoomachinesetup.com usa una taxonomía curada donde estilos como Fine Line o American Traditional anclan CPS y ventanas de voltaje—la lógica de setup sigue el estándar de esa disciplina."
     },
     "adaptiveStroke": {
       "label": "Sincronía adaptativa del stroke",
@@ -59,24 +59,24 @@
   },
   "sec01": {
     "title": "Baseline primero por estilo",
-    "body": "No creemos en una talla para todos. DialedIn parte de tu objetivo artístico. Ya sea línea maciza o gris por capas, el motor fija una frecuencia base (CPS) acorde al estándar de ese oficio."
+    "body": "No creemos en una talla para todos. tattoomachinesetup.com parte de tu objetivo artístico. Ya sea línea maciza o gris por capas, el motor fija una frecuencia base (CPS) acorde al estándar de ese oficio."
   },
   "sec02": {
     "title": "El modificador de stroke (modo adaptativo)",
-    "body": "El stroke es el golpe físico de tu máquina. Un trazo largo (desde 4,0 mm) acumula más momento. Para evitar trauma, DialedIn reduce voltaje automáticamente si usas trazo largo en técnicas suaves. Si el stroke es corto, subimos potencia para la penetración que necesitas."
+    "body": "El stroke es el golpe físico de tu máquina. Un trazo largo (desde 4,0 mm) acumula más momento. Para evitar trauma, tattoomachinesetup.com reduce voltaje automáticamente si usas trazo largo en técnicas suaves. Si el stroke es corto, subimos potencia para la penetración que necesitas."
   },
   "sec03": {
     "title": "Cálculo constante",
     "body": "Si cambias máquina o estilo, el motor recalcula en tiempo real. Es como tener un mentor técnico en tu puesto: el equipo siempre sincronizado con tu mano.",
     "noteBefore": "Sobre la ",
     "noteStrong": "conversión voltaje→CPS",
-    "noteMid": ": frecuencia y voltios son socios, no duplicados. DialedIn los mantiene en un solo contexto—véase también ",
+    "noteMid": ": frecuencia y voltios son socios, no duplicados. tattoomachinesetup.com los mantiene en un solo contexto—véase también ",
     "noteBlogLink": "hercios y voltios en la máquina",
     "noteAfter": "."
   },
   "sec04": {
     "title": "El impuesto de membrana, en claro",
-    "beforeLink": "Membranas más rígidas suman resistencia antes de un movimiento útil de aguja. Por eso algunos cartuchos económicos parecen ‘gravar’ tu motor. DialedIn compensa tiers con un pequeño empuje para que el tirón siga honesto. Lectura profunda: ",
+    "beforeLink": "Membranas más rígidas suman resistencia antes de un movimiento útil de aguja. Por eso algunos cartuchos económicos parecen ‘gravar’ tu motor. tattoomachinesetup.com compensa tiers con un pequeño empuje para que el tirón siga honesto. Lectura profunda: ",
     "linkMembrane": "El impuesto de membrana",
     "afterLink": "."
   },
@@ -89,7 +89,7 @@
   "sec06": {
     "title": "Metodología científica: la constante de fuerza efectiva",
     "p1": "La lógica se apoya en la relación física entre longitud de stroke (S) y frecuencia de aguja (F). Si S crece, la fuerza de impacto en la piel crece de forma explosiva. Para mantener una zona de impacto segura, la frecuencia (voltaje) debe ajustarse en sentido inverso.",
-    "beforeStrokeLink": "DialedIn usa una caída lineal alrededor del ",
+    "beforeStrokeLink": "tattoomachinesetup.com usa una caída lineal alrededor del ",
     "pivotBold": "pivote 3,5 mm",
     "betweenLinks": " para mantener la máquina en el punto dulce mecánico, sea cual sea el tier. Para la narrativa completa del stroke, ver ",
     "linkStroke": "El pivote 3,5 mm",

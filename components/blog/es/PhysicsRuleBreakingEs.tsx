@@ -43,7 +43,7 @@ export async function PhysicsRuleBreakingEsArticle({
           segundo.
         </p>
         <p>
-          DialedIn es deliberadamente conservador: codifica valores cercanos al estándar de marca
+          tattoomachinesetup.com es deliberadamente conservador: codifica valores cercanos al estándar de marca
           para que partas de una base defendible. Desde ahí, romper reglas debe ser{" "}
           <em>instrumentado</em>, no improvisado. Si puedes explicar por qué tu desviación mantiene
           coherente la energía de impacto, la resistencia de la piel y la película de tinta, estás
@@ -59,7 +59,7 @@ export async function PhysicsRuleBreakingEsArticle({
           <ul className="blog-tech-summary__list">
             <li>Los estándares reducen varianza; no agotan el espacio de configuraciones válidas.</li>
             <li>Cualquier emparejamiento “incorrecto” debe reequilibrar stroke, voltaje y velocidad de mano.</li>
-            <li>Usa DialedIn como origen seguro; documenta el delta que vas a ejecutar.</li>
+            <li>Usa tattoomachinesetup.com como origen seguro; documenta el delta que vas a ejecutar.</li>
           </ul>
         </section>
       </section>
@@ -248,7 +248,7 @@ export async function PhysicsRuleBreakingEsArticle({
         </p>
         <blockquote>
           <p>
-            <strong>Llamada a la acción:</strong> usa DialedIn para encontrar tu zona segura—y
+            <strong>Llamada a la acción:</strong> usa tattoomachinesetup.com para encontrar tu zona segura—y
             luego, rómperla con intención, medición y responsabilidad frente a la piel.
           </p>
         </blockquote>

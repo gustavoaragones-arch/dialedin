@@ -31,7 +31,7 @@ export function HertzVsVoltsEsArticle({ headline, backBlog }: Props) {
         <h2>Intención artística y lectura común</h2>
         <p>
           Tribal grueso y retrato fino no comparten la misma firma técnica base: por eso la
-          taxonomía de estilo en DialedIn ancla CPS/voltage a una disciplina—no a un número
+          taxonomía de estilo en tattoomachinesetup.com ancla CPS/voltage a una disciplina—no a un número
           universal. Si tu máquina muestra Hz (ACUS, Cheyenne) y otra solo Volts, igual necesitás
           traducir ambos al mismo marco: frecuencia visible + margen mecánico coherente.
         </p>
