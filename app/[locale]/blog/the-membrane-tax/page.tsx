@@ -44,7 +44,7 @@ export default async function TheMembraneTaxPage({ params }: PageProps) {
     description,
     author: {
       "@type": "Organization",
-      name: "DialedIn Team",
+      name: "tattoomachinesetup.com Team",
     },
     publisher: {
       "@type": "Organization",

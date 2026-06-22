@@ -18,7 +18,7 @@ const COPY: Record<AppLocale, SoftwareAppCopy> = {
       "Safety guardrails for apprentices",
     ],
     keywords:
-      "tattoo machine settings, tattoo needle gauge, voltage for fine line, tattoo apprentice tool, DialedIn",
+      "tattoo machine settings, tattoo needle gauge, voltage for fine line, tattoo apprentice tool, tattoomachinesetup.com",
   },
   es: {
     appDescription:
@@ -30,7 +30,7 @@ const COPY: Record<AppLocale, SoftwareAppCopy> = {
       "Barreras de seguridad para aprendices",
     ],
     keywords:
-      "ajuste máquina tatuar, calibre aguja tatuaje, voltaje línea fina, herramienta aprendiz tatuaje, DialedIn",
+      "ajuste máquina tatuar, calibre aguja tatuaje, voltaje línea fina, herramienta aprendiz tatuaje, tattoomachinesetup.com",
   },
   pt: {
     appDescription:
@@ -42,7 +42,7 @@ const COPY: Record<AppLocale, SoftwareAppCopy> = {
       "Barreiras de segurança para aprendizes",
     ],
     keywords:
-      "configuração máquina tatuagem, calibre agulha tatuagem, voltagem linha fina, ferramenta aprendiz tatuagem, DialedIn",
+      "configuração máquina tatuagem, calibre agulha tatuagem, voltagem linha fina, ferramenta aprendiz tatuagem, tattoomachinesetup.com",
   },
 };
 
@@ -81,7 +81,7 @@ export function buildSoftwareApplicationJsonLd(locale: string): Record<string, u
     },
     author: {
       "@type": "Organization",
-      name: "DialedIn Team",
+      name: "tattoomachinesetup.com Team",
       url: pageUrl,
     },
     publisher: {

@@ -47,7 +47,7 @@ export default async function StrokePhysicsPage({ params }: PageProps) {
         description,
         author: {
           "@type": "Organization",
-          name: "DialedIn Team",
+          name: "tattoomachinesetup.com Team",
         },
         publisher: {
           "@type": "Organization",
@@ -65,7 +65,7 @@ export default async function StrokePhysicsPage({ params }: PageProps) {
         "@id": `${pageUrl}#techarticle`,
         headline,
         description,
-        author: { "@type": "Organization", name: "DialedIn Team" },
+        author: { "@type": "Organization", name: "tattoomachinesetup.com Team" },
         publisher: {
           "@type": "Organization",
           name: "tattoomachinesetup.com",
@@ -241,7 +241,7 @@ export default async function StrokePhysicsPage({ params }: PageProps) {
       </section>
 
       <section className="science-section">
-        <h2>The DialedIn advantage</h2>
+        <h2>The tattoomachinesetup.com advantage</h2>
         <p>
           Adaptive stroke sync exists so you are not doing this math under
           pressure. When you tell the tool you are on a long throw for a soft
@@ -252,7 +252,7 @@ export default async function StrokePhysicsPage({ params }: PageProps) {
           The full stack—style anchor, stroke modifier, hardware tiering—is
           laid out plainly on{" "}
           <Link className="dialed__link" href="/how-it-works">
-            how DialedIn encodes stroke and voltage methodology
+            how tattoomachinesetup.com encodes stroke and voltage methodology
           </Link>
           . From there, move to the{" "}
           <Link className="dialed__link" href="/">

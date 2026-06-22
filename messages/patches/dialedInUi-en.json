@@ -43,7 +43,7 @@
   "cpsLabel": "Cycles per second (CPS)",
   "cpsCaption": "CPS = round((final volts × 1000) ÷ 60)—a scalar teaching view of how hard the pack is being driven after hand-speed offset and clamp.",
   "lessonTitle": "Lesson",
-  "lessonBody": "DialedIn has adapted your voltage for a {currentStroke} mm stroke. For {style}, the industry standard is {idealStroke} mm to ensure optimal saturation without skin trauma.",
+  "lessonBody": "tattoomachinesetup.com has adapted your voltage for a {currentStroke} mm stroke. For {style}, the industry standard is {idealStroke} mm to ensure optimal saturation without skin trauma.",
   "lessonLink": "Learn more about the 3.5mm pivot and stroke physics.",
   "selectedStrokeDt": "Selected stroke (global)",
   "styleBaselineDt": "Style baseline (ideal stroke)",

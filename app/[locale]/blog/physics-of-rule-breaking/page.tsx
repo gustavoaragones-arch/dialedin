@@ -15,10 +15,10 @@ const RULE_BREAKING_KEYWORDS_EN = [
 ] as const;
 
 const ARTICLE_BODY_EXCERPT_EN =
-  "In the tattoo industry, standards exist to prevent skin trauma, but advanced artists often bypass them to achieve unique textures. Long-stroke machines can shade when voltage and hand speed are re-balanced; magnums can draw portrait edges when geometry replaces RL aggression; micro-realism can run on a single 3RL when layering replaces gauge width. DialedIn encodes conservative defaults so you can name your deltas with intent.";
+  "In the tattoo industry, standards exist to prevent skin trauma, but advanced artists often bypass them to achieve unique textures. Long-stroke machines can shade when voltage and hand speed are re-balanced; magnums can draw portrait edges when geometry replaces RL aggression; micro-realism can run on a single 3RL when layering replaces gauge width. tattoomachinesetup.com encodes conservative defaults so you can name your deltas with intent.";
 
 const ARTICLE_BODY_EXCERPT_ES =
-  "En el tatuaje, los estándares reducen trauma y varianza, pero los artistas avanzados los rompen con intención para lograr texturas únicas. Un stroke largo puede sombrear si se reequilibra voltaje y mano; un magnum puede dibujar aristas de retrato cuando la geometría sustituye la agresividad del RL; el micro-realismo puede vivir en una sola 3RL cuando las capas sustituyen el ancho de agrupación. DialedIn fija un origen conservador para que puedas nombrar tu delta con rigor.";
+  "En el tatuaje, los estándares reducen trauma y varianza, pero los artistas avanzados los rompen con intención para lograr texturas únicas. Un stroke largo puede sombrear si se reequilibra voltaje y mano; un magnum puede dibujar aristas de retrato cuando la geometría sustituye la agresividad del RL; el micro-realismo puede vivir en una sola 3RL cuando las capas sustituyen el ancho de agrupación. tattoomachinesetup.com fija un origen conservador para que puedas nombrar tu delta con rigor.";
 
 type PageProps = {
   params: Promise<{ locale: string }>;
@@ -58,7 +58,7 @@ export default async function PhysicsRuleBreakingPage({ params }: PageProps) {
       locale === "es" ? ARTICLE_BODY_EXCERPT_ES : ARTICLE_BODY_EXCERPT_EN,
     author: {
       "@type": "Organization",
-      name: "DialedIn Technical Lab",
+      name: "tattoomachinesetup.com Technical Lab",
     },
     publisher: {
       "@type": "Organization",

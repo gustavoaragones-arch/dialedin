@@ -44,7 +44,7 @@ export async function PhysicsRuleBreakingEnArticle({
           second.
         </p>
         <p>
-          DialedIn is intentionally conservative: it encodes brand-adjacent defaults so you can
+          tattoomachinesetup.com is intentionally conservative: it encodes brand-adjacent defaults so you can
           start from a defensible baseline. From there, rule-breaking should be{" "}
           <em>instrumented</em>, not improvised. If you can state why your deviation still keeps
           impact energy, skin resistance, and ink film coherent, you are doing engineering—not
@@ -60,7 +60,7 @@ export async function PhysicsRuleBreakingEnArticle({
           <ul className="blog-tech-summary__list">
             <li>Standards compress variance; they do not exhaust valid state-space.</li>
             <li>Any “wrong” tool pairing must re-balance stroke, voltage, and hand velocity.</li>
-            <li>Use DialedIn as a safe origin; document the delta you intend to run.</li>
+            <li>Use tattoomachinesetup.com as a safe origin; document the delta you intend to run.</li>
           </ul>
         </section>
       </section>
@@ -246,7 +246,7 @@ export async function PhysicsRuleBreakingEnArticle({
         </p>
         <blockquote>
           <p>
-            <strong>Call to action:</strong> Use DialedIn to find your safe operating region—then
+            <strong>Call to action:</strong> Use tattoomachinesetup.com to find your safe operating region—then
             break rules with intent, measurement, and skin accountability.
           </p>
         </blockquote>

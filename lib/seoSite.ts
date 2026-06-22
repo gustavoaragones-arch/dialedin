@@ -5,7 +5,7 @@ export const SITE_URL = "https://tattoomachinesetup.com";
 
 /** Appended to Open Graph descriptions for social previews (Disciplined Craft CTA). */
 export const OG_DISCIPLINED_LINE =
-  "Disciplined craft — technical accountability. Calibrate stroke, voltage, and style with DialedIn.";
+  "Disciplined craft — technical accountability. Calibrate stroke, voltage, and style with tattoomachinesetup.com.";
 
 export function openGraphArticle(
   path: string,
@@ -14,7 +14,7 @@ export function openGraphArticle(
 ): NonNullable<Metadata["openGraph"]> {
   return {
     type: "article",
-    siteName: "DialedIn",
+    siteName: "tattoomachinesetup.com",
     locale: "en_US",
     url: new URL(path, SITE_URL).href,
     title,
@@ -40,7 +40,7 @@ export function openGraphWebsite(
 ): NonNullable<Metadata["openGraph"]> {
   return {
     type: "website",
-    siteName: "DialedIn",
+    siteName: "tattoomachinesetup.com",
     locale: "en_US",
     url: new URL(path, SITE_URL).href,
     title,

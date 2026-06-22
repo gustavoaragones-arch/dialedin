@@ -44,7 +44,7 @@ export default async function CartridgeDragPage({ params }: PageProps) {
     description,
     author: {
       "@type": "Organization",
-      name: "DialedIn Team",
+      name: "tattoomachinesetup.com Team",
     },
     publisher: {
       "@type": "Organization",
@@ -105,7 +105,7 @@ export default async function CartridgeDragPage({ params }: PageProps) {
         <p>
           You can have the perfect voltage and the perfect machine, but if your stretch is weak or
           your cartridge is fighting you, the result is trauma. This is the bio-mechanical side of
-          DialedIn logic.
+          tattoomachinesetup.com logic.
         </p>
       </section>
 

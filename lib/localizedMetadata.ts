@@ -46,7 +46,7 @@ export async function localizedPageMetadata(
     openGraph: {
       type: options?.ogType ?? "website",
       url: abs,
-      siteName: "DialedIn",
+      siteName: "tattoomachinesetup.com",
       locale: ogLocaleTag(locale),
       title,
       description: `${description} ${disciplinedLine}`,
@@ -62,7 +62,7 @@ export async function localizedPageMetadata(
     meta.keywords = options.keywords;
   }
   if (options?.ogType === "article") {
-    meta.authors = [{ name: "DialedIn Team" }];
+    meta.authors = [{ name: "tattoomachinesetup.com Team" }];
     meta.publisher = "tattoomachinesetup.com";
   }
 

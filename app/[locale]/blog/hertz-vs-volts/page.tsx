@@ -44,7 +44,7 @@ export default async function HertzVsVoltsPage({ params }: PageProps) {
     description,
     author: {
       "@type": "Organization",
-      name: "DialedIn Team",
+      name: "tattoomachinesetup.com Team",
     },
     publisher: {
       "@type": "Organization",
@@ -155,14 +155,14 @@ export default async function HertzVsVoltsPage({ params }: PageProps) {
       </section>
 
       <section className="science-section">
-        <h2>The DialedIn Translation</h2>
+        <h2>The tattoomachinesetup.com Translation</h2>
         <p>
           Most apprentices don&apos;t have a machine that displays Hertz. You have a
           standard power supply that shows Volts. This creates a "blind spot"
           in your technical setup.
         </p>
         <p>
-          The DialedIn Engine was built to solve this. When you select your
+          The tattoomachinesetup.com Engine was built to solve this. When you select your
           machine style and hardware in our tool, we use known motor constants
           to translate that Voltage into a Derived CPS.
         </p>

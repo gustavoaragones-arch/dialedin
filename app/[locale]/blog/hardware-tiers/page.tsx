@@ -42,7 +42,7 @@ export default async function HardwareTiersPage({ params }: PageProps) {
     headline,
     url: pageUrl,
     description,
-    author: { "@type": "Organization", name: "DialedIn Team" },
+    author: { "@type": "Organization", name: "tattoomachinesetup.com Team" },
     publisher: {
       "@type": "Organization",
       name: "tattoomachinesetup.com",

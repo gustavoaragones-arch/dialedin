@@ -48,7 +48,7 @@ export default async function NeedleTaperPage({ params }: PageProps) {
     articleBody: ARTICLE_BODY_EXCERPT_EN,
     author: {
       "@type": "Organization",
-      name: "DialedIn Team",
+      name: "tattoomachinesetup.com Team",
     },
     publisher: {
       "@type": "Organization",
@@ -183,7 +183,7 @@ export default async function NeedleTaperPage({ params }: PageProps) {
       <section className="science-section">
         <h2>Technique over numerology</h2>
         <p>
-          DialedIn encodes conservative geometry context so realism-oriented workflows bias toward
+          tattoomachinesetup.com encodes conservative geometry context so realism-oriented workflows bias toward
           long or super-long taper recommendations where that lowers relative trauma—while stroke,
           cartridge tier, and hand velocity stay coupled in the same model.
         </p>

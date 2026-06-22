@@ -43,7 +43,7 @@ export default async function HandSpeedSyncPage({ params }: PageProps) {
     description,
     author: {
       "@type": "Organization",
-      name: "DialedIn Team",
+      name: "tattoomachinesetup.com Team",
     },
     publisher: {
       "@type": "Organization",
@@ -158,7 +158,7 @@ export default async function HandSpeedSyncPage({ params }: PageProps) {
       </section>
 
       <section className="science-section">
-        <h2>DialedIn in practice</h2>
+        <h2>tattoomachinesetup.com in practice</h2>
         <p>
           The tool keeps CPS, voltage, and stroke inside a coherent band while you tune hand
           velocity to task. Use it as a <strong>lining hand speed guide</strong>, then validate in

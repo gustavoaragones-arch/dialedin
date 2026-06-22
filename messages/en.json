@@ -1,6 +1,6 @@
 {
   "og": {
-    "disciplinedLine": "Disciplined craft — technical accountability. Calibrate stroke, voltage, and style with DialedIn."
+    "disciplinedLine": "Disciplined craft — technical accountability. Calibrate stroke, voltage, and style with tattoomachinesetup.com."
   },
   "meta": {
     "home": {
@@ -9,7 +9,7 @@
     },
     "howItWorks": {
       "title": "The Science of the Sweet Spot",
-      "description": "Inside the DialedIn logic: Understanding the 3.5mm pivot, adaptive voltage logic, and style-first technical baselines."
+      "description": "Inside the tattoomachinesetup.com logic: Understanding the 3.5mm pivot, adaptive voltage logic, and style-first technical baselines."
     },
     "science": {
       "title": "Scientific methodology",
@@ -33,7 +33,7 @@
     },
     "blogHub": {
       "title": "Technical Blog",
-      "description": "Stroke physics, needle geometry, hardware tiers, and disciplined setup methodology from DialedIn."
+      "description": "Stroke physics, needle geometry, hardware tiers, and disciplined setup methodology from tattoomachinesetup.com."
     },
     "blogStrokePhysics": {
       "title": "Stroke Physics: The 3.5mm Pivot Guide",
@@ -145,7 +145,7 @@
     "cpsLabel": "Cycles per second (CPS)",
     "cpsCaption": "CPS = round((final volts × 1000) ÷ 60)—a scalar teaching view of how hard the pack is being driven after hand-speed offset and clamp.",
     "lessonTitle": "Lesson",
-    "lessonBody": "DialedIn has adapted your voltage for a {currentStroke} mm stroke. For {style}, the industry standard is {idealStroke} mm to ensure optimal saturation without skin trauma.",
+    "lessonBody": "tattoomachinesetup.com has adapted your voltage for a {currentStroke} mm stroke. For {style}, the industry standard is {idealStroke} mm to ensure optimal saturation without skin trauma.",
     "lessonLink": "Learn more about the 3.5mm pivot and stroke physics.",
     "selectedStrokeDt": "Selected stroke (global)",
     "styleBaselineDt": "Style baseline (ideal stroke)",
@@ -193,18 +193,18 @@
     },
     "disclaimer": {
       "title": "Technical Disclaimer",
-      "lead": "DialedIn is an educational and decision-support tool intended solely for informational purposes. Suggested parameters (voltage, hertz, stroke, and needle configuration) reflect general industry consensus and manufacturer specifications; they do not replace professional judgment or training under a qualified mentor.",
+      "lead": "tattoomachinesetup.com is an educational and decision-support tool intended solely for informational purposes. Suggested parameters (voltage, hertz, stroke, and needle configuration) reflect general industry consensus and manufacturer specifications; they do not replace professional judgment or training under a qualified mentor.",
       "acknowledge": "By using this tool, you acknowledge that:",
       "riskTitle": "Physical risk",
       "riskBody": "Tattooing involves invasive procedures. Incorrect machine use or inappropriate settings can cause severe skin trauma or infections.",
       "equipTitle": "Equipment variability",
-      "equipBody": "Machines and cartridges differ by brand and maintenance condition; DialedIn does not guarantee exact outcomes.",
+      "equipBody": "Machines and cartridges differ by brand and maintenance condition; tattoomachinesetup.com does not guarantee exact outcomes.",
       "liabilityTitle": "User responsibility",
       "liabilityBody": "Albor Digital LLC is not liable for injuries, legal claims, or unsatisfactory aesthetic results. Final machine adjustment remains solely the artist’s responsibility."
     },
     "privacy": {
       "title": "Privacy & Data Transparency",
-      "lead": "At DialedIn, we value your craft and your privacy.",
+      "lead": "At tattoomachinesetup.com, we value your craft and your privacy.",
       "dataTitle": "Data we collect",
       "dataBody": "We do not request sensitive personal information. We only store configuration preferences anonymously to improve our logic engine.",
       "aiTitle": "Use of AI",
@@ -225,7 +225,7 @@
       "title": "Responsible AI Policy",
       "lead": "tattoomachinesetup.com is operated by Albor Digital LLC. This policy describes how we use automation and language models transparently.",
       "purposeTitle": "Purpose & limits",
-      "purposeBody": "DialedIn combines deterministic rules and documented heuristics with optional language-model assistance for technical taxonomy labeling. It is not a medical device and must not replace professional judgment or manufacturer documentation.",
+      "purposeBody": "tattoomachinesetup.com combines deterministic rules and documented heuristics with optional language-model assistance for technical taxonomy labeling. It is not a medical device and must not replace professional judgment or manufacturer documentation.",
       "humanTitle": "Human oversight",
       "humanBody": "Artists must validate every recommendation against manufacturer specs, skin type, session goals, and local regulations. The tool surfaces warnings where modeled checks flag potential mismatch.",
       "dataTitle": "Personal data & models",
@@ -236,14 +236,14 @@
   },
   "blogNav": {
     "backBlog": "← Blog",
-    "backDial": "← DIALED-IN",
-    "backTool": "← DIALED-IN tool",
+    "backDial": "← tattoomachinesetup.com",
+    "backTool": "← tattoomachinesetup.com tool",
     "backSetup": "← Setup tool",
     "articleFooter": "Published by tattoomachinesetup.com team. Technical data last updated April 2026."
   },
   "blogIndex": {
     "pageTitle": "Technical Blog",
-    "pageSubhead": "Technical insights and machine physics from the DialedIn team.",
+    "pageSubhead": "Technical insights and machine physics from the tattoomachinesetup.com team.",
     "categories": {
       "motorPhysics": "Motor Physics",
       "needleGeometry": "Needle Geometry",
@@ -265,7 +265,7 @@
       },
       "strokePhysics": {
         "title": "Stroke Physics: The 3.5mm Pivot Guide",
-        "summary": "Force versus frequency: why 3.5mm is a versatile baseline, how 4.0–4.2mm behaves as a hammer, when 2.5–3.0mm fits soft work, and how DialedIn offsets voltage for long throw."
+        "summary": "Force versus frequency: why 3.5mm is a versatile baseline, how 4.0–4.2mm behaves as a hammer, when 2.5–3.0mm fits soft work, and how tattoomachinesetup.com offsets voltage for long throw."
       },
       "hardwareTiers": {
         "title": "Tattoo Hardware: Tier 1 vs Tier 2 Gear",
@@ -300,7 +300,7 @@
   "scienceArticle": {
     "universalMachinePhysics": {
       "h2": "Universal Machine Physics",
-      "p1": "The DialedIn setup model operates on relational physics. Unlike linear calculators, it accounts for the Hammer Effect—the exponential increase in kinetic impact when long-stroke machines are used at high voltages. By integrating the ACUS standard, artists can transition from traditional voltage to frequency-based (Hz) tattooing while physical reciprocation (CPS) stays consistent across hardware tiers.",
+      "p1": "The tattoomachinesetup.com setup model operates on relational physics. Unlike linear calculators, it accounts for the Hammer Effect—the exponential increase in kinetic impact when long-stroke machines are used at high voltages. By integrating the ACUS standard, artists can transition from traditional voltage to frequency-based (Hz) tattooing while physical reciprocation (CPS) stays consistent across hardware tiers.",
       "p2": "Cartridge build quality also changes required drive. Lower-cost cartridges often use stiffer membranes, which increase mechanical resistance at the same nominal settings. The model compensates by keeping voltage, taper class, and hand-speed/CPS coupling in one system, so artists can make controlled voltage adjustments instead of over-driving the machine."
     },
     "strokeCycle": {
@@ -326,7 +326,7 @@
   },
   "howItWorksPage": {
     "crumbMethod": "Method",
-    "heroLede": "Precision is not an accident. DialedIn translates the physics of your machine into a calculated roadmap for your art.",
+    "heroLede": "Precision is not an accident. tattoomachinesetup.com translates the physics of your machine into a calculated roadmap for your art.",
     "flowHeading": "From style to result",
     "flow": {
       "step1": {
@@ -346,7 +346,7 @@
     "spec": {
       "styleFirst": {
         "label": "Style-first logic",
-        "body": "Every artistic intent has a technical baseline. We do not flatten everything into one chart. DialedIn uses a curated taxonomy where styles such as Fine Line or American Traditional anchor needle frequency (CPS) and voltage windows—so tattoo machine setup logic follows the standard of that discipline."
+        "body": "Every artistic intent has a technical baseline. We do not flatten everything into one chart. tattoomachinesetup.com uses a curated taxonomy where styles such as Fine Line or American Traditional anchor needle frequency (CPS) and voltage windows—so tattoo machine setup logic follows the standard of that discipline."
       },
       "adaptiveStroke": {
         "label": "Adaptive stroke sync",
@@ -385,24 +385,24 @@
     },
     "sec01": {
       "title": "Style-first baseline",
-      "body": "We don't believe in one size fits all. DialedIn starts by looking at your artistic goal. Whether you are pulling bold lines or layering soft grey-wash, the engine sets a baseline frequency (CPS) that matches the industry standard for that specific craft."
+      "body": "We don't believe in one size fits all. tattoomachinesetup.com starts by looking at your artistic goal. Whether you are pulling bold lines or layering soft grey-wash, the engine sets a baseline frequency (CPS) that matches the industry standard for that specific craft."
     },
     "sec02": {
       "title": "The stroke modifier (adaptive mode)",
-      "body": "Your machine's stroke is its physical punch. A long-stroke machine (4.0 mm and up) moves with more momentum. To prevent skin trauma, DialedIn automatically dials back your voltage when you use a long stroke for soft techniques. Conversely, if your stroke is short, we nudge the power up to ensure you get the penetration you need."
+      "body": "Your machine's stroke is its physical punch. A long-stroke machine (4.0 mm and up) moves with more momentum. To prevent skin trauma, tattoomachinesetup.com automatically dials back your voltage when you use a long stroke for soft techniques. Conversely, if your stroke is short, we nudge the power up to ensure you get the penetration you need."
     },
     "sec03": {
       "title": "Constant calculation",
       "body": "As you change your machine or your style, the engine recalculates in real time. It's like having a technical mentor at your station, ensuring your gear is always synced to your hand.",
       "noteBefore": "On ",
       "noteStrong": "voltage to CPS conversion",
-      "noteMid": ": frequency and volts are partners, not duplicates. DialedIn keeps them in one context—see also ",
+      "noteMid": ": frequency and volts are partners, not duplicates. tattoomachinesetup.com keeps them in one context—see also ",
       "noteBlogLink": "hertz and volts on the machine",
       "noteAfter": "."
     },
     "sec04": {
       "title": "The membrane tax, in plain terms",
-      "beforeLink": "Stiffer membranes add resistance before meaningful needle motion. That is why some budget cartridges feel like they tax your motor. DialedIn accounts for tier differences with a small compensating nudge so the pull stays honest. Deeper read: ",
+      "beforeLink": "Stiffer membranes add resistance before meaningful needle motion. That is why some budget cartridges feel like they tax your motor. tattoomachinesetup.com accounts for tier differences with a small compensating nudge so the pull stays honest. Deeper read: ",
       "linkMembrane": "The membrane tax",
       "afterLink": "."
     },
@@ -415,7 +415,7 @@
     "sec06": {
       "title": "Scientific methodology: the constant of effective force",
       "p1": "Our logic is built on the physical relationship between stroke length (S) and needle frequency (F). As S increases, the impact force on the skin increases exponentially. To maintain a constant safe impact zone, frequency (voltage) must be inversely adjusted.",
-      "beforeStrokeLink": "DialedIn uses a linear decay formula around the ",
+      "beforeStrokeLink": "tattoomachinesetup.com uses a linear decay formula around the ",
       "pivotBold": "3.5 mm pivot",
       "betweenLinks": " to keep your machine in the mechanical sweet spot, regardless of hardware tiering. For the full stroke narrative, see ",
       "linkStroke": "The 3.5mm pivot",
@@ -443,7 +443,7 @@
       "sweetSpotLead": "Want to see how a 4.2 mm stroke affects the recommended voltage for your shading technique?",
       "sweetSpotLink": "Calculate your sweet spot here",
       "magnumLead": "Outlining with a Magnum only works when gauge and grouping match your realism plan.",
-      "magnumLink": "Verify compatibility in DialedIn"
+      "magnumLink": "Verify compatibility in tattoomachinesetup.com"
     },
     "toolDashboard": {
       "learnMoreVoltagePepper": "Why do pro artists lower voltage for pepper shading?",

@@ -13,7 +13,7 @@ export function BlogTechnicalContext({
   title = "Tool call",
   primaryLabel = "Configure Your Setup",
   secondaryLabel = "View Technical Methodology",
-  description = "Logic is the foundation. Precision is the result. Setup your machine with DialedIn.",
+  description = "Logic is the foundation. Precision is the result. Setup your machine with tattoomachinesetup.com.",
 }: BlogTechnicalContextProps) {
   return (
     <section

@@ -47,7 +47,7 @@ export default async function NeedleGeometryPage({ params }: PageProps) {
         description,
         author: {
           "@type": "Organization",
-          name: "DialedIn Team",
+          name: "tattoomachinesetup.com Team",
         },
         publisher: {
           "@type": "Organization",
@@ -65,7 +65,7 @@ export default async function NeedleGeometryPage({ params }: PageProps) {
         "@id": `${pageUrl}#techarticle`,
         headline,
         description,
-        author: { "@type": "Organization", name: "DialedIn Team" },
+        author: { "@type": "Organization", name: "tattoomachinesetup.com Team" },
         publisher: {
           "@type": "Organization",
           name: "tattoomachinesetup.com",
@@ -247,7 +247,7 @@ export default async function NeedleGeometryPage({ params }: PageProps) {
           Geometry sets what the skin receives; your machine translates intent
           into force and frequency. Read{" "}
           <Link className="dialed__link" href="/how-it-works">
-            how DialedIn turns style, stroke, and voltage into one accountable
+            how tattoomachinesetup.com turns style, stroke, and voltage into one accountable
             roadmap
           </Link>
           , then open the{" "}

@@ -1,6 +1,6 @@
 {
   "crumbMethod": "Method",
-  "heroLede": "Precision is not an accident. DialedIn translates the physics of your machine into a calculated roadmap for your art.",
+  "heroLede": "Precision is not an accident. tattoomachinesetup.com translates the physics of your machine into a calculated roadmap for your art.",
   "flowHeading": "From style to result",
   "flow": {
     "step1": {
@@ -20,7 +20,7 @@
   "spec": {
     "styleFirst": {
       "label": "Style-first logic",
-      "body": "Every artistic intent has a technical baseline. We do not flatten everything into one chart. DialedIn uses a curated taxonomy where styles such as Fine Line or American Traditional anchor needle frequency (CPS) and voltage windows—so tattoo machine setup logic follows the standard of that discipline."
+      "body": "Every artistic intent has a technical baseline. We do not flatten everything into one chart. tattoomachinesetup.com uses a curated taxonomy where styles such as Fine Line or American Traditional anchor needle frequency (CPS) and voltage windows—so tattoo machine setup logic follows the standard of that discipline."
     },
     "adaptiveStroke": {
       "label": "Adaptive stroke sync",
@@ -59,24 +59,24 @@
   },
   "sec01": {
     "title": "Style-first baseline",
-    "body": "We don't believe in one size fits all. DialedIn starts by looking at your artistic goal. Whether you are pulling bold lines or layering soft grey-wash, the engine sets a baseline frequency (CPS) that matches the industry standard for that specific craft."
+    "body": "We don't believe in one size fits all. tattoomachinesetup.com starts by looking at your artistic goal. Whether you are pulling bold lines or layering soft grey-wash, the engine sets a baseline frequency (CPS) that matches the industry standard for that specific craft."
   },
   "sec02": {
     "title": "The stroke modifier (adaptive mode)",
-    "body": "Your machine's stroke is its physical punch. A long-stroke machine (4.0 mm and up) moves with more momentum. To prevent skin trauma, DialedIn automatically dials back your voltage when you use a long stroke for soft techniques. Conversely, if your stroke is short, we nudge the power up to ensure you get the penetration you need."
+    "body": "Your machine's stroke is its physical punch. A long-stroke machine (4.0 mm and up) moves with more momentum. To prevent skin trauma, tattoomachinesetup.com automatically dials back your voltage when you use a long stroke for soft techniques. Conversely, if your stroke is short, we nudge the power up to ensure you get the penetration you need."
   },
   "sec03": {
     "title": "Constant calculation",
     "body": "As you change your machine or your style, the engine recalculates in real time. It's like having a technical mentor at your station, ensuring your gear is always synced to your hand.",
     "noteBefore": "On ",
     "noteStrong": "voltage to CPS conversion",
-    "noteMid": ": frequency and volts are partners, not duplicates. DialedIn keeps them in one context—see also ",
+    "noteMid": ": frequency and volts are partners, not duplicates. tattoomachinesetup.com keeps them in one context—see also ",
     "noteBlogLink": "hertz and volts on the machine",
     "noteAfter": "."
   },
   "sec04": {
     "title": "The membrane tax, in plain terms",
-    "beforeLink": "Stiffer membranes add resistance before meaningful needle motion. That is why some budget cartridges feel like they tax your motor. DialedIn accounts for tier differences with a small compensating nudge so the pull stays honest. Deeper read: ",
+    "beforeLink": "Stiffer membranes add resistance before meaningful needle motion. That is why some budget cartridges feel like they tax your motor. tattoomachinesetup.com accounts for tier differences with a small compensating nudge so the pull stays honest. Deeper read: ",
     "linkMembrane": "The membrane tax",
     "afterLink": "."
   },
@@ -89,7 +89,7 @@
   "sec06": {
     "title": "Scientific methodology: the constant of effective force",
     "p1": "Our logic is built on the physical relationship between stroke length (S) and needle frequency (F). As S increases, the impact force on the skin increases exponentially. To maintain a constant safe impact zone, frequency (voltage) must be inversely adjusted.",
-    "beforeStrokeLink": "DialedIn uses a linear decay formula around the ",
+    "beforeStrokeLink": "tattoomachinesetup.com uses a linear decay formula around the ",
     "pivotBold": "3.5 mm pivot",
     "betweenLinks": " to keep your machine in the mechanical sweet spot, regardless of hardware tiering. For the full stroke narrative, see ",
     "linkStroke": "The 3.5mm pivot",
