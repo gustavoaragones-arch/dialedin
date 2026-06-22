@@ -1,5 +1,8 @@
 import type { Machine, VoltRange } from "./dialedInData";
-import { getBrowserSupabase } from "./supabase/client";
+import {
+  describeSupabaseConfigIssue,
+  getBrowserSupabase,
+} from "./supabase/client";
 
 /** Row shape: only columns we read from `public.machine_library` (+ id for keys). */
 type MachineRow = {
@@ -63,15 +66,29 @@ export async function fetchMachineLibrary(): Promise<FetchMachinesResult> {
     return {
       ok: false,
       error:
-        "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY in .env",
+        describeSupabaseConfigIssue() ??
+        "Unable to initialize Supabase client for machine_library.",
     };
   }
 
-  const { data, error } = await supabase
-    .from(MACHINE_LIBRARY)
-    .select("id, brand, model, stroke_options, default_volt_range")
-    .order("brand", { ascending: true })
-    .order("model", { ascending: true });
+  let data: unknown[] | null = null;
+  let error: { message: string } | null = null;
+  try {
+    const response = await supabase
+      .from(MACHINE_LIBRARY)
+      .select("id, brand, model, stroke_options, default_volt_range")
+      .order("brand", { ascending: true })
+      .order("model", { ascending: true });
+    data = response.data;
+    error = response.error;
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Supabase machine_library request failed:", err);
+    return {
+      ok: false,
+      error: `Supabase machine_library request failed: ${message}`,
+    };
+  }
 
   if (error) {
     return { ok: false, error: error.message };

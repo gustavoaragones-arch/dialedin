@@ -1,4 +1,7 @@
-import { getBrowserSupabase } from "./supabase/client";
+import {
+  describeSupabaseConfigIssue,
+  getBrowserSupabase,
+} from "./supabase/client";
 
 const TABLE = "tattoo_taxonomy";
 
@@ -176,25 +179,33 @@ export async function fetchTattooTaxonomy(
     return {
       ok: false,
       error:
-        "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY in .env",
+        describeSupabaseConfigIssue() ??
+        "Unable to initialize Supabase client for tattoo_taxonomy.",
     };
   }
 
-  const response = await supabase
-    .from(TABLE)
-    .select("*")
-    .order("style_name", { ascending: true });
-
-  console.log("Raw Supabase Response:", response);
-
-  const { data, error } = response;
+  let data: unknown[] | null = null;
+  let error: { message: string } | null = null;
+  try {
+    const response = await supabase
+      .from(TABLE)
+      .select("*")
+      .order("style_name", { ascending: true });
+    data = response.data;
+    error = response.error;
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Supabase tattoo_taxonomy request failed:", err);
+    return {
+      ok: false,
+      error: `Supabase tattoo_taxonomy request failed: ${message}`,
+    };
+  }
 
   if (error) {
     console.error("Supabase Error Details:", error);
     return { ok: false, error: error.message };
   }
-
-  console.log("Supabase tattoo_taxonomy data[]:", data);
 
   const rawRows = (data ?? []) as TaxonomyRowRaw[];
 
