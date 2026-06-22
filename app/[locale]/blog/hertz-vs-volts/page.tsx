@@ -48,8 +48,8 @@ export default async function HertzVsVoltsPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: [
       "Tattoo machine hertz to volts",
@@ -99,7 +99,7 @@ export default async function HertzVsVoltsPage({ params }: PageProps) {
           secret language? (Sort of).
         </p>
         <p>
-          At DialedIn.ink, we believe that understanding the difference between
+          At tattoomachinesetup.com, we believe that understanding the difference between
           electrical potential and physical frequency is the "Level Up" every
           apprentice needs.
         </p>
@@ -183,7 +183,7 @@ export default async function HertzVsVoltsPage({ params }: PageProps) {
           <strong>Find Your Frequency:</strong> Ready to see what your current
           voltage actually means in physical hits? Use the{" "}
           <Link className="dialed__link" href="/">
-            DialedIn.ink Setup Engine
+            tattoomachinesetup.com Setup Engine
           </Link>{" "}
           to bridge the gap between Volts and the Frequency Truth.
         </p>

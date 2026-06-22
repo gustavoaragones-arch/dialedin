@@ -51,8 +51,8 @@ export default async function StrokePhysicsPage({ params }: PageProps) {
         },
         publisher: {
           "@type": "Organization",
-          name: "DialedIn.ink",
-          url: "https://dialedin.ink",
+          name: "tattoomachinesetup.com",
+          url: "https://tattoomachinesetup.com",
         },
         keywords: [
           "best stroke for soft shading",
@@ -68,8 +68,8 @@ export default async function StrokePhysicsPage({ params }: PageProps) {
         author: { "@type": "Organization", name: "DialedIn Team" },
         publisher: {
           "@type": "Organization",
-          name: "DialedIn.ink",
-          url: "https://dialedin.ink",
+          name: "tattoomachinesetup.com",
+          url: "https://tattoomachinesetup.com",
         },
         proficiencyLevel: "Expert",
       },

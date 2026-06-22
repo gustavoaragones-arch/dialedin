@@ -51,8 +51,8 @@ export default async function NeedleGeometryPage({ params }: PageProps) {
         },
         publisher: {
           "@type": "Organization",
-          name: "DialedIn.ink",
-          url: "https://dialedin.ink",
+          name: "tattoomachinesetup.com",
+          url: "https://tattoomachinesetup.com",
         },
         keywords: [
           "Difference between #10 and #12 needles",
@@ -68,8 +68,8 @@ export default async function NeedleGeometryPage({ params }: PageProps) {
         author: { "@type": "Organization", name: "DialedIn Team" },
         publisher: {
           "@type": "Organization",
-          name: "DialedIn.ink",
-          url: "https://dialedin.ink",
+          name: "tattoomachinesetup.com",
+          url: "https://tattoomachinesetup.com",
         },
         proficiencyLevel: "Expert",
       },

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 /** Canonical site origin for metadata, sitemap, and robots. */
-export const SITE_URL = "https://dialedin.ink";
+export const SITE_URL = "https://tattoomachinesetup.com";
 
 /** Appended to Open Graph descriptions for social previews (Disciplined Craft CTA). */
 export const OG_DISCIPLINED_LINE =

@@ -67,8 +67,8 @@ export function buildHowItWorksJsonLd(
         name: headline,
         isPartOf: {
           "@type": "WebSite",
-          name: "DialedIn.ink",
-          url: "https://dialedin.ink",
+          name: "tattoomachinesetup.com",
+          url: "https://tattoomachinesetup.com",
         },
         description,
       },

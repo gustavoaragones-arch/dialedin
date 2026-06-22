@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 
 /**
- * Scientific methodology copy (DialedIn.ink authority layer).
+ * Scientific methodology copy (tattoomachinesetup.com authority layer).
  */
 export function ScienceMethodologyContent() {
   const t = useTranslations("scienceArticle");

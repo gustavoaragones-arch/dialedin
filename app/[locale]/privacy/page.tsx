@@ -34,8 +34,8 @@ export default async function PrivacyPage({ params }: PageProps) {
       <p>{t("privacy.cookiesBody")}</p>
       <h2>{t("common.contactEmailLabel")}</h2>
       <p>
-        <a className="dialed__link" href="mailto:contact@albor.digital">
-          contact@albor.digital
+        <a className="dialed__link" href="mailto:contact@tattoomachinesetup.com">
+          contact@tattoomachinesetup.com
         </a>
       </p>
     </div>

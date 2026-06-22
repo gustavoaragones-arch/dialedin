@@ -45,8 +45,8 @@ export default async function NeedleHangDepthPage({ params }: PageProps) {
     author: { "@type": "Organization", name: "DialedIn Team" },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: [
       "tattoo needle hang length",

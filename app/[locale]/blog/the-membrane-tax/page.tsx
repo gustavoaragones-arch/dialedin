@@ -48,8 +48,8 @@ export default async function TheMembraneTaxPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: [
       "Tattoo machine stalling",
@@ -158,7 +158,7 @@ export default async function TheMembraneTaxPage({ params }: PageProps) {
         </p>
         <p>
           <strong>Sync Your Setup:</strong> Not sure if you&apos;re paying the tax?
-          Use the <Link className="dialed__link" href="/">DialedIn.ink Logic Engine</Link>{" "}
+          Use the <Link className="dialed__link" href="/">tattoomachinesetup.com Logic Engine</Link>{" "}
           to select your specific machine and technique. Our engine calculates
           these offsets for you, giving you a &quot;Sweat Spot&quot; that accounts
           for your hardware tier.

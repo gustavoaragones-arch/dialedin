@@ -12,8 +12,8 @@ export async function SiteFooter() {
         </p>
         <p className="site-footer__line">
           <span className="site-footer__label">{t("contactLabel")}</span>{" "}
-          <a className="site-footer__link" href="mailto:contact@albor.digital">
-            contact@albor.digital
+          <a className="site-footer__link" href="mailto:contact@tattoomachinesetup.com">
+            contact@tattoomachinesetup.com
           </a>
         </p>
         <nav className="site-footer__site" aria-label="Product">

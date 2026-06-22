@@ -33,8 +33,8 @@ export default async function TermsPage({ params }: PageProps) {
       <p>{t("terms.lawBody")}</p>
       <h2>{t("common.contactEmailLabel")}</h2>
       <p>
-        <a className="dialed__link" href="mailto:contact@albor.digital">
-          contact@albor.digital
+        <a className="dialed__link" href="mailto:contact@tattoomachinesetup.com">
+          contact@tattoomachinesetup.com
         </a>
       </p>
     </div>

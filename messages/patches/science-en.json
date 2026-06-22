@@ -1,7 +1,7 @@
 {
   "sciencePage": {
     "h1": "Scientific standard",
-    "lede": "Methodology for the DialedIn.ink authority layer: how stroke, voltage, taper geometry, and hand velocity are modeled together—not as isolated “settings,” but as coupled physical constraints."
+    "lede": "Methodology for the tattoomachinesetup.com authority layer: how stroke, voltage, taper geometry, and hand velocity are modeled together—not as isolated “settings,” but as coupled physical constraints."
   },
   "scienceArticle": {
     "universalMachinePhysics": {
@@ -11,13 +11,13 @@
     },
     "strokeCycle": {
       "h2": "The stroke–cycle equilibrium",
-      "p1": "Rotary tattoo machines convert electrical cycles into needle displacement. For a given stroke length (mm), the needle travels a fixed arc per revolution. When hand velocity exceeds the rate at which those cycles deposit pigment, the skin sees under-filled segments—often misread as a \"machine problem\" when it is a velocity mismatch. The DialedIn.ink engine models this by pairing a seven-tier hand-speed scale with recommended voltage bands: faster hands generally require higher effective cycle energy, bounded by tissue safety envelopes.",
+      "p1": "Rotary tattoo machines convert electrical cycles into needle displacement. For a given stroke length (mm), the needle travels a fixed arc per revolution. When hand velocity exceeds the rate at which those cycles deposit pigment, the skin sees under-filled segments—often misread as a \"machine problem\" when it is a velocity mismatch. The tattoomachinesetup.com engine models this by pairing a seven-tier hand-speed scale with recommended voltage bands: faster hands generally require higher effective cycle energy, bounded by tissue safety envelopes.",
       "p2": "Long-stroke machines (typically 4.0 mm+) store more kinetic energy in each impact. During soft shading or whip-style passes, that extra momentum raises the risk of hammer effect trauma unless voltage is deliberately pulled down—our Hammer Effect Guard applies a −1.5 V offset when stroke ≥ 4.0 mm and the technique is delicate shading-class."
     },
     "acusParadigm": {
       "h2": "The ACUS Paradigm: Frequency vs. Potential",
       "p1": "With the arrival of the ACUS M1 and M2, the industry is moving from 'Voltage-thinking' to 'Frequency-thinking.' While traditional power supplies measure the electrical potential (Volts), the ACUS system prioritizes the Cycles Per Second (Hertz).",
-      "p2": "DialedIn.ink is engineered to bridge this gap. Our model translates standard motor constants into physical reciprocation rates. This ensures that whether you are using a standard rotary or an ACUS, your Hand Speed Sync remains mathematically consistent. By calculating physical CPS, artists can internalize the 'Speed of the Hit' independent of power-supply branding."
+      "p2": "tattoomachinesetup.com is engineered to bridge this gap. Our model translates standard motor constants into physical reciprocation rates. This ensures that whether you are using a standard rotary or an ACUS, your Hand Speed Sync remains mathematically consistent. By calculating physical CPS, artists can internalize the 'Speed of the Hit' independent of power-supply branding."
     },
     "needleTaper": {
       "h2": "Needle taper geometry",
@@ -26,7 +26,7 @@
     },
     "gaugeTension": {
       "h2": "Gauge & skin tension",
-      "p1": "Needle gauge (for example #10 at ~0.30 mm) sets the contact patch width. Smaller gauges reduce per-pass trauma but demand cleaner cycle timing: the skin's elastic return (tension + thickness) fights the needle on entry and exit. When tension is high—think convex surfaces or dehydrated skin—prefer slightly longer tapers and conservative voltage, then adjust Hanging (needle extension beyond the tip) before chasing larger groupings. More hang increases throw for packing but amplifies lateral spread if taper geometry is mismatched. DialedIn.ink keeps hang, taper, and voltage in one relational surface so one input change recomputes the full recommendation set.",
+      "p1": "Needle gauge (for example #10 at ~0.30 mm) sets the contact patch width. Smaller gauges reduce per-pass trauma but demand cleaner cycle timing: the skin's elastic return (tension + thickness) fights the needle on entry and exit. When tension is high—think convex surfaces or dehydrated skin—prefer slightly longer tapers and conservative voltage, then adjust Hanging (needle extension beyond the tip) before chasing larger groupings. More hang increases throw for packing but amplifies lateral spread if taper geometry is mismatched. tattoomachinesetup.com keeps hang, taper, and voltage in one relational surface so one input change recomputes the full recommendation set.",
       "p2": "For bold linework where tips are not pinched into a tight round, Open Liner geometry (parallel grouping) can reduce binding at the cost of finer edge sharpness—pair with appropriate stroke length and voltage, not maximum aggression."
     }
   }

@@ -45,8 +45,8 @@ export default async function HardwareTiersPage({ params }: PageProps) {
     author: { "@type": "Organization", name: "DialedIn Team" },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: [
       "best professional tattoo machines",

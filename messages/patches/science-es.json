@@ -1,7 +1,7 @@
 {
   "sciencePage": {
     "h1": "Estándar científico",
-    "lede": "Metodología de la capa de autoridad DialedIn.ink: cómo se modelan juntos stroke, voltaje, geometría de conicidad y velocidad de mano—no como “ajustes” aislados, sino como restricciones físicas acopladas."
+    "lede": "Metodología de la capa de autoridad tattoomachinesetup.com: cómo se modelan juntos stroke, voltaje, geometría de conicidad y velocidad de mano—no como “ajustes” aislados, sino como restricciones físicas acopladas."
   },
   "scienceArticle": {
     "universalMachinePhysics": {
@@ -11,13 +11,13 @@
     },
     "strokeCycle": {
       "h2": "Equilibrio trazo–ciclo",
-      "p1": "Las rotativas convierten ciclos eléctricos en desplazamiento de aguja. Para una longitud de stroke (mm), la aguja recorre un arco fijo por revolución. Cuando la velocidad de mano supera la tasa a la que esos ciclos depositan pigmento, la piel muestra segmentos infra-rellenados—a menudo leídos como “fallo de máquina” cuando es un desajuste de velocidad. El motor DialedIn.ink modela esto enlazando una escala de mano en cinco pasos con bandas de voltaje recomendadas: manos más rápidas suelen exigir más energía de ciclo efectiva, acotada por envolventes de seguridad tisular.",
+      "p1": "Las rotativas convierten ciclos eléctricos en desplazamiento de aguja. Para una longitud de stroke (mm), la aguja recorre un arco fijo por revolución. Cuando la velocidad de mano supera la tasa a la que esos ciclos depositan pigmento, la piel muestra segmentos infra-rellenados—a menudo leídos como “fallo de máquina” cuando es un desajuste de velocidad. El motor tattoomachinesetup.com modela esto enlazando una escala de mano en cinco pasos con bandas de voltaje recomendadas: manos más rápidas suelen exigir más energía de ciclo efectiva, acotada por envolventes de seguridad tisular.",
       "p2": "Las máquinas de trazo largo (≈4,0 mm+) almacenan más energía cinética por impacto. En saturación suave o pasadas tipo whip, ese momentum extra aumenta el riesgo de trauma por efecto martillo si no se baja voltaje de forma deliberada: nuestra guardia de efecto martillo aplica −1,5 V cuando el stroke es ≥ 4,0 mm y la técnica es clase saturación suave."
     },
     "acusParadigm": {
       "h2": "El paradigma ACUS: frecuencia frente a potencial",
       "p1": "Con ACUS M1 y M2, el sector se mueve del “pensamiento en voltaje” al “pensamiento en frecuencia”. Las fuentes clásicas miden potencial eléctrico (voltios); ACUS prioriza ciclos por segundo (hercios).",
-      "p2": "DialedIn.ink está pensado para tender ese puente. El modelo traduce constantes de motor a tasas físicas de reciprocidad. Así, ya sea rotativa estándar o ACUS, tu sincronía mano–motor permanece coherente en cálculo. Al trabajar con CPS físico, puedes interiorizar la “velocidad del golpe” más allá del nombre de la fuente."
+      "p2": "tattoomachinesetup.com está pensado para tender ese puente. El modelo traduce constantes de motor a tasas físicas de reciprocidad. Así, ya sea rotativa estándar o ACUS, tu sincronía mano–motor permanece coherente en cálculo. Al trabajar con CPS físico, puedes interiorizar la “velocidad del golpe” más allá del nombre de la fuente."
     },
     "needleTaper": {
       "h2": "Geometría de conicidad de aguja",
@@ -26,7 +26,7 @@
     },
     "gaugeTension": {
       "h2": "Calibre y tensión de piel",
-      "p1": "El calibre (por ejemplo #10 ~0,30 mm) fija el ancho de contacto. Calibres menores reducen trauma por pasada pero exigen mejor cadencia del ciclo: el rebote elástico de la piel (tensión + grosor) combate la aguja a la entrada y salida. Con tensión alta—superficies convexas o piel deshidratada—prefiere conicidades algo más largas y voltaje conservador, y ajusta Hanging (salida más allá del tip) antes de subir agrupación. Más salida aumenta el throw para packing pero amplifica dispersión lateral si la geometría no acompaña. DialedIn.ink mantiene salida, conicidad y voltaje en una superficie relacional: un cambio de entrada recalcula todo el conjunto recomendado.",
+      "p1": "El calibre (por ejemplo #10 ~0,30 mm) fija el ancho de contacto. Calibres menores reducen trauma por pasada pero exigen mejor cadencia del ciclo: el rebote elástico de la piel (tensión + grosor) combate la aguja a la entrada y salida. Con tensión alta—superficies convexas o piel deshidratada—prefiere conicidades algo más largas y voltaje conservador, y ajusta Hanging (salida más allá del tip) antes de subir agrupación. Más salida aumenta el throw para packing pero amplifica dispersión lateral si la geometría no acompaña. tattoomachinesetup.com mantiene salida, conicidad y voltaje en una superficie relacional: un cambio de entrada recalcula todo el conjunto recomendado.",
       "p2": "En línea maciza donde las puntas no se cierran en round fino, la geometría Open Liner (agrupación paralela) puede reducir trabamiento a costa de filo menos fino—empárela con stroke y voltaje coherentes, no con agresividad máxima."
     }
   }

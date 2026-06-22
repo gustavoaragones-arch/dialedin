@@ -47,8 +47,8 @@ export default async function HandSpeedSyncPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: [
       "tattoo machine CPS vs hand speed",

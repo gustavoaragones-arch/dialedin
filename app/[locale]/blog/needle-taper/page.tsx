@@ -52,8 +52,8 @@ export default async function NeedleTaperPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: NEEDLE_TAPER_KEYWORDS.join(", "),
   };

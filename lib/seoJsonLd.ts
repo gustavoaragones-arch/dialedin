@@ -64,7 +64,7 @@ export function buildSoftwareApplicationJsonLd(locale: string): Record<string, u
     "@context": "https://schema.org",
     "@type": ["WebApplication", "SoftwareApplication"],
     "@id": `${pageUrl}#softwareapplication`,
-    name: "DialedIn.ink",
+    name: "tattoomachinesetup.com",
     url: pageUrl,
     operatingSystem: "Any",
     applicationCategory: "EducationalApplication",
@@ -86,7 +86,7 @@ export function buildSoftwareApplicationJsonLd(locale: string): Record<string, u
     },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
+      name: "tattoomachinesetup.com",
       url: SITE_URL,
     },
     featureList: c.featureList,

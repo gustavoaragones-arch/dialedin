@@ -62,8 +62,8 @@ export default async function PhysicsRuleBreakingPage({ params }: PageProps) {
     },
     publisher: {
       "@type": "Organization",
-      name: "DialedIn.ink",
-      url: "https://dialedin.ink",
+      name: "tattoomachinesetup.com",
+      url: "https://tattoomachinesetup.com",
     },
     keywords: RULE_BREAKING_KEYWORDS_EN.join(", "),
   };

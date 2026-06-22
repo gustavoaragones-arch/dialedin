@@ -63,7 +63,7 @@ export async function localizedPageMetadata(
   }
   if (options?.ogType === "article") {
     meta.authors = [{ name: "DialedIn Team" }];
-    meta.publisher = "DialedIn.ink";
+    meta.publisher = "tattoomachinesetup.com";
   }
 
   if (options?.noindex) {

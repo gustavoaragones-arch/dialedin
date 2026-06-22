@@ -4,7 +4,7 @@
   },
   "meta": {
     "home": {
-      "title": "DialedIn",
+      "title": "How to Setup a Tattoo Machine",
       "description": "Motor de setup de máquinas de tatuagem"
     },
     "howItWorks": {
@@ -17,19 +17,19 @@
     },
     "terms": {
       "title": "Termos de serviço",
-      "description": "Termos de serviço do DialedIn.ink, produto da Albor Digital LLC."
+      "description": "Termos de serviço do tattoomachinesetup.com, produto da Albor Digital LLC."
     },
     "privacy": {
       "title": "Política de privacidade",
-      "description": "Política de privacidade do DialedIn.ink, produto da Albor Digital LLC."
+      "description": "Política de privacidade do tattoomachinesetup.com, produto da Albor Digital LLC."
     },
     "responsibleAi": {
       "title": "Política de IA responsável",
-      "description": "Práticas de IA responsável no DialedIn.ink, alinhadas à Albor Digital LLC."
+      "description": "Práticas de IA responsável no tattoomachinesetup.com, alinhadas à Albor Digital LLC."
     },
     "disclaimer": {
       "title": "Isenção de responsabilidade técnica",
-      "description": "Isenção do DialedIn.ink: ferramenta informativa, riscos físicos da tatuagem, variabilidade do equipamento e responsabilidade do artista. Albor Digital LLC."
+      "description": "Isenção do tattoomachinesetup.com: ferramenta informativa, riscos físicos da tatuagem, variabilidade do equipamento e responsabilidade do artista. Albor Digital LLC."
     },
     "blogHub": {
       "title": "Blog técnico",
@@ -187,7 +187,7 @@
   },
   "legal": {
     "common": {
-      "operatorNote": "O DialedIn.ink é operado pela Albor Digital LLC. Estas páginas são o resumo público alinhado à documentação legal da Albor Digital.",
+      "operatorNote": "O tattoomachinesetup.com é operado pela Albor Digital LLC. Estas páginas são o resumo público alinhado à documentação legal da Albor Digital.",
       "contactEmailLabel": "Contato jurídico e privacidade"
     },
     "disclaimer": {
@@ -222,7 +222,7 @@
     },
     "responsibleAi": {
       "title": "Política de IA responsável",
-      "lead": "O DialedIn.ink é operado pela Albor Digital LLC. Esta política descreve como usamos automação e modelos de linguagem com transparência.",
+      "lead": "O tattoomachinesetup.com é operado pela Albor Digital LLC. Esta política descreve como usamos automação e modelos de linguagem com transparência.",
       "purposeTitle": "Finalidade e limites",
       "purposeBody": "O DialedIn combina regras determinísticas e heurísticas documentadas com assistência opcional de modelos de linguagem para rotulagem de taxonomias técnicas. Não é um dispositivo médico e não substitui julgamento profissional nem documentação do fabricante.",
       "humanTitle": "Supervisão humana",
@@ -238,7 +238,7 @@
     "backDial": "← DIALED-IN",
     "backTool": "← Ferramenta DIALED-IN",
     "backSetup": "← Motor de setup",
-    "articleFooter": "Publicado pela equipe DialedIn.ink. Dados técnicos atualizados em abril de 2026."
+    "articleFooter": "Publicado pela equipe tattoomachinesetup.com. Dados técnicos atualizados em abril de 2026."
   },
   "blogIndex": {
     "pageTitle": "Blog técnico",
@@ -294,7 +294,7 @@
   },
   "sciencePage": {
     "h1": "Padrão científico",
-    "lede": "Metodologia da camada de autoridade DialedIn.ink: como curso, voltagem, geometria de taper e velocidade da mão são modelados juntos—não como “ajustes” isolados, mas como restrições físicas acopladas."
+    "lede": "Metodologia da camada de autoridade tattoomachinesetup.com: como curso, voltagem, geometria de taper e velocidade da mão são modelados juntos—não como “ajustes” isolados, mas como restrições físicas acopladas."
   },
   "scienceArticle": {
     "universalMachinePhysics": {
@@ -304,13 +304,13 @@
     },
     "strokeCycle": {
       "h2": "Equilíbrio curso–ciclo",
-      "p1": "Rotativas convertem ciclos elétricos em deslocamento da agulha. Para um curso (mm), a agulha percorre arco fixo por volta. Quando a velocidade da mão excede a taxa de deposição de pigmento, surgem segmentos sub-preenchidos—muitas vezes lidos como “problema de máquina” quando é descompasso de velocidade. O motor DialedIn.ink modela isso com escala de mão em cinco passos e faixas de voltagem.",
+      "p1": "Rotativas convertem ciclos elétricos em deslocamento da agulha. Para um curso (mm), a agulha percorre arco fixo por volta. Quando a velocidade da mão excede a taxa de deposição de pigmento, surgem segmentos sub-preenchidos—muitas vezes lidos como “problema de máquina” quando é descompasso de velocidade. O motor tattoomachinesetup.com modela isso com escala de mão em cinco passos e faixas de voltagem.",
       "p2": "Máquinas de curso longo (≈4,0 mm+) armazenam mais energia por impacto. Em sombreamento suave ou passes tipo whip, esse momentum aumenta risco de trauma por efeito martelo se a voltagem não cair: a guarda aplica −1,5 V quando curso ≥ 4,0 mm e técnica é classe sombra suave."
     },
     "acusParadigm": {
       "h2": "Paradigma ACUS: frequência vs potencial",
       "p1": "Com ACUS M1/M2, o setor caminha do pensamento em volts para frequência. Fontes tradicionais medem potencial elétrico; ACUS prioriza ciclos por segundo.",
-      "p2": "DialedIn.ink faz a ponte: traduz constantes de motor em taxas físicas de reciprocidade para rotativa padrão ou ACUS, mantendo sincronia mão–motor matematicamente coerente."
+      "p2": "tattoomachinesetup.com faz a ponte: traduz constantes de motor em taxas físicas de reciprocidade para rotativa padrão ou ACUS, mantendo sincronia mão–motor matematicamente coerente."
     },
     "needleTaper": {
       "h2": "Geometria de taper da agulha",
